@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "tauri-vue3-app",
+  "mainBinaryName": "Tauri Vue3 App",
+  "version": "1.0.0",
+  "identifier": "com.example.tauri-vue3-app",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build-only",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Tauri Vue3 App",
+        "width": 1000,
+        "height": 700,
+        "minWidth": 800,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "transparent": false
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "macOSPrivateApi": false
+  },
+  "bundle": {
+    "publisher": "Your Name",
+    "active": true,
+    "category": "Utility",
+    "shortDescription": "A modern desktop application template",
+    "longDescription": "A modern desktop application template built with Tauri v2 and Vue 3, featuring TypeScript, Vuetify, Pinia, and i18n support.",
+    "targets": [
+      "dmg",
+      "msi",
+      "deb",
+      "rpm",
+      "appimage"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "macOS": {
+      "bundleName": "Tauri Vue3 App",
+      "minimumSystemVersion": "11.0"
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "displayLanguageSelector": true
+      }
+    }
+  }
+}

@@ -1,0 +1,218 @@
+# Building for Linux (Using Docker)
+
+How to build Linux binaries from Windows, macOS, or Linux using Docker
+
+## 📋 Prerequisites
+
+### Common for All Platforms
+
+- Docker Desktop or Docker Engine
+- pnpm (v10.2.0 or higher)
+- 8GB+ RAM (16GB recommended)
+- 20GB+ free disk space
+
+### Platform-Specific
+
+#### Windows
+- Windows 10/11 (64-bit)
+- WSL 2 (recommended)
+- PowerShell 5.1 or higher
+
+#### macOS
+- macOS 10.15 or higher
+- Bash
+- Docker Desktop for Mac
+
+#### Linux
+- 64-bit Linux distribution
+- Docker Engine 20.10 or higher
+- Bash
+
+## 🚀 Usage
+
+### Building on Windows
+
+```powershell
+# Run from project root
+pnpm run build:tauri:linux-x64    # x86_64 Linux
+pnpm run build:tauri:linux-arm64  # ARM64 Linux
+
+# Or run the script directly
+pwsh .\scripts\build-linux-docker.ps1 -Target x64
+pwsh .\scripts\build-linux-docker.ps1 -Target arm64
+```
+
+### Building on macOS / Linux
+
+```bash
+# Run from project root
+bash scripts/build-linux-docker.sh x64    # x86_64 Linux
+bash scripts/build-linux-docker.sh arm64  # ARM64 Linux
+
+# Or from app directory
+pnpm run build:tauri:linux-docker-x64
+pnpm run build:tauri:linux-docker-arm64
+```
+
+## 📦 Build Artifacts
+
+### Default (AppImage Disabled)
+
+Build artifacts are generated in the following directories:
+
+```text
+app/src-tauri/target/
+  ├── x86_64-unknown-linux-gnu/release/bundle/
+  │   ├── deb/           # Debian/Ubuntu packages
+  │   └── rpm/           # Red Hat/Fedora packages
+  │
+  └── aarch64-unknown-linux-gnu/release/bundle/
+      ├── deb/
+      └── rpm/
+```
+
+### With AppImage Enabled
+
+```powershell
+# Windows
+pwsh .\scripts\build-linux-docker.ps1 -Target x64 -IncludeAppImage
+
+# macOS/Linux
+INCLUDE_APPIMAGE=true bash scripts/build-linux-docker.sh x64
+```
+
+An additional `appimage/` directory will be created with AppImage files.
+
+> **Note**: AppImage builds require FUSE, which has limitations in Docker environments.
+
+## ⚙️ Build Configuration
+
+You can customize build settings in the `.env` file:
+
+```bash
+# Docker Build Settings
+BUILD_CPUS=4              # Number of CPU cores to use
+BUILD_MEMORY=8g           # Memory limit
+CARGO_BUILD_JOBS=4        # Cargo parallel jobs
+MAKEFLAGS=-j4             # Make parallelism
+INCLUDE_APPIMAGE=false    # Include AppImage
+```
+
+### Performance Optimization
+
+#### For High-Performance Machines
+
+```bash
+BUILD_CPUS=12
+BUILD_MEMORY=16g
+CARGO_BUILD_JOBS=12
+MAKEFLAGS=-j12
+```
+
+#### For Typical Machines
+
+```bash
+BUILD_CPUS=4
+BUILD_MEMORY=8g
+CARGO_BUILD_JOBS=4
+MAKEFLAGS=-j4
+```
+
+## ⚙️ How It Works
+
+1. Building Docker Image
+   - Based on Rust + Debian Bookworm
+   - Installs Tauri dependencies (WebKit2GTK, GTK3, etc.)
+   - Installs Node.js and pnpm
+
+2. Running Tauri Build in Docker Container
+   - Mounts project directory
+   - Builds for specified target architecture
+   - Uses Docker volumes for caching
+
+3. Outputs artifacts to host directory
+
+## 🔧 Troubleshooting
+
+### Docker Not Found (Windows)
+
+```
+❌ Error: Docker Desktop is not running.
+```
+
+**Solution**: Start Docker Desktop and try again.
+
+### Out of Memory
+
+**Symptoms**: Memory errors during build
+
+**Solutions**:
+1. Increase memory limit in `.env`
+2. Increase memory in Docker Desktop resource settings (Settings → Resources → Memory)
+3. Reduce parallel build count (decrease `BUILD_CPUS`)
+
+### Slow Build
+
+**Solutions**:
+- Increase parallelism in `.env`
+- Increase Docker Desktop resources (CPU, memory)
+- Use SSD storage
+- Utilize cache volumes
+
+### Clear Build Cache
+
+#### Windows
+
+```powershell
+# Clear x86_64 cache
+docker volume rm dropwebp-cargo-cache-linux-amd64
+docker volume rm dropwebp-pnpm-cache-linux-amd64
+docker volume rm dropwebp-target-cache-linux-amd64
+
+# Clear ARM64 cache
+docker volume rm dropwebp-cargo-cache-linux-arm64
+docker volume rm dropwebp-pnpm-cache-linux-arm64
+docker volume rm dropwebp-target-cache-linux-arm64
+```
+
+#### macOS / Linux
+
+```bash
+# Clear x86_64 cache
+docker volume rm dropwebp-cargo-cache-linux-amd64
+docker volume rm dropwebp-pnpm-cache-linux-amd64
+docker volume rm dropwebp-target-cache-linux-amd64
+
+# Clear ARM64 cache
+docker volume rm dropwebp-cargo-cache-linux-arm64
+docker volume rm dropwebp-pnpm-cache-linux-arm64
+docker volume rm dropwebp-target-cache-linux-arm64
+```
+
+### Rebuild Docker Image
+
+```bash
+# For x86_64
+docker build -f Dockerfile.linux-x64 -t dropwebp-linux-x64-builder --no-cache .
+
+# For ARM64
+docker build -f Dockerfile.linux-arm64 -t dropwebp-linux-arm64-builder --no-cache .
+```
+
+## 📝 Notes
+
+- Initial build takes time for Docker image build and downloads (20-40 minutes)
+- Subsequent builds are faster using cache (5-15 minutes)
+- ARM64 builds may take longer than x86_64 builds
+- WSL 2 is recommended for Windows environments
+
+## 🎯 Recommended Distribution Format
+
+- **.deb**: For Debian/Ubuntu users (generated by default)
+- **.rpm**: For Red Hat/Fedora users (generated by default)
+- **AppImage**: Recommended for distribution (works on all Linux distributions) *optional
+
+## 📚 Related Documentation
+
+- [DOCKER_BUILD.md in root directory](../../../DOCKER_BUILD.md) - Comprehensive guide for all platforms
+- [DOCKER_BUILD_WINDOWS.md in root directory](../../../DOCKER_BUILD_WINDOWS.md) - Windows-specific detailed instructions

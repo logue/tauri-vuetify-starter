@@ -1,0 +1,56 @@
+# escape=`
+# Windows x86_64向けTauriアプリケーションビルド用Dockerfile
+# MSVC環境でのビルド（Windows実機のDocker Desktop上で実行）
+
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+# 環境変数設定
+ENV PNPM_HOME="C:\pnpm"
+
+# Chocolateyをインストール
+RUN powershell -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command `
+    "[System.Net.ServicePointManager]::SecurityProtocol = 3072; `
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
+
+# 必要なツールをインストール
+RUN choco install -y `
+    visualstudio2022buildtools `
+    visualstudio2022-workload-vctools `
+    git `
+    cmake `
+    && choco install -y nodejs --version=24.12.0 `
+    && choco install -y nasm --version=2.16.03
+
+# pnpmをインストール
+RUN powershell -Command `
+    "corepack enable; corepack prepare pnpm@latest --activate"
+
+# Rustupをインストール
+RUN powershell -NoProfile -ExecutionPolicy Bypass -Command `
+    "[System.Net.ServicePointManager]::SecurityProtocol = 3072; `
+    Invoke-WebRequest -Uri https://win.rustup.rs/x86_64 -OutFile rustup-init.exe; `
+    .\rustup-init.exe -y --default-toolchain 1.92.0 --default-host x86_64-pc-windows-msvc; `
+    Remove-Item rustup-init.exe"
+
+# 環境変数を設定（setxでマシンレベルのPATHに追加）
+RUN setx /M PATH "%PATH%;C:\Program Files\NASM;C:\Users\ContainerAdministrator\.cargo\bin;%PNPM_HOME%"
+
+# Tauri CLIをインストール（新しいPATHを読み込んでから実行）
+RUN powershell -Command `
+    "$env:PATH = [System.Environment]::GetEnvironmentVariable('PATH','Machine'); `
+    cargo install tauri-cli --version ^2.0"
+
+# 作業ディレクトリ設定
+WORKDIR C:\workspace
+
+# ビルドスクリプト（CMDバッチスクリプト）
+COPY scripts/docker/docker-build.cmd C:\docker-build.cmd
+
+# ラッパースクリプトを作成（vcvars64.bat実行後にビルドスクリプトを起動）
+# setlocalを使わずに環境変数を維持
+RUN powershell -Command `
+    "$wrapper = '@echo off', 'call \"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat\"', 'if errorlevel 1 exit /b 1', 'call C:\docker-build.cmd', 'exit /b %ERRORLEVEL%'; `
+    $wrapper | Out-File -FilePath C:\build.cmd -Encoding ASCII"
+
+# デフォルトコマンド
+CMD ["C:\\build.cmd"]
