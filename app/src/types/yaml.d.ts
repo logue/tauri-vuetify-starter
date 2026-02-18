@@ -1,14 +1,13 @@
 /**
  * YAML module declarations for vue-i18n locale files
+ * These types are used by @intlify/unplugin-vue-i18n to process YAML files
  */
 declare module '*.yml' {
-  import { LocaleMessages } from 'vue-i18n';
-  const content: LocaleMessages<any>;
+  const content: Record<string, any>;
   export default content;
 }
 
 declare module '*.yaml' {
-  import { LocaleMessages } from 'vue-i18n';
-  const content: LocaleMessages<any>;
+  const content: Record<string, any>;
   export default content;
 }

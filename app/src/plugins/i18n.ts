@@ -3,6 +3,7 @@ import { createI18n } from 'vue-i18n';
 import { en, fr, ja, ko, zhHant, zhHans } from 'vuetify/locale';
 
 // Import locale messages
+// @intlify/unplugin-vue-i18n がYAMLファイルを自動的に処理します
 import enMessages from '@/locales/en.yml';
 import frMessages from '@/locales/fr.yml';
 import jaMessages from '@/locales/ja.yml';
@@ -23,7 +24,7 @@ if (locale === 'zh') {
   }
 }
 
-export default createI18n({
+const i18n = createI18n({
   locale, // 'en-US' -> 'en' など
   fallbackLocale: 'en',
   messages: {
@@ -39,3 +40,5 @@ export default createI18n({
 });
 
 document.documentElement.lang = locale;
+
+export { i18n };

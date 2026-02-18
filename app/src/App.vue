@@ -12,8 +12,8 @@ const globalStore = useGlobalStore();
 /** Config Store */
 const configStore = useConfigStore();
 
-/** Title */
-const title = import.meta.env.VITE_APP_TITLE ?? 'Drop Compress Image';
+/** Title - Get from vite.config.ts define */
+const title = __APP_NAME__;
 
 /** loading overlay visibility */
 const loading = computed({

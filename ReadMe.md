@@ -125,4 +125,6 @@ See [TEMPLATE_GUIDE.md](./TEMPLATE_GUIDE.md) for detailed project structure.
 
 ## License
 
-MIT
+©2026 by Logue. Licensed under the [MIT License](LICENSE).
+
+This template is not officially endorsed by tauri.

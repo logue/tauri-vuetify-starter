@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { ref, type Ref } from 'vue';
 
 /** Global Store */
-export default defineStore('global', () => {
+const useGlobalStore = defineStore('global', () => {
   // State
 
   /** Loading overlay */
@@ -54,3 +54,5 @@ export default defineStore('global', () => {
 
   return { loading, progress, message, snackbarColor, setLoading, setProgress, setMessage };
 });
+
+export { useGlobalStore };

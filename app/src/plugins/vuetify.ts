@@ -13,7 +13,7 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi';
 // Translations provided by Vuetify
 import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n';
 
-import i18n from '@/plugins/i18n';
+import { i18n } from '@/plugins/i18n';
 /**
  * Vuetify Components
  *
@@ -61,7 +61,10 @@ if (import.meta.env.DEV) {
     ...vuetifyConfig
   };
 }
-export default createVuetify(vuetifyConfig);
+
+const vuetify = createVuetify(vuetifyConfig);
+
+export { vuetify };
 
 // Export for test.
-export { components, directives };
+// export { components, directives };

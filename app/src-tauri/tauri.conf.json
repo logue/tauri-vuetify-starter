@@ -2,8 +2,8 @@
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "tauri-vue3-app",
   "mainBinaryName": "Tauri Vue3 App",
-  "version": "1.0.0",
-  "identifier": "com.example.tauri-vue3-app",
+  "version": "0.0.0",
+  "identifier": "com.tauri.vue3.app",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
@@ -32,8 +32,8 @@
     "publisher": "Your Name",
     "active": true,
     "category": "Utility",
-    "shortDescription": "A modern desktop application template",
-    "longDescription": "A modern desktop application template built with Tauri v2 and Vue 3, featuring TypeScript, Vuetify, Pinia, and i18n support.",
+    "shortDescription": "Modern desktop application template",
+    "longDescription": "A modern desktop application built with Tauri v2 and Vue 3",
     "targets": [
       "dmg",
       "msi",

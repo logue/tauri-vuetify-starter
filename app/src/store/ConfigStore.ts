@@ -3,7 +3,7 @@ import { ref, watch, type Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 /** Config Store */
-export default defineStore('config', () => {
+const useConfigStore = defineStore('config', () => {
   // 1. i18nインスタンスからlocaleを取得
   const { locale } = useI18n({ useScope: 'global' });
 
@@ -31,3 +31,5 @@ export default defineStore('config', () => {
 
   return { theme, locale, toggleTheme, setLocale };
 });
+
+export { useConfigStore };
