@@ -1,3 +1,9 @@
+<figure style="text-align:center">
+
+![logo](./app/src-tauri/icons/Square284x284Logo.png)
+
+</figure>
+
 # Tauri Vue3 Template
 
 A modern desktop application template built with Tauri v2 and Vue 3.
@@ -121,7 +127,33 @@ This will automatically update:
 
 ## Project Structure
 
-See [TEMPLATE_GUIDE.md](./TEMPLATE_GUIDE.md) for detailed project structure.
+```
+.
+├─ app/                     # Frontend (Vue 3 + Vite + Vuetify)
+│  ├─ src/
+│  │  ├─ components/         # UI components
+│  │  ├─ composables/        # Reusable logic (hooks)
+│  │  ├─ locales/            # i18n YAML files
+│  │  ├─ plugins/            # Vuetify, i18n, etc.
+│  │  ├─ store/              # Pinia stores
+│  │  ├─ styles/             # Global styles
+│  │  └─ types/              # Frontend types
+│  └─ src-tauri/
+│     └─ src/                # Rust backend
+│        ├─ main.rs          # Tauri entry
+│        ├─ command.rs       # Tauri commands
+│        ├─ error.rs         # App error types
+│        ├─ logging.rs       # Logging helpers
+│        └─ lib.rs           # Public exports
+├─ docs/                     # Documentation site (Nuxt)
+├─ scripts/                  # Utility scripts (version sync, etc.)
+├─ .env                      # App configuration
+└─ ReadMe.md                 # Project overview
+```
+
+- app/src is the Vue frontend and UI logic.
+- app/src-tauri/src is the Rust backend for Tauri commands.
+- docs is the static documentation site.
 
 ## License
 

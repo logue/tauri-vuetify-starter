@@ -1,6 +1,6 @@
 {
   "name": "@tauri-vuetify-starter/app",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A modern desktop application built with Tauri v2 and Vue 3",
   "license": "MIT",
   "type": "module",

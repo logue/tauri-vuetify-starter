@@ -1,9 +1,18 @@
 /// <reference types="vite/client" />
 /// <reference types="@tauri-apps/api" />
 
-// 環境変数の型定義
+/**
+ * Vite environment variables available via import.meta.env.
+ */
 interface ImportMetaEnv {
-  readonly VITE_APP_TITLE: string;
+  /**
+   * Optional app title for legacy usage.
+   */
+  readonly VITE_APP_TITLE?: string;
+
+  /**
+   * Vite runtime flags.
+   */
   readonly DEV: boolean;
   readonly MODE: string;
   readonly BASE_URL: string;
@@ -11,29 +20,9 @@ interface ImportMetaEnv {
   readonly SSR: boolean;
 }
 
+/**
+ * ImportMeta typing for Vite.
+ */
 interface ImportMeta {
   readonly env: ImportMetaEnv;
-}
-
-// オーディオファイルの型定義
-declare module '*.mp3' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.wav' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.ogg' {
-  const src: string;
-  export default src;
-}
-
-// Vue コンポーネントの型定義
-declare module '*.vue' {
-  import type { DefineComponent } from 'vue';
-  const component: DefineComponent<{}, {}, any>;
-  export default component;
 }
