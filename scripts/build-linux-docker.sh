@@ -32,14 +32,14 @@ case "$TARGET" in
         TARGET="x86_64-unknown-linux-gnu"
         ARCH_NAME="x86_64 (AMD64)"
         DOCKERFILE="docker/Dockerfile.linux-x64"
-        IMAGE_NAME="dropwebp-linux-x64-builder"
+        IMAGE_NAME="tauri-vue3-linux-x64-builder"
         PLATFORM="linux/amd64"
         ;;
     arm64|aarch64)
         TARGET="aarch64-unknown-linux-gnu"
         ARCH_NAME="ARM64 (AArch64)"
         DOCKERFILE="docker/Dockerfile.linux-arm64"
-        IMAGE_NAME="dropwebp-linux-arm64-builder"
+        IMAGE_NAME="tauri-vue3-linux-arm64-builder"
         PLATFORM="linux/arm64"
         ;;
     *)
@@ -106,10 +106,10 @@ echo ""
 echo -e "${BLUE}🔨 Linux向けアプリケーションをビルド中...${NC}"
 
 # キャッシュ用のDockerボリューム名
-CARGO_CACHE_VOLUME="dropwebp-cargo-cache-${PLATFORM//\//-}"
-PNPM_CACHE_VOLUME="dropwebp-pnpm-cache-${PLATFORM//\//-}"
-TARGET_CACHE_VOLUME="dropwebp-target-cache-${PLATFORM//\//-}"
-NODE_MODULES_VOLUME="dropwebp-node-modules-${PLATFORM//\//-}"
+CARGO_CACHE_VOLUME="tauri-vue3-cargo-cache-${PLATFORM//\//-}"
+PNPM_CACHE_VOLUME="tauri-vue3-pnpm-cache-${PLATFORM//\//-}"
+TARGET_CACHE_VOLUME="tauri-vue3-target-cache-${PLATFORM//\//-}"
+NODE_MODULES_VOLUME="tauri-vue3-node-modules-${PLATFORM//\//-}"
 
 # ボリュームが存在しない場合は作成
 docker volume create "$CARGO_CACHE_VOLUME" >/dev/null 2>&1 || true

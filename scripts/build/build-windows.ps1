@@ -4,7 +4,7 @@
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "=== Drop Compress Image - Windows Build ===" -ForegroundColor Cyan
+Write-Host "=== Tauri Vue3 App - Windows Build ===" -ForegroundColor Cyan
 Write-Host ""
 
 # ビルド環境の確認
@@ -110,4 +110,4 @@ Write-Host ""
 Write-Host "=== Build completed successfully! ===" -ForegroundColor Green
 Write-Host ""
 Write-Host "To run the application:" -ForegroundColor Cyan
-Write-Host "  .\app\src-tauri\target\release\drop-compress-image.exe" -ForegroundColor White
+Write-Host "  .\app\src-tauri\target\release\tauri-vue3-app.exe" -ForegroundColor White

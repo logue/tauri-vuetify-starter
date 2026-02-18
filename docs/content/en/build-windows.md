@@ -1,6 +1,6 @@
 # Windows Build Environment Setup
 
-This guide walks you through setting up the development environment for building Drop Compress Image on Windows.
+This guide walks you through setting up the development environment for building Tauri Vue3 App on Windows.
 
 ## Choose Your Build Method
 
@@ -37,8 +37,8 @@ You can build Linux packages (.deb, .rpm) from Windows using Docker.
 3. **Clone the Project**
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 4. **Build Linux Packages**
@@ -91,20 +91,20 @@ You can build Linux packages (.deb, .rpm) from Windows using Docker.
 3. **Clone the Project**
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 4. **Build Docker Image** (first time only, takes 30-60 minutes)
 
    ```powershell
-   docker build -f Dockerfile.windows-x64 -t dropwebp-windows-builder .
+   docker build -f Dockerfile.windows-x64 -t tauri-vue3-windows-builder .
    ```
 
 5. **Build the Application**
 
    ```powershell
-   docker run --rm -v ${PWD}:C:\workspace dropwebp-windows-builder
+   docker run --rm -v ${PWD}:C:\workspace tauri-vue3-windows-builder
    ```
 
 6. **Check Build Artifacts**
@@ -158,8 +158,8 @@ You can build Linux packages (.deb, .rpm) from Windows using Docker.
 1. Clone the project from GitHub and navigate to the project directory:
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 ## 4. Install Visual Studio Community 2022
@@ -288,7 +288,7 @@ set(VCPKG_BUILD_TYPE release)
 Use the automated installation script (recommended):
 
 ```powershell
-cd DropWebP\app\src-tauri
+cd tauri-vuetify-starter\app\src-tauri
 .\setup-vcpkg.ps1
 ```
 
@@ -392,7 +392,7 @@ cd C:\vcpkg
 ### 3. Build for Arm64
 
 ```powershell
-cd path\to\DropWebP\app
+cd path\to\tauri-vuetify-starter\app
 pnpm run build:tauri:windows-arm64
 ```
 

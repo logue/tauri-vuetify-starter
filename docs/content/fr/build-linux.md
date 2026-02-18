@@ -1,6 +1,6 @@
-# Construire Drop Compress Image pour Linux
+# Construire Tauri Vue3 App pour Linux
 
-Ce guide vous accompagne dans la configuration de l'environnement de développement et la construction de Drop Compress Image sur Ubuntu 24.04 LTS (et distributions similaires basées sur Debian).
+Ce guide vous accompagne dans la configuration de l'environnement de développement et la construction de Tauri Vue3 App sur Ubuntu 24.04 LTS (et distributions similaires basées sur Debian).
 
 ## Prérequis
 
@@ -58,7 +58,7 @@ Vous devriez voir une sortie montrant GCC version 13.x ou supérieure.
 
 ## Étape 3 : Installer Rust
 
-Drop Compress Image est construit avec Rust, vous devrez donc installer la chaîne d'outils Rust.
+Tauri Vue3 App est construit avec Rust, vous devrez donc installer la chaîne d'outils Rust.
 
 ### Installer Rust via rustup
 
@@ -92,7 +92,7 @@ Vous devriez voir les informations de version pour `rustc` et `cargo`.
 
 ## Étape 4 : Installer Node.js
 
-Le frontend de Drop Compress Image est construit avec Vue.js et nécessite Node.js.
+Le frontend de Tauri Vue3 App est construit avec Vue.js et nécessite Node.js.
 
 ### Installer Node.js via le Dépôt NodeSource
 
@@ -113,7 +113,7 @@ Vous devriez voir Node.js version 22.x ou supérieure.
 
 ## Étape 5 : Installer pnpm
 
-Drop Compress Image utilise pnpm comme gestionnaire de paquets pour de meilleures performances et efficacité disque.
+Tauri Vue3 App utilise pnpm comme gestionnaire de paquets pour de meilleures performances et efficacité disque.
 
 ### Installer pnpm
 
@@ -159,7 +159,7 @@ source ~/.bashrc
 Utilisez le script d'installation automatique (recommandé) :
 
 ```bash
-cd ~/path/to/DropWebP/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/app/src-tauri
 ./setup-vcpkg.sh
 ```
 
@@ -203,15 +203,15 @@ Bibliothèques installées :
 ./vcpkg list | grep -E "aom|avif|jxl|webp|openjpeg|jpeg|lcms"
 ```
 
-## Étape 7 : Cloner et Construire Drop Compress Image
+## Étape 7 : Cloner et Construire Tauri Vue3 App
 
-Maintenant vous êtes prêt à cloner et construire Drop Compress Image.
+Maintenant vous êtes prêt à cloner et construire Tauri Vue3 App.
 
 ### Cloner le Référentiel
 
 ```bash
-git clone https://github.com/logue/DropWebP.git
-cd DropWebP
+git clone https://github.com/logue/tauri-vuetify-starter.git
+cd tauri-vuetify-starter
 ```
 
 ### Installer les Dépendances Frontend
@@ -356,17 +356,17 @@ sudo apt install -y intel-media-va-driver
 
 Si vous rencontrez des problèmes non couverts ici :
 
-1. Vérifiez le [référentiel Drop Compress Image](https://github.com/logue/DropWebP) pour les problèmes connus
+1. Vérifiez le [référentiel Tauri Vue3 App](https://github.com/logue/tauri-vuetify-starter) pour les problèmes connus
 2. Consultez la [documentation Tauri v2](https://v2.tauri.app/start/prerequisites/) pour des conseils spécifiques à Linux
 3. Recherchez les issues GitHub existantes ou créez-en une nouvelle
 
 ## Prochaines Étapes
 
-Une fois que Drop Compress Image est construit avec succès :
+Une fois que Tauri Vue3 App est construit avec succès :
 
 1. **Exécuter les Tests** : Exécutez `pnpm test` pour vous assurer que tout fonctionne correctement
 2. **Développement** : Utilisez `pnpm dev:tauri` pour le développement avec rechargement à chaud
 3. **Personnalisation** : Explorez la base de code et apportez vos modifications
 4. **Distribution** : Utilisez `pnpm build:tauri` pour créer des paquets distribuables
 
-Vous êtes maintenant prêt à développer et construire Drop Compress Image sur Linux !
+Vous êtes maintenant prêt à développer et construire Tauri Vue3 App sur Linux !

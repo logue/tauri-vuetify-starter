@@ -7,7 +7,7 @@ export function useFileSystem() {
    */
   const selectFiles = async (options?: {
     multiple?: boolean;
-    filters?: Array<{ name: string; extensions: string[] }>;
+    filters?: { name: string; extensions: string[] }[];
   }) => {
     return await open({
       multiple: options?.multiple ?? false,
@@ -29,7 +29,7 @@ export function useFileSystem() {
    */
   const saveFile = async (options?: {
     defaultPath?: string;
-    filters?: Array<{ name: string; extensions: string[] }>;
+    filters?: { name: string; extensions: string[] }[];
   }) => {
     return await save({
       defaultPath: options?.defaultPath,
@@ -47,7 +47,7 @@ export function useFileSystem() {
   /**
    * Write file contents
    */
-  const writeFileContents = async (path: string, data: Uint8Array | string) => {
+  const writeFileContents = async (path: string, data: Uint8Array) => {
     return await writeFile(path, data);
   };
 

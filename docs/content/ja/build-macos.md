@@ -1,6 +1,6 @@
-# macOS用Drop Compress Imageのビルド
+# macOS用Tauri Vue3 Appのビルド
 
-このガイドでは、macOSシステムでの開発環境のセットアップとDrop Compress Imageのビルド手順を説明します。
+このガイドでは、macOSシステムでの開発環境のセットアップとTauri Vue3 Appのビルド手順を説明します。
 
 ## 前提条件
 
@@ -67,7 +67,7 @@ brew --version
 
 ## ステップ 3: Rustのインストール
 
-Drop Compress ImageはRustで構築されているため、Rustツールチェインをインストールする必要があります。
+Tauri Vue3 AppはRustで構築されているため、Rustツールチェインをインストールする必要があります。
 
 ### rustup経由でRustをインストール
 
@@ -94,7 +94,7 @@ cargo --version
 
 ## ステップ 4: Node.jsのインストール
 
-Drop Compress ImageのフロントエンドはVue.jsで構築されており、Node.jsが必要です。
+Tauri Vue3 AppのフロントエンドはVue.jsで構築されており、Node.jsが必要です。
 
 ### Homebrew経由でNode.jsをインストール
 
@@ -111,7 +111,7 @@ npm --version
 
 ## ステップ 5: pnpmのインストール
 
-Drop Compress Imageは、パフォーマンスとディスク効率を向上させるためにpnpmをパッケージマネージャーとして使用します。
+Tauri Vue3 Appは、パフォーマンスとディスク効率を向上させるためにpnpmをパッケージマネージャーとして使用します。
 
 ### pnpmのインストール
 
@@ -150,7 +150,7 @@ source ~/.zshrc
 自動インストールスクリプトを使用（推奨）:
 
 ```bash
-cd ~/path/to/DropWebP/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/app/src-tauri
 ./setup-vcpkg.sh
 ```
 
@@ -194,15 +194,15 @@ cd ~/Developer/vcpkg
 ./vcpkg list | grep -E "aom|avif|jxl|webp|openjpeg|jpeg|lcms"
 ```
 
-## ステップ 7: Drop Compress Imageのクローンとビルド
+## ステップ 7: Tauri Vue3 Appのクローンとビルド
 
-これでDrop Compress Imageをクローンしてビルドする準備が整いました。
+これでTauri Vue3 Appをクローンしてビルドする準備が整いました。
 
 ### リポジトリのクローン
 
 ```bash
-git clone https://github.com/logue/DropWebP.git
-cd DropWebP
+git clone https://github.com/logue/tauri-vuetify-starter.git
+cd tauri-vuetify-starter
 ```
 
 ### フロントエンド依存関係のインストール
@@ -330,20 +330,20 @@ security find-identity -v -p codesigning
 
 ここでカバーされていない問題が発生した場合：
 
-1. [Drop Compress Imageリポジトリ](https://github.com/logue/DropWebP)で既知の問題を確認
+1. [Tauri Vue3 Appリポジトリ](https://github.com/logue/tauri-vuetify-starter)で既知の問題を確認
 2. macOS固有のガイダンスについて[Tauri v2ドキュメント](https://v2.tauri.app/start/prerequisites/)を確認
 3. 既存のGitHub Issueを検索するか、新しいIssueを作成
 
 ## 次のステップ
 
-Drop Compress Imageのビルドが成功したら：
+Tauri Vue3 Appのビルドが成功したら：
 
 1. **テストの実行**: `pnpm test`を実行してすべてが正しく動作することを確認
 2. **開発**: ホットリロードでの開発には`pnpm dev:tauri`を使用
 3. **カスタマイズ**: コードベースを探索して変更を加える
 4. **配布**: 配布可能なパッケージを作成するには`pnpm build:tauri`を使用
 
-これでmacOSでDrop Compress Imageを開発およびビルドする準備が整いました！
+これでmacOSでTauri Vue3 Appを開発およびビルドする準備が整いました！
 
 ## Intel Mac向けビルド
 

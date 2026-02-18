@@ -1,5 +1,6 @@
 {
-  "name": "@drop-compress-image/docs",
+  "name": "@tauri-vuetify-starter/docs",
+  "description": "Documentation site for Tauri Vue3 application template",
   "type": "module",
   "private": true,
   "scripts": {

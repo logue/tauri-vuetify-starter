@@ -14,16 +14,19 @@ Comment construire des binaires Linux depuis Windows, macOS ou Linux en utilisan
 ### Spécifique à la plateforme
 
 #### Windows
+
 - Windows 10/11 (64 bits)
 - WSL 2 (recommandé)
 - PowerShell 5.1 ou supérieur
 
 #### macOS
+
 - macOS 10.15 ou supérieur
 - Bash
 - Docker Desktop pour Mac
 
 #### Linux
+
 - Distribution Linux 64 bits
 - Docker Engine 20.10 ou supérieur
 - Bash
@@ -89,13 +92,13 @@ app/src-tauri/target/
 ### Reconstruire l'image Docker
 
 ```bash
-docker build -f Dockerfile.linux-build -t dropwebp-linux-builder --no-cache .
+docker build -f Dockerfile.linux-build -t tauri-vue3-linux-builder --no-cache .
 ```
 
 ### Supprimer l'image Docker
 
 ```bash
-docker rmi dropwebp-linux-builder
+docker rmi tauri-vue3-linux-builder
 ```
 
 ### Effacer le cache de construction

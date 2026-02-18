@@ -1,7 +1,7 @@
-# AI Agent Instructions: Tauri v2 + Vue 3 Template Creation
+# AI Agent Instructions: Tauri v2 + Vue 3 Template
 
 **Target Audience:** AI Coding Agents (GitHub Copilot, Claude, GPT-4, etc.)
-**Purpose:** Convert Drop Compress Image project into a generic Tauri v2 + Vue 3 desktop application template by removing image conversion business logic.
+**Purpose:** Generic Tauri v2 + Vue 3 desktop application template for building cross-platform desktop applications.
 
 ---
 
@@ -20,7 +20,7 @@ Transform this specialized image conversion application into a reusable template
 
 Before starting, verify:
 
-- [ ] Current working directory is the Drop Compress Image project root
+- [ ] Current working directory is the project root
 - [ ] `pnpm` is installed (version >= 10)
 - [ ] `cargo` (Rust) is installed (version >= 1.93.1)
 - [ ] Bash shell is available

@@ -16,7 +16,7 @@ REM Set Rust target directory
 set "CARGO_TARGET_DIR=C:\build-temp\target"
 
 echo.
-echo === DropWebP Windows Build Script ===
+echo === Tauri Vue3 App Windows Build Script ===
 echo.
 
 REM Skip environment check and proceed to build

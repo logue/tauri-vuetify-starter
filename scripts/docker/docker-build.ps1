@@ -10,7 +10,7 @@ $env:CI = "true"
 # Node.jsのヒープサイズを増やす（メモリ不足エラーを防ぐ）
 $env:NODE_OPTIONS = "--max-old-space-size=4096"
 
-Write-Host "`n=== DropWebP Windows Build Script ===" -ForegroundColor Cyan
+Write-Host "`n=== Tauri Vue3 App Windows Build Script ===" -ForegroundColor Cyan
 
 # 環境確認
 Write-Host "`n[1/5] Checking environment..." -ForegroundColor Yellow

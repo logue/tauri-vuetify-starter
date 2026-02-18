@@ -1,6 +1,6 @@
 # Windows ビルド環境セットアップ
 
-このガイドでは、WindowsでDrop Compress Imageをビルドするための開発環境のセットアップ手順を説明します。
+このガイドでは、WindowsでTauri Vue3 Appをビルドするための開発環境のセットアップ手順を説明します。
 
 ## ビルド方法の選択
 
@@ -37,8 +37,8 @@ WindowsからDockerを使用してLinux向けパッケージ（.deb、.rpm）を
 3. **プロジェクトのクローン**
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 4. **Linuxパッケージのビルド**
@@ -91,20 +91,20 @@ WindowsからDockerを使用してLinux向けパッケージ（.deb、.rpm）を
 3. **プロジェクトのクローン**
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 4. **Dockerイメージのビルド**（初回のみ、30-60分程度かかります）
 
    ```powershell
-   docker build -f Dockerfile.windows-x64 -t dropwebp-windows-builder .
+   docker build -f Dockerfile.windows-x64 -t tauri-vue3-windows-builder .
    ```
 
 5. **アプリケーションのビルド**
 
    ```powershell
-   docker run --rm -v ${PWD}:C:\workspace dropwebp-windows-builder
+   docker run --rm -v ${PWD}:C:\workspace tauri-vue3-windows-builder
    ```
 
 6. **ビルド成果物の確認**
@@ -158,8 +158,8 @@ WindowsからDockerを使用してLinux向けパッケージ（.deb、.rpm）を
 1. GitHubからプロジェクトをクローンし、プロジェクトディレクトリに移動します：
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 ## 4. Visual Studio Community 2022のインストール
@@ -288,7 +288,7 @@ set(VCPKG_BUILD_TYPE release)
 自動インストールスクリプトを使用（推奨）:
 
 ```powershell
-cd DropWebP\app\src-tauri
+cd tauri-vuetify-starter\app\src-tauri
 .\setup-vcpkg.ps1
 ```
 
@@ -403,7 +403,7 @@ $env:LIB_AOM_INCLUDE_PATH="C:/vcpkg/installed/arm64-windows-static-release/inclu
 その後、ビルドを実行します：
 
 ```powershell
-cd path\to\DropWebP\app
+cd path\to\tauri-vuetify-starter\app
 pnpm run build:tauri:windows-arm64
 ```
 

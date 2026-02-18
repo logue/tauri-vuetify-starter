@@ -36,36 +36,21 @@ export const useNotification = (t: ComposerTranslation) => {
   /**
    * 画像変換完了通知
    */
-  const notifyConversionComplete = async (fileName: string, format: string) => {
+  const success = async (message: string) => {
     // 画像変換処理が完了したことを通知
-    await notify(
-      t('notification.complete.title'),
-      t('notification.complete.message', { file: fileName, format: format.toUpperCase() })
-    );
-  };
-
-  /**
-   * 一括変換完了通知
-   */
-  const notifyBatchComplete = async (count: number, format: string) => {
-    // 一括変換処理が完了したことを通知
-    await notify(
-      t('notification.batch_complete.title'),
-      t('notification.batch_complete.message', { count, format: format.toUpperCase() })
-    );
+    await notify(t('notification.success.title'), message);
   };
 
   /**
    * エラー通知
    */
-  const notifyError = async (message: string) => {
+  const error = async (message: string) => {
     await notify(t('notification.error.title'), message);
   };
 
   return {
     notify,
-    notifyConversionComplete,
-    notifyBatchComplete,
-    notifyError
+    success,
+    error
   };
 };

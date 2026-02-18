@@ -44,14 +44,14 @@ switch ($Target.ToLower()) {
         $BuildTarget = "x86_64-unknown-linux-gnu"
         $ArchName = "x86_64 (AMD64)"
         $Dockerfile = "docker/Dockerfile.linux-x64"
-        $ImageName = "dropwebp-linux-x64-builder"
+        $ImageName = "tauri-vue3-linux-x64-builder"
         $Platform = "linux/amd64"
     }
     { $_ -in "arm64", "aarch64" } {
         $BuildTarget = "aarch64-unknown-linux-gnu"
         $ArchName = "ARM64 (AArch64)"
         $Dockerfile = "docker/Dockerfile.linux-arm64"
-        $ImageName = "dropwebp-linux-arm64-builder"
+        $ImageName = "tauri-vue3-linux-arm64-builder"
         $Platform = "linux/arm64"
     }
     default {
@@ -127,10 +127,10 @@ Write-Host "`n🔨 Linux向けアプリケーションをビルド中...`n" -For
 
 # キャッシュ用のDockerボリューム名
 $PlatformSafe = $Platform -replace '/', '-'
-$CargoVolume = "dropwebp-cargo-cache-$PlatformSafe"
-$PnpmVolume = "dropwebp-pnpm-cache-$PlatformSafe"
-$TargetVolume = "dropwebp-target-cache-$PlatformSafe"
-$NodeModulesVolume = "dropwebp-node-modules-$PlatformSafe"
+$CargoVolume = "tauri-vue3-cargo-cache-$PlatformSafe"
+$PnpmVolume = "tauri-vue3-pnpm-cache-$PlatformSafe"
+$TargetVolume = "tauri-vue3-target-cache-$PlatformSafe"
+$NodeModulesVolume = "tauri-vue3-node-modules-$PlatformSafe"
 
 # ボリュームが存在しない場合は作成
 docker volume create $CargoVolume 2>&1 | Out-Null

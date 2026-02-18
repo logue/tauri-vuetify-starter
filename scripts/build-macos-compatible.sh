@@ -16,7 +16,7 @@ if [ -f "$ROOT_DIR/.env" ]; then
     set +a
 fi
 
-echo "🔨 Building DropWebP for macOS with universal compatibility..."
+echo "🔨 Building Tauri Vue3 App for macOS with universal compatibility..."
 echo "Version: ${VERSION:-unknown}"
 
 # Clean previous builds
@@ -36,9 +36,9 @@ cargo build --release --target aarch64-apple-darwin
 
 # echo "📦 Creating universal binary..."
 # lipo -create \
-#   target/aarch64-apple-darwin/release/drop-compress-image \
-#   target/x86_64-apple-darwin/release/drop-compress-image \
-#   -output target/release/drop-compress-image-universal
+#   target/aarch64-apple-darwin/release/tauri-vue3-app \
+#   target/x86_64-apple-darwin/release/tauri-vue3-app \
+#   -output target/release/tauri-vue3-app-universal
 
 echo "✅ Build complete!"
 echo "📍 Binary location: app/src-tauri/target/aarch64-apple-darwin/release/"
@@ -46,11 +46,11 @@ echo "📍 Binary location: app/src-tauri/target/aarch64-apple-darwin/release/"
 # Display binary info
 echo ""
 echo "🔍 Binary information:"
-file target/aarch64-apple-darwin/release/drop-compress-image
-ls -lh target/aarch64-apple-darwin/release/drop-compress-image
+file target/aarch64-apple-darwin/release/tauri-vue3-app
+ls -lh target/aarch64-apple-darwin/release/tauri-vue3-app
 
 echo ""
 echo "💡 To test on different Macs:"
 echo "   1. Copy the binary to the target Mac"
-echo "   2. Run: chmod +x drop-compress-image"
-echo "   3. Run: ./drop-compress-image"
+echo "   2. Run: chmod +x tauri-vue3-app"
+echo "   3. Run: ./tauri-vue3-app"

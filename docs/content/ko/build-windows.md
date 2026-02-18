@@ -1,6 +1,6 @@
 # 개발 환경 설정 (Windows)
 
-Windows에서 Drop Compress Image의 개발 환경을 설정하는 가이드입니다.
+Windows에서 Tauri Vue3 App의 개발 환경을 설정하는 가이드입니다.
 
 ## 빌드 방법 선택
 
@@ -31,20 +31,20 @@ Windows에서 빌드하는 두 가지 방법이 있습니다:
 3. **프로젝트 클론**
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 4. **Docker 이미지 빌드** (처음에만, 30-60분 소요)
 
    ```powershell
-   docker build -f Dockerfile.windows-x64 -t dropwebp-windows-builder .
+   docker build -f Dockerfile.windows-x64 -t tauri-vue3-windows-builder .
    ```
 
 5. **애플리케이션 빌드**
 
    ```powershell
-   docker run --rm -v ${PWD}:C:\workspace dropwebp-windows-builder
+   docker run --rm -v ${PWD}:C:\workspace tauri-vue3-windows-builder
    ```
 
 6. **빌드 결과물 확인**
@@ -98,8 +98,8 @@ git --version
 GitHub에서 프로젝트를 클론하고 프로젝트 디렉토리로 이동합니다.
 
 ```powershell
-git clone https://github.com/logue/DropWebP.git
-cd DropWebP
+git clone https://github.com/logue/tauri-vuetify-starter.git
+cd tauri-vuetify-starter
 ```
 
 ## 4. Visual Studio Community 2022 설치
@@ -228,7 +228,7 @@ set(VCPKG_BUILD_TYPE release)
 자동 설치 스크립트 사용(권장):
 
 ```powershell
-cd DropWebP\app\src-tauri
+cd tauri-vuetify-starter\app\src-tauri
 .\setup-vcpkg.ps1
 ```
 
@@ -332,7 +332,7 @@ cd C:\vcpkg
 ### 3. Arm64용 빌드
 
 ```powershell
-cd path\to\DropWebP\app
+cd path\to\tauri-vuetify-starter\app
 pnpm run build:tauri:windows-arm64
 ```
 

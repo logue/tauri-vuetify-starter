@@ -48,5 +48,5 @@ jobs:
         with:
           name: macos-x64-binary
           path: |
-            app/src-tauri/target/x86_64-apple-darwin/release/Drop Compress Image
+            app/src-tauri/target/x86_64-apple-darwin/release/tauri-vue3-app
             app/src-tauri/target/x86_64-apple-darwin/release/bundle/

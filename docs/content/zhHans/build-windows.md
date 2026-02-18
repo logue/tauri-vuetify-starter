@@ -1,6 +1,6 @@
 # 设置开发环境（Windows）
 
-在Windows上为Drop Compress Image设置开发环境的指南。
+在Windows上为Tauri Vue3 App设置开发环境的指南。
 
 ## 选择构建方法
 
@@ -31,20 +31,20 @@ Windows上有两种构建方式：
 3. **克隆项目**
 
    ```powershell
-   git clone https://github.com/logue/DropWebP.git
-   cd DropWebP
+   git clone https://github.com/logue/tauri-vuetify-starter.git
+   cd tauri-vuetify-starter
    ```
 
 4. **构建Docker镜像**（仅首次，需要30-60分钟）
 
    ```powershell
-   docker build -f Dockerfile.windows-x64 -t dropwebp-windows-builder .
+   docker build -f Dockerfile.windows-x64 -t tauri-vue3-windows-builder .
    ```
 
 5. **构建应用程序**
 
    ```powershell
-   docker run --rm -v ${PWD}:C:\workspace dropwebp-windows-builder
+   docker run --rm -v ${PWD}:C:\workspace tauri-vue3-windows-builder
    ```
 
 6. **检查构建产物**
@@ -98,8 +98,8 @@ git --version
 从GitHub克隆项目并导航到项目目录。
 
 ```powershell
-git clone https://github.com/logue/DropWebP.git
-cd DropWebP
+git clone https://github.com/logue/tauri-vuetify-starter.git
+cd tauri-vuetify-starter
 ```
 
 ## 4. 安装Visual Studio Community 2022
@@ -228,7 +228,7 @@ set(VCPKG_BUILD_TYPE release)
 使用自动安装脚本（推荐）：
 
 ```powershell
-cd DropWebP\app\src-tauri
+cd tauri-vuetify-starter\app\src-tauri
 .\setup-vcpkg.ps1
 ```
 
@@ -332,7 +332,7 @@ cd C:\vcpkg
 ### 3. 为 Arm64 构建
 
 ```powershell
-cd path\to\DropWebP\app
+cd path\to\tauri-vuetify-starter\app
 pnpm run build:tauri:windows-arm64
 ```
 

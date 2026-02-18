@@ -16,7 +16,7 @@ menu:
 
 message:
   success: 'Opération réussie'
-  error: 'Une erreur s\'est produite'
+  error: "Une erreur s'est produite"
   processing: 'Traitement en cours...'
   loading: 'Chargement...'
   saved: 'Enregistré avec succès'

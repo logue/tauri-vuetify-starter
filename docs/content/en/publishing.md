@@ -1,6 +1,6 @@
 # Publishing Packages
 
-This guide explains how to publish Drop Compress Image to Chocolatey and Homebrew.
+This guide explains how to publish Tauri Vue3 App to Chocolatey and Homebrew.
 
 ## Prerequisites
 
@@ -38,14 +38,14 @@ pnpm package:chocolatey
 Or manually:
 
 ```powershell
-.\scripts\build-chocolatey.ps1 -Version 2.3.0
+.\scripts\build-chocolatey.ps1 -Version {VERSION}
 ```
 
 This will:
 
 - Calculate SHA256 checksum of the MSI file
 - Update `chocolateyinstall.ps1` with the correct checksum
-- Create `.choco/drop-compress-image.2.3.0.nupkg`
+- Create `.choco/{APP_NAME_KEBAB}.{VERSION}.nupkg`
 
 ### 3. Generate Homebrew Formula (macOS)
 
@@ -56,13 +56,13 @@ pnpm package:homebrew
 Or manually:
 
 ```bash
-./scripts/build-homebrew.sh 2.3.0
+./scripts/build-homebrew.sh {VERSION}
 ```
 
 This will:
 
 - Calculate SHA256 checksums for both ARM64 and x64 DMG files
-- Update `.homebrew/drop-compress-image.rb` with checksums
+- Update `.homebrew/{APP_NAME_KEBAB}.rb` with checksums
 
 ## Publishing
 
@@ -71,19 +71,19 @@ This will:
 1. **Test locally first:**
 
 ```powershell
-choco install drop-compress-image -source .choco
+choco install {APP_NAME_KEBAB} -source .choco
 ```
 
 2. **Push to Chocolatey Community Repository:**
 
 ```powershell
 choco apikey --key YOUR-API-KEY --source https://push.chocolatey.org/
-choco push .choco/drop-compress-image.2.3.0.nupkg --source https://push.chocolatey.org/
+choco push .choco/{APP_NAME_KEBAB}.{VERSION}.nupkg --source https://push.chocolatey.org/
 ```
 
 3. **Monitor the moderation queue:**
 
-- Go to <https://community.chocolatey.org/packages/drop-compress-image>
+- Go to <https://community.chocolatey.org/packages/{APP_NAME_KEBAB}>
 - The package will be reviewed by moderators (usually within 48 hours)
 
 ### Homebrew
@@ -99,9 +99,9 @@ cd homebrew-tap
 2. **Copy the formula:**
 
 ```bash
-cp .homebrew/drop-compress-image.rb Formula/drop-compress-image.rb
-git add Formula/drop-compress-image.rb
-git commit -m "Add drop-compress-image 2.3.0"
+cp .homebrew/{APP_NAME_KEBAB}.rb Formula/{APP_NAME_KEBAB}.rb
+git add Formula/{APP_NAME_KEBAB}.rb
+git commit -m "Add {APP_NAME_KEBAB} {VERSION}"
 git push
 ```
 
@@ -109,7 +109,7 @@ git push
 
 ```bash
 brew tap YOUR-USERNAME/tap
-brew install drop-compress-image
+brew install {APP_NAME_KEBAB}
 ```
 
 ### Automated Publishing via GitHub Actions
@@ -130,8 +130,8 @@ Add these secrets to your GitHub repository settings:
 2. **Create and push a git tag:**
 
 ```bash
-git tag v2.3.0
-git push origin v2.3.0
+git tag v{VERSION}
+git push origin v{VERSION}
 ```
 
 3. **The workflow will automatically:**

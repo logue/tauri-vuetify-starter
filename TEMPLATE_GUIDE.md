@@ -1,6 +1,6 @@
 # Tauri v2 + Vue 3 デスクトップアプリケーション テンプレート作成ガイド
 
-このガイドは、Drop Compress Imageプロジェクトから画像変換ビジネスロジックを除去し、汎用的なTauri v2 + Vue 3デスクトップアプリケーションテンプレートを作成するための手順書です。
+このガイドは、Tauri v2 + Vue 3を使用したデスクトップアプリケーションテンプレートの使用方法を説明します。
 
 ## 🎯 テンプレートの特徴
 
@@ -474,11 +474,11 @@ docs/content/
 ### ステップ1: プロジェクトのクローン
 
 ```bash
-# 元のプロジェクトをクローン
-git clone https://github.com/logue/DropWebP.git your-app-name
+# テンプレートをクローン
+git clone https://github.com/logue/tauri-vuetify-starter.git your-app-name
 cd your-app-name
 
-# 新しいGitリポジトリを初期化
+# 新しいGitリポジトリを初期化（必要に応じて）
 rm -rf .git
 git init
 ```

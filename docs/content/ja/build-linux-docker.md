@@ -14,16 +14,19 @@ Windows、macOS、LinuxからDocker経由でLinux向けのビルドを実行す�
 ### プラットフォーム別
 
 #### Windows
+
 - Windows 10/11 (64-bit)
 - WSL 2（推奨）
 - PowerShell 5.1以上
 
 #### macOS
+
 - macOS 10.15以上
 - Bash
 - Docker Desktop for Mac
 
 #### Linux
+
 - 64-bit Linux distribution
 - Docker Engine 20.10以上
 - Bash
@@ -147,6 +150,7 @@ MAKEFLAGS=-j4
 **症状**: ビルド中にメモリエラー
 
 **解決方法**:
+
 1. `.env`でメモリ制限を増やす
 2. Docker Desktopのリソース設定でメモリを増やす（Settings → Resources → Memory）
 3. 並列ビルド数を減らす（`BUILD_CPUS`を減らす）
@@ -154,6 +158,7 @@ MAKEFLAGS=-j4
 ### ビルドが遅い
 
 **解決方法**:
+
 - `.env`で並列度を増やす
 - Docker Desktopのリソース（CPU、メモリ）を増やす
 - SSDを使用する
@@ -165,38 +170,38 @@ MAKEFLAGS=-j4
 
 ```powershell
 # x86_64キャッシュをクリア
-docker volume rm dropwebp-cargo-cache-linux-amd64
-docker volume rm dropwebp-pnpm-cache-linux-amd64
-docker volume rm dropwebp-target-cache-linux-amd64
+docker volume rm tauri-vue3-cargo-cache-linux-amd64
+docker volume rm tauri-vue3-pnpm-cache-linux-amd64
+docker volume rm tauri-vue3-target-cache-linux-amd64
 
 # ARM64キャッシュをクリア
-docker volume rm dropwebp-cargo-cache-linux-arm64
-docker volume rm dropwebp-pnpm-cache-linux-arm64
-docker volume rm dropwebp-target-cache-linux-arm64
+docker volume rm tauri-vue3-cargo-cache-linux-arm64
+docker volume rm tauri-vue3-pnpm-cache-linux-arm64
+docker volume rm tauri-vue3-target-cache-linux-arm64
 ```
 
 #### macOS / Linux
 
 ```bash
 # x86_64キャッシュをクリア
-docker volume rm dropwebp-cargo-cache-linux-amd64
-docker volume rm dropwebp-pnpm-cache-linux-amd64
-docker volume rm dropwebp-target-cache-linux-amd64
+docker volume rm tauri-vue3-cargo-cache-linux-amd64
+docker volume rm tauri-vue3-pnpm-cache-linux-amd64
+docker volume rm tauri-vue3-target-cache-linux-amd64
 
 # ARM64キャッシュをクリア
-docker volume rm dropwebp-cargo-cache-linux-arm64
-docker volume rm dropwebp-pnpm-cache-linux-arm64
-docker volume rm dropwebp-target-cache-linux-arm64
+docker volume rm tauri-vue3-cargo-cache-linux-arm64
+docker volume rm tauri-vue3-pnpm-cache-linux-arm64
+docker volume rm tauri-vue3-target-cache-linux-arm64
 ```
 
 ### Docker イメージのリビルド
 
 ```bash
 # x86_64用
-docker build -f Dockerfile.linux-x64 -t dropwebp-linux-x64-builder --no-cache .
+docker build -f Dockerfile.linux-x64 -t tauri-vue3-linux-x64-builder --no-cache .
 
 # ARM64用
-docker build -f Dockerfile.linux-arm64 -t dropwebp-linux-arm64-builder --no-cache .
+docker build -f Dockerfile.linux-arm64 -t tauri-vue3-linux-arm64-builder --no-cache .
 ```
 
 ## 📝 注意事項

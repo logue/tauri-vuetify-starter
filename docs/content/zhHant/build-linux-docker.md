@@ -14,16 +14,19 @@
 ### 平台特定要求
 
 #### Windows
+
 - Windows 10/11 (64位元)
 - WSL 2（推薦）
 - PowerShell 5.1或更高版本
 
 #### macOS
+
 - macOS 10.15或更高版本
 - Bash
 - Docker Desktop for Mac
 
 #### Linux
+
 - 64位元Linux發行版
 - Docker Engine 20.10或更高版本
 - Bash
@@ -89,13 +92,13 @@ app/src-tauri/target/
 ### 重新建置Docker映像
 
 ```bash
-docker build -f Dockerfile.linux-build -t dropwebp-linux-builder --no-cache .
+docker build -f Dockerfile.linux-build -t tauri-vue3-linux-builder --no-cache .
 ```
 
 ### 刪除Docker映像
 
 ```bash
-docker rmi dropwebp-linux-builder
+docker rmi tauri-vue3-linux-builder
 ```
 
 ### 清除建置快取

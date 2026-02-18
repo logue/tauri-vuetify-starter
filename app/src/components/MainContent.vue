@@ -3,9 +3,12 @@ import { ref } from 'vue';
 import { invoke } from '@tauri-apps/api/core';
 import { useGlobalStore } from '@/store';
 import { useNotification } from '@/composables/useNotification';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const globalStore = useGlobalStore();
-const notification = useNotification();
+const notification = useNotification(t);
 
 const inputText = ref('');
 const outputText = ref('');
