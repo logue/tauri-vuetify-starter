@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { useGlobalStore, useConfigStore } from '@/store';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
-
 // Components
 import AppBarMenuComponent from '@/components/AppBarMenuComponent.vue';
 import MainContent from '@/components/MainContent.vue';
+import { useConfigStore, useGlobalStore } from '@/store';
 
 /** Global Store */
 const globalStore = useGlobalStore();

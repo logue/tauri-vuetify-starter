@@ -2,44 +2,27 @@ import configPrettier from '@vue/eslint-config-prettier';
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
 
 import { globalIgnores } from 'eslint/config';
-// @ts-ignore
 import pluginImport from 'eslint-plugin-import';
+import pluginOxlint from 'eslint-plugin-oxlint';
 import pluginVue from 'eslint-plugin-vue';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 // @ts-ignore
 import pluginVuetify from 'eslint-plugin-vuetify';
 
-/**
- * ESLint Config for App
- */
+// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
+// import { configureVueProject } from '@vue/eslint-config-typescript'
+// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
+// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
+
 export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}']
+    files: ['**/*.{vue,ts,mts,tsx}']
   },
-  globalIgnores([
-    'dist/',
-    'public/',
-    'src-tauri/',
-    'node_modules/',
-    '**/.vite/',
-    '**/.cache/',
-    '**/*.d.ts',
-    'coverage/',
-    // 設定ファイルを除外
-    '*.config.ts',
-    '*.config.js',
-    'tsconfig.json',
-    // 生成されたJavaScriptファイルを除外
-    'src/**/*.js',
-    'src/**/*.vue.js',
-    // ビルド済みファイル
-    'dist/',
-    // Tauri固有
-    'src-tauri/target/',
-    'src-tauri/Cargo.lock'
-  ]),
-  pluginVue.configs['flat/recommended'],
+
+  globalIgnores(['**/dist/**', '**/src-tauri/**']),
+
+  ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
   vueTsConfigs.recommended,
   pluginImport.flatConfigs.recommended,
@@ -69,7 +52,8 @@ export default defineConfigWithVueTs(
         node: true,
         'eslint-import-resolver-custom-alias': {
           alias: {
-            '@': './src'
+            '@': './src',
+            '~': './node_modules'
           },
           extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue']
         }
@@ -121,6 +105,7 @@ export default defineConfigWithVueTs(
       'import/no-default-export': 'off',
       'import/no-named-as-default-member': 'off',
       'import/no-named-as-default': 'off',
+      /*
       // Sort Import Order.
       // see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#importorder-enforce-a-convention-in-module-import-order
       'import/order': [
@@ -149,6 +134,7 @@ export default defineConfigWithVueTs(
           'newlines-between': 'always'
         }
       ],
+      */
       // A tag with no content should be written like <br />.
       'vue/html-self-closing': [
         'error',
@@ -159,9 +145,11 @@ export default defineConfigWithVueTs(
         }
       ],
       // Mitigate non-multiword component name errors to warnings.
-      'vue/multi-word-component-names': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn'
+      'vue/multi-word-component-names': 'warn'
     }
   },
+
+  ...pluginOxlint.configs['flat/recommended'],
+
   configPrettier
 );

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 
-import { openUrl } from '@tauri-apps/plugin-opener';
-
 import Meta from '@/Meta';
+import { openUrl } from '@tauri-apps/plugin-opener';
 
 const { t } = useI18n();
 
-const PROJECT_SITE = 'https://logue.dev/DropWebP/';
+const APP_NAME = import.meta.env.VITE_APP_NAME || 'My App';
+const PROJECT_SITE = import.meta.env.VITE_PROJECT_SITE || 'https://yourdomain.com/your-app-name';
 </script>
 
 <template>
@@ -26,7 +26,7 @@ const PROJECT_SITE = 'https://logue.dev/DropWebP/';
     <template #default="{ isActive }">
       <v-card width="360" :title="t('about_title')">
         <v-card-text class="text-center">
-          <h2>Drop Compress Image</h2>
+          <h2>{{ APP_NAME }}</h2>
           <p>
             Version {{ Meta.version }}
             <br />

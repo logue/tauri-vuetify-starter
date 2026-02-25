@@ -1,6 +1,13 @@
 /// <reference types="vite/client" />
 /// <reference types="@tauri-apps/api" />
 
+declare module '@/locales/*.yaml' {
+  import type { LocaleMessageObject } from 'vue-i18n';
+
+  const data: LocaleMessageObject;
+  export default data;
+}
+
 /**
  * Vite environment variables available via import.meta.env.
  */

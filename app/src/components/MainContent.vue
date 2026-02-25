@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { invoke } from '@tauri-apps/api/core';
-import { useGlobalStore } from '@/store';
-import { useNotification } from '@/composables/useNotification';
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useNotification } from '@/composables/useNotification';
+import { useGlobalStore } from '@/store';
 
 const { t } = useI18n();
 
@@ -102,7 +102,7 @@ getVersion();
             {{ t('main.features.title') }}
           </v-card-title>
           <v-card-text>
-            <v-list dense>
+            <v-list density="compact">
               <v-list-item prepend-icon="mdi-vuejs">
                 <v-list-item-title>{{ t('main.features.vue3') }}</v-list-item-title>
               </v-list-item>
@@ -133,7 +133,7 @@ getVersion();
             {{ t('main.quickstart.title') }}
           </v-card-title>
           <v-card-text>
-            <v-list dense>
+            <v-list density="compact">
               <v-list-item>
                 <v-list-item-title class="text-body-2">
                   {{ t('main.quickstart.step1') }}

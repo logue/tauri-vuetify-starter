@@ -1,7 +1,8 @@
 <script setup lang="ts">
 /** 言語セレクター */
-import { useConfigStore } from '@/store';
+
 import { useI18n } from 'vue-i18n';
+import { useConfigStore } from '@/store';
 
 /** vue i18n */
 const { t, availableLocales } = useI18n();
