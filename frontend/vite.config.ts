@@ -116,9 +116,9 @@ export default defineConfig(({ command, mode }): UserConfig => {
           }
         : undefined,
       watch: {
-        // 3. tell Vite to ignore watching `src-tauri` and other unnecessary directories
+        // 3. tell Vite to ignore watching backend and other unnecessary directories
         ignored: [
-          '**/src-tauri/**',
+          '../backend/**',
           '**/target/**',
           '**/node_modules/**',
           '**/.git/**',
@@ -135,7 +135,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
         // macOS FSEvents対応：ポーリングを無効にし、バッチ処理を強化
         usePolling: false,
         interval: 500,
-        batchTimeout: 200,
         awaitWriteFinish: {
           // ファイルの書き込みが完了するまで待機
           stabilityThreshold: 100,
@@ -221,7 +220,7 @@ export default meta;
 
   // Update tauri.conf.json with .env values
   try {
-    const tauriConfPath = fileURLToPath(new URL('./src-tauri/tauri.conf.json', import.meta.url));
+    const tauriConfPath = fileURLToPath(new URL('../backend/tauri.conf.json', import.meta.url));
     const tauriConf = JSON.parse(readFileSync(tauriConfPath, 'utf-8'));
 
     // Update values from .env

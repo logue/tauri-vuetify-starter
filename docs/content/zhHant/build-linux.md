@@ -159,7 +159,7 @@ source ~/.bashrc
 使用自動安裝腳本（推薦）：
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -244,7 +244,7 @@ pnpm dev:tauri
 pnpm build:tauri
 ```
 
-建構的應用程式將在 `app/src-tauri/target/release/` 中。
+建構的應用程式將在 `backend/target/release/` 中。
 
 ## 步驟 8：分發格式
 
@@ -258,7 +258,7 @@ AppImage 是一種通用套件格式，可在大多數 Linux 發行版上執行�
 pnpm build:tauri
 ```
 
-AppImage 將在 `app/src-tauri/target/release/bundle/appimage/` 中。
+AppImage 將在 `backend/target/release/bundle/appimage/` 中。
 
 ### Debian 套件 (.deb)
 
@@ -268,12 +268,12 @@ AppImage 將在 `app/src-tauri/target/release/bundle/appimage/` 中。
 pnpm build:tauri
 ```
 
-.deb 套件將在 `app/src-tauri/target/release/bundle/deb/` 中。
+.deb 套件將在 `backend/target/release/bundle/deb/` 中。
 
 安裝它：
 
 ```bash
-sudo dpkg -i app/src-tauri/target/release/bundle/deb/*.deb
+sudo dpkg -i backend/target/release/bundle/deb/*.deb
 ```
 
 ### RPM 套件 (.rpm)
@@ -285,7 +285,7 @@ sudo apt install -y rpm
 pnpm build:tauri
 ```
 
-.rpm 套件將在 `app/src-tauri/target/release/bundle/rpm/` 中。
+.rpm 套件將在 `backend/target/release/bundle/rpm/` 中。
 
 ## 故障排除
 
@@ -326,7 +326,7 @@ pnpm build:tauri
 
    ```bash
    # 使 AppImage 可執行
-   chmod +x app/src-tauri/target/release/bundle/appimage/*.AppImage
+   chmod +x backend/target/release/bundle/appimage/*.AppImage
    ```
 
 5. **缺少 GLIBC 版本**

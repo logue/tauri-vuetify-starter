@@ -150,7 +150,7 @@ source ~/.zshrc
 Utilisez le script d'installation automatique (recommandé) :
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -354,7 +354,7 @@ Si vous souhaitez compiler pour Intel Mac (x86_64) à partir d'un Mac Apple Sili
 Créez un binaire unique qui fonctionne sur les Mac Intel et Apple Silicon :
 
 ```bash
-cd app
+cd frontend
 pnpm run build:tauri:mac-universal
 ```
 
@@ -393,7 +393,7 @@ Ou utilisez le script de configuration :
 #### Étape 3 : Compiler
 
 ```bash
-cd app
+cd frontend
 pnpm run build:tauri:mac-x64
 ```
 
@@ -413,7 +413,7 @@ pnpm run build:tauri:mac-universal
 ### Emplacement des artefacts de compilation
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── aarch64-apple-darwin/release/bundle/      # ARM64 uniquement
   ├── x86_64-apple-darwin/release/bundle/       # x86_64 uniquement
   └── universal-apple-darwin/release/bundle/    # Universel (les deux)

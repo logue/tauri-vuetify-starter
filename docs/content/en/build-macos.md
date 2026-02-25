@@ -150,7 +150,7 @@ source ~/.zshrc
 Use the automated installation script (recommended):
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -354,7 +354,7 @@ If you want to cross-compile for Intel Mac (x86_64) from an Apple Silicon Mac (M
 Create a single binary that works on both Intel and Apple Silicon Macs:
 
 ```bash
-cd app
+cd frontend
 pnpm run build:tauri:mac-universal
 ```
 
@@ -393,7 +393,7 @@ Or use the setup script:
 #### Step 3: Build
 
 ```bash
-cd app
+cd frontend
 pnpm run build:tauri:mac-x64
 ```
 
@@ -413,7 +413,7 @@ pnpm run build:tauri:mac-universal
 ### Build Artifacts Location
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── aarch64-apple-darwin/release/bundle/      # ARM64 only
   ├── x86_64-apple-darwin/release/bundle/       # x86_64 only
   └── universal-apple-darwin/release/bundle/    # Universal (both)

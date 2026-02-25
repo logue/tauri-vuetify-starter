@@ -62,7 +62,7 @@ pnpm run build:tauri:linux-docker-arm64
 빌드 결과물은 다음 디렉토리에 생성됩니다:
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── x86_64-unknown-linux-gnu/release/bundle/
   │   ├── deb/           # Debian/Ubuntu 패키지
   │   ├── rpm/           # Red Hat/Fedora 패키지
@@ -104,8 +104,8 @@ docker rmi tauri-vue3-linux-builder
 ### 빌드 캐시 삭제
 
 ```bash
-rm -rf app/src-tauri/target/x86_64-unknown-linux-gnu
-rm -rf app/src-tauri/target/aarch64-unknown-linux-gnu
+rm -rf backend/target/x86_64-unknown-linux-gnu
+rm -rf backend/target/aarch64-unknown-linux-gnu
 ```
 
 ## 📝 참고 사항

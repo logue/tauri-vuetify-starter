@@ -54,9 +54,9 @@ docker build -t tauri-vue3-macos-x64-builder -f "$PROJECT_ROOT/Dockerfile.macos-
 echo "🔨 Building x86_64 macOS binary..."
 docker run --rm \
     -v "$PROJECT_ROOT:/workspace" \
-    -w /workspace/app/src-tauri \
+    -w /workspace/backend \
     tauri-vue3-macos-x64-builder \
     cargo build --release --target x86_64-apple-darwin
 
 echo "✅ Build complete!"
-echo "Binary location: $PROJECT_ROOT/app/src-tauri/target/x86_64-apple-darwin/release/tauri-vue3-app"
+echo "Binary location: $PROJECT_ROOT/backend/target/x86_64-apple-darwin/release/tauri-vue3-app"

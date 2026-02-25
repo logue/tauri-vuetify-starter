@@ -25,9 +25,9 @@ pnpm build:tauri
 
 这将在以下位置创建特定平台的安装程序：
 
-- Windows: `app/src-tauri/target/release/bundle/msi/`
-- macOS: `app/src-tauri/target/release/bundle/dmg/`
-- Linux: `app/src-tauri/target/release/bundle/deb/` 或 `appimage/`
+- Windows: `backend/target/release/bundle/msi/`
+- macOS: `backend/target/release/bundle/dmg/`
+- Linux: `backend/target/release/bundle/deb/` 或 `appimage/`
 
 ### 2. 生成 Chocolatey 包 (Windows)
 
@@ -145,8 +145,8 @@ git push origin v{VERSION}
 始终保持以下版本同步：
 
 - `package.json` → `version`
-- `app/src-tauri/tauri.conf.json` → `version`
-- `app/src-tauri/Cargo.toml` → `version`
+- `backend/tauri.conf.json` → `version`
+- `backend/Cargo.toml` → `version`
 
 ## 故障排除
 
@@ -205,9 +205,9 @@ pnpm build:tauri
 
 This will create platform-specific installers in:
 
-- Windows: `app/src-tauri/target/release/bundle/msi/`
-- macOS: `app/src-tauri/target/release/bundle/dmg/`
-- Linux: `app/src-tauri/target/release/bundle/deb/` or `appimage/`
+- Windows: `backend/target/release/bundle/msi/`
+- macOS: `backend/target/release/bundle/dmg/`
+- Linux: `backend/target/release/bundle/deb/` or `appimage/`
 
 ### 2. Generate Chocolatey Package (Windows)
 
@@ -325,8 +325,8 @@ git push origin v{VERSION}
 Always keep versions synchronized across:
 
 - `package.json` → `version`
-- `app/src-tauri/tauri.conf.json` → `version`
-- `app/src-tauri/Cargo.toml` → `version`
+- `backend/tauri.conf.json` → `version`
+- `backend/Cargo.toml` → `version`
 
 ## Troubleshooting
 

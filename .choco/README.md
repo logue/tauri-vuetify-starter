@@ -53,7 +53,7 @@ pnpm run package:chocolatey
 ビルドスクリプト (`scripts/build-chocolatey.ps1`) は以下の処理を行います：
 
 1. `.env`ファイルからバージョンとアプリケーション情報を読み取り
-2. MSIファイル（`app/src-tauri/target/release/bundle/msi/*.msi`）を検索
+2. MSIファイル（`backend/target/release/bundle/msi/*.msi`）を検索
 3. MSIファイルのSHA256チェックサムを計算
 4. `app.nuspec.template`から`{APP_NAME_KEBAB}.nuspec`を生成
 5. 全てのプレースホルダーを実際の値に置換
@@ -86,7 +86,7 @@ GitHubにリリースする前にローカルでテストする場合：
 
 ```powershell
 # 管理者権限でMSIを直接インストール
-$msiPath = "app\src-tauri\target\release\bundle\msi\{APP_NAME_KEBAB}_{VERSION}_x64_en-US.msi"
+$msiPath = "backend\target\release\bundle\msi\{APP_NAME_KEBAB}_{VERSION}_x64_en-US.msi"
 Start-Process msiexec.exe -ArgumentList "/i `"$msiPath`" /qn /l*v install.log" -Wait
 
 # アンインストール
@@ -116,4 +116,4 @@ choco push .\.choco\{APP_NAME_KEBAB}.{VERSION}.nupkg --source https://push.choco
 - **テンプレートファイルを編集**: `.nuspec.template`ファイルのバージョンは常に`{{VERSION}}`のままにしてください
 - **生成ファイルは編集不要**: `{APP_NAME_KEBAB}.nuspec`（テンプレートなし）はビルド時に自動生成されるため、直接編集しないでください
 - バージョン変更時は、ルートの`.env`ファイルのみを更新してください
-- ビルド前に、`app/src-tauri/target/release/bundle/msi`内にMSIファイルが存在することを確認してください
+- ビルド前に、`backend/target/release/bundle/msi`内にMSIファイルが存在することを確認してください

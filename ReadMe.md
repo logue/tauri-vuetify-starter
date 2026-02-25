@@ -1,6 +1,6 @@
 <figure style="text-align:center">
 
-![logo](./app/src-tauri/icons/Square284x284Logo.png)
+![logo](./backend/icons/Square284x284Logo.png)
 
 </figure>
 
@@ -114,22 +114,22 @@ After changing `VERSION` in `.env`, run the version sync script to update all co
 
 This will automatically update:
 
-- `app/package.json`
-- `app/src-tauri/tauri.conf.json`
-- `app/src-tauri/Cargo.toml`
+- `frontend/package.json`
+- `backend/tauri.conf.json`
+- `backend/Cargo.toml`
 
 ### 4. Other Customizations
 
-1. Replace icons in `app/src-tauri/icons/`
-2. Customize `app/src/components/MainContent.vue` with your own logic
-3. Add your own Tauri commands in `app/src-tauri/src/command.rs`
-4. Update localization files in `app/src/locales/`
+1. Replace icons in `backend/icons/`
+2. Customize `frontend/src/components/MainContent.vue` with your own logic
+3. Add your own Tauri commands in `backend/src/command.rs`
+4. Update localization files in `frontend/src/locales/`
 
 ## Project Structure
 
 ```
 .
-├─ app/                     # Frontend (Vue 3 + Vite + Vuetify)
+├─ frontend/                # Frontend (Vue 3 + Vite + Vuetify)
 │  ├─ src/
 │  │  ├─ components/         # UI components
 │  │  ├─ composables/        # Reusable logic (hooks)
@@ -138,21 +138,21 @@ This will automatically update:
 │  │  ├─ store/              # Pinia stores
 │  │  ├─ styles/             # Global styles
 │  │  └─ types/              # Frontend types
-│  └─ src-tauri/
-│     └─ src/                # Rust backend
-│        ├─ main.rs          # Tauri entry
-│        ├─ command.rs       # Tauri commands
-│        ├─ error.rs         # App error types
-│        ├─ logging.rs       # Logging helpers
-│        └─ lib.rs           # Public exports
+├─ backend/                 # Rust backend (Tauri)
+│  └─ src/
+│     ├─ main.rs            # Tauri entry
+│     ├─ command.rs         # Tauri commands
+│     ├─ error.rs           # App error types
+│     ├─ logging.rs         # Logging helpers
+│     └─ lib.rs             # Public exports
 ├─ docs/                     # Documentation site (Nuxt)
 ├─ scripts/                  # Utility scripts (version sync, etc.)
 ├─ .env                      # App configuration
 └─ ReadMe.md                 # Project overview
 ```
 
-- app/src is the Vue frontend and UI logic.
-- app/src-tauri/src is the Rust backend for Tauri commands.
+- frontend/src is the Vue frontend and UI logic.
+- backend/src is the Rust backend for Tauri commands.
 - docs is the static documentation site.
 
 ## License
@@ -160,3 +160,11 @@ This will automatically update:
 ©2026 by Logue. Licensed under the [MIT License](LICENSE).
 
 This template is not officially endorsed by tauri.
+
+## 🎨 Crafted for Developers
+
+This template is built with a focus on **UI/UX excellence** and **modern developer experience**. Maintaining it involves constant testing and updates to ensure everything works seamlessly.
+
+If you appreciate the attention to detail in this project, a small sponsorship would go a long way in supporting my work across the Vue.js and Metaverse ecosystems.
+
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/logue?label=Sponsor&logo=github&color=ea4aaa)](https://github.com/sponsors/logue)

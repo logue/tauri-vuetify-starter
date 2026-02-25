@@ -16,11 +16,11 @@ import pluginVuetify from 'eslint-plugin-vuetify';
 
 export default defineConfigWithVueTs(
   {
-    name: 'app/files-to-lint',
+    name: 'frontend/files-to-lint',
     files: ['**/*.{vue,ts,mts,tsx}']
   },
 
-  globalIgnores(['**/dist/**', '**/src-tauri/**']),
+  globalIgnores(['**/dist/**', '../backend/**']),
 
   ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],

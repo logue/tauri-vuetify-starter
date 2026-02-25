@@ -159,7 +159,7 @@ source ~/.bashrc
 自動インストールスクリプトを使用（推奨）:
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -244,7 +244,7 @@ pnpm dev:tauri
 pnpm build:tauri
 ```
 
-ビルドされたアプリケーションは`app/src-tauri/target/release/`にあります。
+ビルドされたアプリケーションは`backend/target/release/`にあります。
 
 ## ステップ 8: 配布形式
 
@@ -258,7 +258,7 @@ AppImageは、ほとんどのLinuxディストリビューションで動作す�
 pnpm build:tauri
 ```
 
-AppImageは`app/src-tauri/target/release/bundle/appimage/`にあります。
+AppImageは`backend/target/release/bundle/appimage/`にあります。
 
 ### Debianパッケージ (.deb)
 
@@ -268,12 +268,12 @@ Debian/Ubuntuベースのディストリビューション用：
 pnpm build:tauri
 ```
 
-.debパッケージは`app/src-tauri/target/release/bundle/deb/`にあります。
+.debパッケージは`backend/target/release/bundle/deb/`にあります。
 
 インストール：
 
 ```bash
-sudo dpkg -i app/src-tauri/target/release/bundle/deb/*.deb
+sudo dpkg -i backend/target/release/bundle/deb/*.deb
 ```
 
 ### RPMパッケージ (.rpm)
@@ -285,7 +285,7 @@ sudo apt install -y rpm
 pnpm build:tauri
 ```
 
-.rpmパッケージは`app/src-tauri/target/release/bundle/rpm/`にあります。
+.rpmパッケージは`backend/target/release/bundle/rpm/`にあります。
 
 ## トラブルシューティング
 
@@ -326,7 +326,7 @@ pnpm build:tauri
 
    ```bash
    # AppImageを実行可能にする
-   chmod +x app/src-tauri/target/release/bundle/appimage/*.AppImage
+   chmod +x backend/target/release/bundle/appimage/*.AppImage
    ```
 
 5. **GLIBCバージョンが見つからない**

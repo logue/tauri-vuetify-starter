@@ -49,7 +49,7 @@ Windows上有兩種構建方式：
 
 6. **檢查構建產物**
 
-   構建成功後，可執行文件和安裝程序將生成在`app/src-tauri/target/release/bundle/`目錄中。
+   構建成功後，可執行文件和安裝程序將生成在`backend/target/release/bundle/`目錄中。
 
 ### Docker環境的優勢
 
@@ -228,7 +228,7 @@ set(VCPKG_BUILD_TYPE release)
 使用自動安裝腳本（推薦）：
 
 ```powershell
-cd tauri-vuetify-starter\app\src-tauri
+cd tauri-vuetify-starter\backend
 .\setup-vcpkg.ps1
 ```
 
@@ -268,7 +268,7 @@ cd C:\vcpkg
 1. 導航到 app 目錄並安裝相依性：
 
    ```powershell
-   cd app
+   cd frontend
    pnpm install
    ```
 
@@ -339,7 +339,7 @@ pnpm run build:tauri:windows-arm64
 或手動建構：
 
 ```powershell
-cd app\src-tauri
+cd backend
 cargo build --release --target aarch64-pc-windows-msvc
 cd ..
 pnpm tauri build --target aarch64-pc-windows-msvc
@@ -349,4 +349,4 @@ pnpm tauri build --target aarch64-pc-windows-msvc
 
 - Arm64 二進位檔案僅在 Arm64 Windows 設備（例如 Surface Pro X）上執行
 - 交叉編譯的二進位檔案無法在 x64 機器上執行
-- 建構產物在 `app/src-tauri/target/aarch64-pc-windows-msvc/release/` 中生成
+- 建構產物在 `backend/target/aarch64-pc-windows-msvc/release/` 中生成

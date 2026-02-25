@@ -49,7 +49,7 @@ Il existe deux façons de construire sur Windows :
 
 6. **Vérifier les artefacts de construction**
 
-   Une fois la construction réussie, les exécutables et installateurs seront générés dans le répertoire `app/src-tauri/target/release/bundle/`.
+   Une fois la construction réussie, les exécutables et installateurs seront générés dans le répertoire `backend/target/release/bundle/`.
 
 ### Avantages de l'environnement Docker
 
@@ -228,7 +228,7 @@ set(VCPKG_BUILD_TYPE release)
 Utilisez le script d'installation automatique (recommandé) :
 
 ```powershell
-cd tauri-vuetify-starter\app\src-tauri
+cd tauri-vuetify-starter\backend
 .\setup-vcpkg.ps1
 ```
 
@@ -268,7 +268,7 @@ Vérifier l'installation :
 1. Naviguez vers le répertoire app et installez les dépendances :
 
    ```powershell
-   cd app
+   cd frontend
    pnpm install
    ```
 
@@ -339,7 +339,7 @@ pnpm run build:tauri:windows-arm64
 Ou construire manuellement :
 
 ```powershell
-cd app\src-tauri
+cd backend
 cargo build --release --target aarch64-pc-windows-msvc
 cd ..
 pnpm tauri build --target aarch64-pc-windows-msvc
@@ -349,4 +349,4 @@ pnpm tauri build --target aarch64-pc-windows-msvc
 
 - Les binaires Arm64 ne fonctionneront que sur les appareils Windows Arm64 (par exemple, Surface Pro X)
 - Les binaires construits en mode croisé ne peuvent pas être exécutés sur des machines x64
-- Les artefacts de construction sont générés dans `app/src-tauri/target/aarch64-pc-windows-msvc/release/`
+- Les artefacts de construction sont générés dans `backend/target/aarch64-pc-windows-msvc/release/`

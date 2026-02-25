@@ -2,6 +2,6 @@
 .vscode/
 pnpm-lock.yaml
 app/dist/
-app/src-tauri/
+backend/
 doc/.nuxt/
 doc/dist/

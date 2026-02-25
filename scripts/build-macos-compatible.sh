@@ -21,7 +21,7 @@ echo "Version: ${VERSION:-unknown}"
 
 # Clean previous builds
 echo "🧹 Cleaning previous builds..."
-cd app/src-tauri
+cd backend
 cargo clean
 
 # Build for Apple Silicon (ARM64) with generic optimizations
@@ -41,7 +41,7 @@ cargo build --release --target aarch64-apple-darwin
 #   -output target/release/tauri-vue3-app-universal
 
 echo "✅ Build complete!"
-echo "📍 Binary location: app/src-tauri/target/aarch64-apple-darwin/release/"
+echo "📍 Binary location: backend/target/aarch64-apple-darwin/release/"
 
 # Display binary info
 echo ""

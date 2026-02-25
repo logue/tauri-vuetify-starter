@@ -150,7 +150,7 @@ source ~/.zshrc
 使用自动安装脚本（推荐）：
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -389,7 +389,7 @@ pnpm run build:tauri:mac-x64
 构建产物根据目标生成在以下位置：
 
 ```
-app/src-tauri/target/
+backend/target/
 ├── aarch64-apple-darwin/release/   # ARM64 构建
 │   └── bundle/
 ├── x86_64-apple-darwin/release/    # Intel 构建

@@ -49,7 +49,7 @@ Windows에서 빌드하는 두 가지 방법이 있습니다:
 
 6. **빌드 결과물 확인**
 
-   빌드 성공 시 실행 파일과 설치 프로그램이 `app/src-tauri/target/release/bundle/` 디렉토리에 생성됩니다.
+   빌드 성공 시 실행 파일과 설치 프로그램이 `backend/target/release/bundle/` 디렉토리에 생성됩니다.
 
 ### Docker 환경의 장점
 
@@ -228,7 +228,7 @@ set(VCPKG_BUILD_TYPE release)
 자동 설치 스크립트 사용(권장):
 
 ```powershell
-cd tauri-vuetify-starter\app\src-tauri
+cd tauri-vuetify-starter\backend
 .\setup-vcpkg.ps1
 ```
 
@@ -268,7 +268,7 @@ cd C:\vcpkg
 1. app 디렉토리로 이동하고 종속성을 설치합니다:
 
    ```powershell
-   cd app
+   cd frontend
    pnpm install
    ```
 
@@ -339,7 +339,7 @@ pnpm run build:tauri:windows-arm64
 또는 수동으로 빌드:
 
 ```powershell
-cd app\src-tauri
+cd backend
 cargo build --release --target aarch64-pc-windows-msvc
 cd ..
 pnpm tauri build --target aarch64-pc-windows-msvc
@@ -349,4 +349,4 @@ pnpm tauri build --target aarch64-pc-windows-msvc
 
 - Arm64 바이너리는 Arm64 Windows 장치(Surface Pro X 등)에서만 실행됩니다
 - 크로스 빌드된 바이너리는 x64 머신에서 실행할 수 없습니다
-- 빌드 결과물은 `app/src-tauri/target/aarch64-pc-windows-msvc/release/`에 생성됩니다
+- 빌드 결과물은 `backend/target/aarch64-pc-windows-msvc/release/`에 생성됩니다

@@ -64,7 +64,7 @@ pnpm run build:tauri:linux-docker-arm64
 Build artifacts are generated in the following directories:
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── x86_64-unknown-linux-gnu/release/bundle/
   │   ├── deb/           # Debian/Ubuntu packages
   │   └── rpm/           # Red Hat/Fedora packages
@@ -105,6 +105,8 @@ INCLUDE_APPIMAGE=false    # Include AppImage
 
 #### For High-Performance Machines
 
+backend/target/
+
 ```bash
 BUILD_CPUS=12
 BUILD_MEMORY=16g
@@ -125,8 +127,8 @@ MAKEFLAGS=-j4
 
 1. Building Docker Image
    - Based on Rust + Debian Bookworm
-   - Installs Tauri dependencies (WebKit2GTK, GTK3, etc.)
-   - Installs Node.js and pnpm
+     rm -rf backend/target/x86_64-unknown-linux-gnu
+     rm -rf backend/target/aarch64-unknown-linux-gnu
 
 2. Running Tauri Build in Docker Container
    - Mounts project directory

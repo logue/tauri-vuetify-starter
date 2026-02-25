@@ -57,8 +57,8 @@ You can build Linux packages (.deb, .rpm) from Windows using Docker.
 5. **Check Build Artifacts**
 
    Upon successful build, packages will be generated at:
-   - `app/src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/deb/`
-   - `app/src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/rpm/`
+   - `backend/target/x86_64-unknown-linux-gnu/release/bundle/deb/`
+   - `backend/target/x86_64-unknown-linux-gnu/release/bundle/rpm/`
 
 ### Linux Build Benefits
 
@@ -109,7 +109,7 @@ You can build Linux packages (.deb, .rpm) from Windows using Docker.
 
 6. **Check Build Artifacts**
 
-   Upon successful build, executables and installers will be generated in the `app/src-tauri/target/release/bundle/` directory.
+   Upon successful build, executables and installers will be generated in the `backend/target/release/bundle/` directory.
 
 ### Docker Environment Benefits
 
@@ -288,7 +288,7 @@ set(VCPKG_BUILD_TYPE release)
 Use the automated installation script (recommended):
 
 ```powershell
-cd tauri-vuetify-starter\app\src-tauri
+cd tauri-vuetify-starter\backend
 .\setup-vcpkg.ps1
 ```
 
@@ -328,7 +328,7 @@ Verify installation:
 1. Navigate to the app directory and install dependencies:
 
    ```powershell
-   cd app
+   cd frontend
    pnpm install
    ```
 
@@ -399,7 +399,7 @@ pnpm run build:tauri:windows-arm64
 Or build manually:
 
 ```powershell
-cd app\src-tauri
+cd backend
 cargo build --release --target aarch64-pc-windows-msvc
 cd ..
 pnpm tauri build --target aarch64-pc-windows-msvc
@@ -409,4 +409,4 @@ pnpm tauri build --target aarch64-pc-windows-msvc
 
 - Arm64 binaries will only run on Arm64 Windows devices (e.g., Surface Pro X)
 - Cross-built binaries cannot be executed on x64 machines
-- Build artifacts are generated in `app/src-tauri/target/aarch64-pc-windows-msvc/release/`
+- Build artifacts are generated in `backend/target/aarch64-pc-windows-msvc/release/`

@@ -64,7 +64,7 @@ Follow the step-by-step instructions in sections below.
 
 ## 🗑️ DELETION TARGET LIST
 
-### Rust Backend Files (app/src-tauri/)
+### Rust Backend Files (backend/)
 
 **Complete deletion:**
 
@@ -121,7 +121,7 @@ tauri-plugin-opener = "2.5.3"
 tauri-plugin-os = "2.3.2"
 ```
 
-### Vue Frontend Files (app/src/)
+### Vue Frontend Files (frontend/src/)
 
 **Complete deletion:**
 
@@ -187,7 +187,7 @@ main.ts
 ARM64_SIGNING_ISSUE.md
 HDR_SUPPORT_STATUS.md
 DEV_AUTORELOAD_FIX.md
-app/src-tauri/ENCODER_PROGRESS.md
+backend/ENCODER_PROGRESS.md
 ```
 
 **Keep but update:**
@@ -450,32 +450,32 @@ fn main() {
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue';
-import { invoke } from '@tauri-apps/api/core';
-import { useGlobalStore } from '@/store';
-import { useNotification } from '@/composables/useNotification';
+import { ref } from "vue";
+import { invoke } from "@tauri-apps/api/core";
+import { useGlobalStore } from "@/store";
+import { useNotification } from "@/composables/useNotification";
 
 const globalStore = useGlobalStore();
 const notification = useNotification();
 
-const inputText = ref('');
-const outputText = ref('');
-const appVersion = ref('');
+const inputText = ref("");
+const outputText = ref("");
+const appVersion = ref("");
 
 const handleProcess = async () => {
   if (!inputText.value) {
-    notification.error('Please enter some text');
+    notification.error("Please enter some text");
     return;
   }
 
   globalStore.setLoading(true);
 
   try {
-    const result = await invoke<string>('echo_message', {
-      message: inputText.value
+    const result = await invoke<string>("echo_message", {
+      message: inputText.value,
     });
     outputText.value = result;
-    notification.success('Processed successfully');
+    notification.success("Processed successfully");
   } catch (error) {
     notification.error(`Error: ${error}`);
   } finally {
@@ -485,9 +485,9 @@ const handleProcess = async () => {
 
 const getVersion = async () => {
   try {
-    appVersion.value = await invoke<string>('get_app_version');
+    appVersion.value = await invoke<string>("get_app_version");
   } catch (error) {
-    console.error('Failed to get version:', error);
+    console.error("Failed to get version:", error);
   }
 };
 
@@ -505,12 +505,14 @@ getVersion();
             Sample Application
           </v-card-title>
 
-          <v-card-subtitle v-if="appVersion">Version: {{ appVersion }}</v-card-subtitle>
+          <v-card-subtitle v-if="appVersion"
+            >Version: {{ appVersion }}</v-card-subtitle
+          >
 
           <v-card-text>
             <p class="text-body-1 mb-4">
-              This is a template application built with Tauri v2 and Vue 3. Replace this content
-              with your own application logic.
+              This is a template application built with Tauri v2 and Vue 3.
+              Replace this content with your own application logic.
             </p>
 
             <v-divider class="mb-4" />
@@ -524,7 +526,12 @@ getVersion();
               class="mb-4"
             />
 
-            <v-btn color="primary" size="large" prepend-icon="mdi-send" @click="handleProcess">
+            <v-btn
+              color="primary"
+              size="large"
+              prepend-icon="mdi-send"
+              @click="handleProcess"
+            >
               Process
             </v-btn>
 
@@ -621,7 +628,7 @@ code {
   background-color: rgba(0, 0, 0, 0.05);
   padding: 2px 6px;
   border-radius: 4px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 </style>
 ```
@@ -631,8 +638,8 @@ code {
 **UPDATE to generic file operations:**
 
 ```typescript
-import { open, save } from '@tauri-apps/plugin-dialog';
-import { readFile, writeFile, exists } from '@tauri-apps/plugin-fs';
+import { open, save } from "@tauri-apps/plugin-dialog";
+import { readFile, writeFile, exists } from "@tauri-apps/plugin-fs";
 
 export function useFileSystem() {
   /**
@@ -644,7 +651,7 @@ export function useFileSystem() {
   }) => {
     return await open({
       multiple: options?.multiple ?? false,
-      filters: options?.filters
+      filters: options?.filters,
     });
   };
 
@@ -653,7 +660,7 @@ export function useFileSystem() {
    */
   const selectFolder = async () => {
     return await open({
-      directory: true
+      directory: true,
     });
   };
 
@@ -666,7 +673,7 @@ export function useFileSystem() {
   }) => {
     return await save({
       defaultPath: options?.defaultPath,
-      filters: options?.filters
+      filters: options?.filters,
     });
   };
 
@@ -697,7 +704,7 @@ export function useFileSystem() {
     saveFile,
     readFileContents,
     writeFileContents,
-    fileExists
+    fileExists,
   };
 }
 ```
@@ -740,47 +747,47 @@ VERSION=1.0.0
 
 ```yaml
 app:
-  title: 'Tauri Vue3 App'
-  description: 'A modern desktop application'
+  title: "Tauri Vue3 App"
+  description: "A modern desktop application"
 
 menu:
-  file: 'File'
-  open: 'Open'
-  save: 'Save'
-  quit: 'Quit'
-  edit: 'Edit'
-  preferences: 'Preferences'
-  view: 'View'
-  help: 'Help'
-  about: 'About'
-  documentation: 'Documentation'
+  file: "File"
+  open: "Open"
+  save: "Save"
+  quit: "Quit"
+  edit: "Edit"
+  preferences: "Preferences"
+  view: "View"
+  help: "Help"
+  about: "About"
+  documentation: "Documentation"
 
 message:
-  success: 'Operation successful'
-  error: 'An error occurred'
-  processing: 'Processing...'
-  loading: 'Loading...'
-  saved: 'Saved successfully'
-  cancelled: 'Operation cancelled'
+  success: "Operation successful"
+  error: "An error occurred"
+  processing: "Processing..."
+  loading: "Loading..."
+  saved: "Saved successfully"
+  cancelled: "Operation cancelled"
 
 button:
-  ok: 'OK'
-  cancel: 'Cancel'
-  save: 'Save'
-  close: 'Close'
-  apply: 'Apply'
+  ok: "OK"
+  cancel: "Cancel"
+  save: "Save"
+  close: "Close"
+  apply: "Apply"
 
 label:
-  input: 'Input'
-  output: 'Output'
-  settings: 'Settings'
-  language: 'Language'
-  theme: 'Theme'
+  input: "Input"
+  output: "Output"
+  settings: "Settings"
+  language: "Language"
+  theme: "Theme"
 
 theme:
-  light: 'Light'
-  dark: 'Dark'
-  auto: 'Auto'
+  light: "Light"
+  dark: "Dark"
+  auto: "Auto"
 ```
 
 **REPLICATE for other languages:**
@@ -805,7 +812,7 @@ After completing all tasks, verify:
 
 ```bash
 # Rust compilation
-cd app/src-tauri
+cd backend
 cargo build
 # Should succeed without image processing crate errors
 
@@ -823,14 +830,14 @@ pnpm run dev:tauri
 
 ```bash
 # Ensure all image processing files are deleted
-! test -f app/src-tauri/src/decoder.rs
-! test -f app/src-tauri/src/encoder.rs
-! test -f app/src/composables/useImageConverter.ts
+! test -f backend/src/decoder.rs
+! test -f backend/src/encoder.rs
+! test -f frontend/src/composables/useImageConverter.ts
 
 # Ensure generic files exist
-test -f app/src-tauri/src/command.rs
-test -f app/src/components/MainContent.vue
-test -f app/src/composables/useFileSystem.ts
+test -f backend/src/command.rs
+test -f frontend/src/components/MainContent.vue
+test -f frontend/src/composables/useFileSystem.ts
 ```
 
 ### Functionality Verification
@@ -846,8 +853,8 @@ test -f app/src/composables/useFileSystem.ts
 ```bash
 # Check version is updated
 grep "VERSION=1.0.0" .env
-grep '"version": "1.0.0"' app/src-tauri/Cargo.toml
-grep '"version": "1.0.0"' app/src-tauri/tauri.conf.json
+grep '"version": "1.0.0"' backend/Cargo.toml
+grep '"version": "1.0.0"' backend/tauri.conf.json
 ```
 
 ---

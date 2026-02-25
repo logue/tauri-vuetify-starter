@@ -136,8 +136,8 @@ docker run --rm \
     -v "$PROJECT_ROOT:/workspace" \
     -v "$CARGO_CACHE_VOLUME:/root/.cargo/registry" \
     -v "$PNPM_CACHE_VOLUME:/pnpm/store" \
-    -v "$TARGET_CACHE_VOLUME:/workspace/app/src-tauri/target" \
-    -v "$NODE_MODULES_VOLUME:/workspace/app/node_modules" \
+    -v "$TARGET_CACHE_VOLUME:/workspace/backend/target" \
+    -v "$NODE_MODULES_VOLUME:/workspace/frontend/node_modules" \
     -e BUILD_TARGET="$TARGET" \
     -e TAURI_BUNDLER_TARGETS="$BUNDLE_TARGETS" \
     -e APPIMAGE_EXTRACT_AND_RUN=1 \
@@ -157,14 +157,14 @@ echo ""
 echo -e "${BLUE}📋 成果物をホストにコピー中...${NC}"
 
 # ホスト側のディレクトリを作成
-mkdir -p "$PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle"
+mkdir -p "$PROJECT_ROOT/backend/target/$TARGET/release/bundle"
 
 # Dockerボリュームから成果物（bundleディレクトリのみ）をホストにコピー
 docker run --rm \
     --platform "$PLATFORM" \
     -v "$TARGET_CACHE_VOLUME:/data" \
     -v "$PROJECT_ROOT:/output" \
-    alpine sh -c "if [ -d '/data/$TARGET/release/bundle' ]; then cp -rv /data/$TARGET/release/bundle/* /output/app/src-tauri/target/$TARGET/release/bundle/ && echo '✅ コピー完了'; else echo '❌ bundle ディレクトリが見つかりません: /data/$TARGET/release/bundle'; find /data -name '*.deb' -o -name '*.rpm' 2>/dev/null || echo 'パッケージファイルが見つかりません'; exit 1; fi"
+    alpine sh -c "if [ -d '/data/$TARGET/release/bundle' ]; then cp -rv /data/$TARGET/release/bundle/* /output/backend/target/$TARGET/release/bundle/ && echo '✅ コピー完了'; else echo '❌ bundle ディレクトリが見つかりません: /data/$TARGET/release/bundle'; find /data -name '*.deb' -o -name '*.rpm' 2>/dev/null || echo 'パッケージファイルが見つかりません'; exit 1; fi"
 
 if [ $? -ne 0 ]; then
     echo -e "${YELLOW}⚠️  成果物のコピーに失敗しました${NC}"
@@ -175,23 +175,23 @@ fi
 
 echo ""
 echo -e "${GREEN}📦 成果物の場所:${NC}"
-echo "   $PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle/"
+echo "   $PROJECT_ROOT/backend/target/$TARGET/release/bundle/"
 echo ""
 
 # 成果物のサイズを表示
-if [ -d "$PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle/deb" ]; then
+if [ -d "$PROJECT_ROOT/backend/target/$TARGET/release/bundle/deb" ]; then
     echo -e "${GREEN}📊 .deb パッケージ:${NC}"
-    du -h "$PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle/deb/"*.deb 2>/dev/null || true
+    du -h "$PROJECT_ROOT/backend/target/$TARGET/release/bundle/deb/"*.deb 2>/dev/null || true
 fi
 
-if [ -d "$PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle/rpm" ]; then
+if [ -d "$PROJECT_ROOT/backend/target/$TARGET/release/bundle/rpm" ]; then
     echo -e "${GREEN}📊 .rpm パッケージ:${NC}"
-    du -h "$PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle/rpm/"*.rpm 2>/dev/null || true
+    du -h "$PROJECT_ROOT/backend/target/$TARGET/release/bundle/rpm/"*.rpm 2>/dev/null || true
 fi
 
-if [ -d "$PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle/appimage" ]; then
+if [ -d "$PROJECT_ROOT/backend/target/$TARGET/release/bundle/appimage" ]; then
     echo -e "${GREEN}📊 AppImage:${NC}"
-    du -h "$PROJECT_ROOT/app/src-tauri/target/$TARGET/release/bundle/appimage/"*.AppImage 2>/dev/null || true
+    du -h "$PROJECT_ROOT/backend/target/$TARGET/release/bundle/appimage/"*.AppImage 2>/dev/null || true
 fi
 
 echo ""

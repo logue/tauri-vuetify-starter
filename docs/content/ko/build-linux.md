@@ -159,7 +159,7 @@ source ~/.bashrc
 자동 설치 스크립트 사용(권장):
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -244,7 +244,7 @@ pnpm dev:tauri
 pnpm build:tauri
 ```
 
-빌드된 애플리케이션은 `app/src-tauri/target/release/`에 있습니다.
+빌드된 애플리케이션은 `backend/target/release/`에 있습니다.
 
 ## 단계 8: 배포 형식
 
@@ -258,7 +258,7 @@ AppImage는 대부분의 Linux 배포판에서 작동하는 범용 패키지 형
 pnpm build:tauri
 ```
 
-AppImage는 `app/src-tauri/target/release/bundle/appimage/`에 있습니다.
+AppImage는 `backend/target/release/bundle/appimage/`에 있습니다.
 
 ### Debian 패키지 (.deb)
 
@@ -268,12 +268,12 @@ Debian/Ubuntu 기반 배포판용:
 pnpm build:tauri
 ```
 
-.deb 패키지는 `app/src-tauri/target/release/bundle/deb/`에 있습니다.
+.deb 패키지는 `backend/target/release/bundle/deb/`에 있습니다.
 
 설치:
 
 ```bash
-sudo dpkg -i app/src-tauri/target/release/bundle/deb/*.deb
+sudo dpkg -i backend/target/release/bundle/deb/*.deb
 ```
 
 ### RPM 패키지 (.rpm)
@@ -285,7 +285,7 @@ sudo apt install -y rpm
 pnpm build:tauri
 ```
 
-.rpm 패키지는 `app/src-tauri/target/release/bundle/rpm/`에 있습니다.
+.rpm 패키지는 `backend/target/release/bundle/rpm/`에 있습니다.
 
 ## 문제 해결
 
@@ -326,7 +326,7 @@ pnpm build:tauri
 
    ```bash
    # AppImage를 실행 가능하게 만들기
-   chmod +x app/src-tauri/target/release/bundle/appimage/*.AppImage
+   chmod +x backend/target/release/bundle/appimage/*.AppImage
    ```
 
 5. **GLIBC 버전 누락**

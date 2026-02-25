@@ -62,7 +62,7 @@ pnpm run build:tauri:linux-docker-arm64
 Les artefacts de construction sont générés dans les répertoires suivants :
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── x86_64-unknown-linux-gnu/release/bundle/
   │   ├── deb/           # Paquets Debian/Ubuntu
   │   ├── rpm/           # Paquets Red Hat/Fedora
@@ -104,8 +104,8 @@ docker rmi tauri-vue3-linux-builder
 ### Effacer le cache de construction
 
 ```bash
-rm -rf app/src-tauri/target/x86_64-unknown-linux-gnu
-rm -rf app/src-tauri/target/aarch64-unknown-linux-gnu
+rm -rf backend/target/x86_64-unknown-linux-gnu
+rm -rf backend/target/aarch64-unknown-linux-gnu
 ```
 
 ## 📝 Remarques

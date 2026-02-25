@@ -25,9 +25,9 @@ pnpm build:tauri
 
 これにより、以下の場所にプラットフォーム固有のインストーラーが作成されます：
 
-- Windows: `app/src-tauri/target/release/bundle/msi/`
-- macOS: `app/src-tauri/target/release/bundle/dmg/`
-- Linux: `app/src-tauri/target/release/bundle/deb/` または `appimage/`
+- Windows: `backend/target/release/bundle/msi/`
+- macOS: `backend/target/release/bundle/dmg/`
+- Linux: `backend/target/release/bundle/deb/` または `appimage/`
 
 ### 2. Chocolateyパッケージの生成（Windows）
 
@@ -145,8 +145,8 @@ git push origin v{VERSION}
 常に以下のバージョンを同期させてください：
 
 - `package.json` → `version`
-- `app/src-tauri/tauri.conf.json` → `version`
-- `app/src-tauri/Cargo.toml` → `version`
+- `backend/tauri.conf.json` → `version`
+- `backend/Cargo.toml` → `version`
 
 ## トラブルシューティング
 

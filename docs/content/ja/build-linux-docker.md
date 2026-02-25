@@ -52,7 +52,7 @@ pwsh .\scripts\build-linux-docker.ps1 -Target arm64
 bash scripts/build-linux-docker.sh x64    # x86_64 Linux
 bash scripts/build-linux-docker.sh arm64  # ARM64 Linux
 
-# または app ディレクトリから
+# または frontend ディレクトリから
 pnpm run build:tauri:linux-docker-x64
 pnpm run build:tauri:linux-docker-arm64
 ```
@@ -64,7 +64,7 @@ pnpm run build:tauri:linux-docker-arm64
 ビルド成果物は以下のディレクトリに生成されます：
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── x86_64-unknown-linux-gnu/release/bundle/
   │   ├── deb/           # Debian/Ubuntuパッケージ
   │   └── rpm/           # Red Hat/Fedoraパッケージ
@@ -84,7 +84,7 @@ pwsh .\scripts\build-linux-docker.ps1 -Target x64 -IncludeAppImage
 INCLUDE_APPIMAGE=true bash scripts/build-linux-docker.sh x64
 ```
 
-上記に加えて `appimage/` ディレクトリにAppImageが生成されます。
+上記に加えて `backend/target/.../bundle/appimage/` にAppImageが生成されます。
 
 > **注意**: AppImageのビルドにはFUSEが必要で、Docker環境では制限があります。
 

@@ -5,10 +5,10 @@
   "version": "0.0.0",
   "identifier": "com.tauri.vue3.app",
   "build": {
-    "beforeDevCommand": "pnpm dev",
+    "beforeDevCommand": "pnpm --dir frontend dev",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "pnpm build-only",
-    "frontendDist": "../dist"
+    "beforeBuildCommand": "pnpm --dir frontend build-only",
+    "frontendDist": "../frontend/dist"
   },
   "app": {
     "windows": [

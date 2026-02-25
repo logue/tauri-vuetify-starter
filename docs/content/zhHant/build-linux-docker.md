@@ -62,7 +62,7 @@ pnpm run build:tauri:linux-docker-arm64
 建置產物將生成在以下目錄中：
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── x86_64-unknown-linux-gnu/release/bundle/
   │   ├── deb/           # Debian/Ubuntu軟體包
   │   ├── rpm/           # Red Hat/Fedora軟體包
@@ -104,8 +104,8 @@ docker rmi tauri-vue3-linux-builder
 ### 清除建置快取
 
 ```bash
-rm -rf app/src-tauri/target/x86_64-unknown-linux-gnu
-rm -rf app/src-tauri/target/aarch64-unknown-linux-gnu
+rm -rf backend/target/x86_64-unknown-linux-gnu
+rm -rf backend/target/aarch64-unknown-linux-gnu
 ```
 
 ## 📝 注意事項

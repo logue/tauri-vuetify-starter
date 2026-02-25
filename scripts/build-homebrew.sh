@@ -28,7 +28,7 @@ echo "App Name: $APP_NAME_KEBAB"
 echo "Class Name: $CLASS_NAME"
 echo "Version: $VERSION"
 HOMEBREW_DIR="$ROOT_DIR/.homebrew"
-BUNDLE_DIR="$ROOT_DIR/app/src-tauri/target/release/bundle"
+BUNDLE_DIR="$ROOT_DIR/backend/target/release/bundle"
 
 # DMGファイルを探す（Universal版のみ）
 DMG_UNIVERSAL=$(find "$BUNDLE_DIR/dmg" -name "*universal*.dmg" | head -n 1)

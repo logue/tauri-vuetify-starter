@@ -57,8 +57,8 @@ WindowsからDockerを使用してLinux向けパッケージ（.deb、.rpm）を
 5. **ビルド成果物の確認**
 
    ビルドが成功すると、以下の場所にパッケージが生成されます：
-   - `app/src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/deb/`
-   - `app/src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/rpm/`
+   - `backend/target/x86_64-unknown-linux-gnu/release/bundle/deb/`
+   - `backend/target/x86_64-unknown-linux-gnu/release/bundle/rpm/`
 
 ### Linux向けビルドの利点
 
@@ -109,7 +109,7 @@ WindowsからDockerを使用してLinux向けパッケージ（.deb、.rpm）を
 
 6. **ビルド成果物の確認**
 
-   ビルドが成功すると、`app/src-tauri/target/release/bundle/`ディレクトリに実行ファイルとインストーラーが生成されます。
+   ビルドが成功すると、`backend/target/release/bundle/`ディレクトリに実行ファイルとインストーラーが生成されます。
 
 ### Docker環境の利点
 
@@ -288,7 +288,7 @@ set(VCPKG_BUILD_TYPE release)
 自動インストールスクリプトを使用（推奨）:
 
 ```powershell
-cd tauri-vuetify-starter\app\src-tauri
+cd tauri-vuetify-starter\backend
 .\setup-vcpkg.ps1
 ```
 
@@ -328,7 +328,7 @@ cd C:\vcpkg
 1. appディレクトリに移動し、依存関係をインストールします：
 
    ```powershell
-   cd app
+   cd frontend
    pnpm install
    ```
 
@@ -410,7 +410,7 @@ pnpm run build:tauri:windows-arm64
 または手動でビルド:
 
 ```powershell
-cd app\src-tauri
+cd backend
 cargo build --release --target aarch64-pc-windows-msvc
 cd ..
 pnpm tauri build --target aarch64-pc-windows-msvc
@@ -423,7 +423,7 @@ pnpm tauri build --target aarch64-pc-windows-msvc
 1. ビルドキャッシュを完全にクリーンアップ：
 
    ```powershell
-   cd app\src-tauri
+   cd backend
    cargo clean
    ```
 
@@ -438,4 +438,4 @@ pnpm tauri build --target aarch64-pc-windows-msvc
 
 - Arm64バイナリはArm64 Windowsデバイス（Surface Pro X等）でのみ動作します
 - クロスビルドしたバイナリはx64マシンでは実行できません
-- ビルド成果物は`app/src-tauri/target/aarch64-pc-windows-msvc/release/`に生成されます
+- ビルド成果物は`backend/target/aarch64-pc-windows-msvc/release/`に生成されます

@@ -150,7 +150,7 @@ source ~/.zshrc
 自動インストールスクリプトを使用（推奨）:
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -354,7 +354,7 @@ Apple Silicon Mac (M1/M2/M3) からIntel Mac (x86_64) 向けにクロスコン�
 Intel MacとApple Silicon Macの両方で動作する単一のバイナリを作成します：
 
 ```bash
-cd app
+cd frontend
 pnpm run build:tauri:mac-universal
 ```
 
@@ -393,7 +393,7 @@ arch -x86_64 /usr/local/bin/brew install libavif jpeg-xl
 #### ステップ3: ビルド実行
 
 ```bash
-cd app
+cd frontend
 pnpm run build:tauri:mac-x64
 ```
 
@@ -413,7 +413,7 @@ pnpm run build:tauri:mac-universal
 ### 成果物の場所
 
 ```text
-app/src-tauri/target/
+backend/target/
   ├── aarch64-apple-darwin/release/bundle/      # ARM64専用
   ├── x86_64-apple-darwin/release/bundle/       # x86_64専用
   └── universal-apple-darwin/release/bundle/    # Universal（両対応）

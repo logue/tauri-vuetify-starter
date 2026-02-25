@@ -41,7 +41,7 @@ Write-Host "=== Chocolatey Package Generation ===" -ForegroundColor Cyan
 Write-Host "App Name: $APP_NAME_KEBAB" -ForegroundColor Green
 Write-Host "Version: $Version" -ForegroundColor Green
 $chocoDir = Join-Path $rootDir ".choco"
-$bundleDir = Join-Path $rootDir "app\src-tauri\target\release\bundle\msi"
+$bundleDir = Join-Path $rootDir "backend\target\release\bundle\msi"
 
 # MSIファイルを探す
 $msiFile = Get-ChildItem -Path $bundleDir -Filter "*.msi" | Select-Object -First 1

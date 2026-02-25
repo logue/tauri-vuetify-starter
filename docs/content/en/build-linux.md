@@ -159,7 +159,7 @@ source ~/.bashrc
 Use the automated installation script (recommended):
 
 ```bash
-cd ~/path/to/tauri-vuetify-starter/app/src-tauri
+cd ~/path/to/tauri-vuetify-starter/backend
 ./setup-vcpkg.sh
 ```
 
@@ -244,7 +244,7 @@ For production:
 pnpm build:tauri
 ```
 
-The built application will be in `app/src-tauri/target/release/`.
+The built application will be in `backend/target/release/`.
 
 ## Step 8: Distribution Formats
 
@@ -258,7 +258,7 @@ AppImage is a universal package format that works on most Linux distributions:
 pnpm build:tauri
 ```
 
-The AppImage will be in `app/src-tauri/target/release/bundle/appimage/`.
+The AppImage will be in `backend/target/release/bundle/appimage/`.
 
 ### Debian Package (.deb)
 
@@ -268,12 +268,12 @@ For Debian/Ubuntu-based distributions:
 pnpm build:tauri
 ```
 
-The .deb package will be in `app/src-tauri/target/release/bundle/deb/`.
+The .deb package will be in `backend/target/release/bundle/deb/`.
 
 Install it with:
 
 ```bash
-sudo dpkg -i app/src-tauri/target/release/bundle/deb/*.deb
+sudo dpkg -i backend/target/release/bundle/deb/*.deb
 ```
 
 ### RPM Package (.rpm)
@@ -285,7 +285,7 @@ sudo apt install -y rpm
 pnpm build:tauri
 ```
 
-The .rpm package will be in `app/src-tauri/target/release/bundle/rpm/`.
+The .rpm package will be in `backend/target/release/bundle/rpm/`.
 
 ## Troubleshooting
 
@@ -326,7 +326,7 @@ The .rpm package will be in `app/src-tauri/target/release/bundle/rpm/`.
 
    ```bash
    # Make AppImage executable
-   chmod +x app/src-tauri/target/release/bundle/appimage/*.AppImage
+   chmod +x backend/target/release/bundle/appimage/*.AppImage
    ```
 
 5. **Missing GLIBC Version**

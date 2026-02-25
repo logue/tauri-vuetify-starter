@@ -31,38 +31,38 @@ if ([string]::IsNullOrEmpty($version)) {
 
 Write-Host "Found version: $version" -ForegroundColor Green
 
-# Update app/package.json
-Write-Host "Updating app/package.json..." -ForegroundColor Cyan
-$packageJsonPath = "../app/package.json"
+# Update frontend/package.json
+Write-Host "Updating frontend/package.json..." -ForegroundColor Cyan
+$packageJsonPath = "../frontend/package.json"
 if (Test-Path $packageJsonPath) {
     $packageJson = Get-Content $packageJsonPath -Raw | ConvertFrom-Json
     $packageJson.version = $version
     $packageJson | ConvertTo-Json -Depth 100 | Set-Content $packageJsonPath -Encoding UTF8
-    Write-Host "✓ Updated app/package.json to version $version" -ForegroundColor Green
+    Write-Host "✓ Updated frontend/package.json to version $version" -ForegroundColor Green
 } else {
     Write-Warning "Warning: $packageJsonPath not found"
 }
 
-# Update app/src-tauri/tauri.conf.json
-Write-Host "Updating app/src-tauri/tauri.conf.json..." -ForegroundColor Cyan
-$tauriConfPath = "../app/src-tauri/tauri.conf.json"
+# Update backend/tauri.conf.json
+Write-Host "Updating backend/tauri.conf.json..." -ForegroundColor Cyan
+$tauriConfPath = "../backend/tauri.conf.json"
 if (Test-Path $tauriConfPath) {
     $tauriConf = Get-Content $tauriConfPath -Raw | ConvertFrom-Json
     $tauriConf.version = $version
     $tauriConf | ConvertTo-Json -Depth 100 | Set-Content $tauriConfPath -Encoding UTF8
-    Write-Host "✓ Updated app/src-tauri/tauri.conf.json to version $version" -ForegroundColor Green
+    Write-Host "✓ Updated backend/tauri.conf.json to version $version" -ForegroundColor Green
 } else {
     Write-Warning "Warning: $tauriConfPath not found"
 }
 
-# Update app/src-tauri/Cargo.toml
-Write-Host "Updating app/src-tauri/Cargo.toml..." -ForegroundColor Cyan
-$cargoTomlPath = "../app/src-tauri/Cargo.toml"
+# Update backend/Cargo.toml
+Write-Host "Updating backend/Cargo.toml..." -ForegroundColor Cyan
+$cargoTomlPath = "../backend/Cargo.toml"
 if (Test-Path $cargoTomlPath) {
     $cargoContent = Get-Content $cargoTomlPath -Raw
     $cargoContent = $cargoContent -replace 'version = "[^"]+"', "version = `"$version`""
     Set-Content $cargoTomlPath -Value $cargoContent -Encoding UTF8 -NoNewline
-    Write-Host "✓ Updated app/src-tauri/Cargo.toml to version $version" -ForegroundColor Green
+    Write-Host "✓ Updated backend/Cargo.toml to version $version" -ForegroundColor Green
 } else {
     Write-Warning "Warning: $cargoTomlPath not found"
 }

@@ -155,8 +155,8 @@ $runArgs = @(
     "-v", "${ProjectRoot}:/workspace",
     "-v", "${CargoVolume}:/root/.cargo/registry",
     "-v", "${PnpmVolume}:/pnpm/store",
-    "-v", "${TargetVolume}:/workspace/app/src-tauri/target",
-    "-v", "${NodeModulesVolume}:/workspace/app/node_modules",
+    "-v", "${TargetVolume}:/workspace/backend/target",
+    "-v", "${NodeModulesVolume}:/workspace/frontend/node_modules",
     "-e", "BUILD_TARGET=$BuildTarget",
     "-e", "APPIMAGE_EXTRACT_AND_RUN=1",
     "-e", "VERBOSE=1"
@@ -181,7 +181,7 @@ Write-Host "`n✅ ビルド完了！`n" -ForegroundColor Green
 Write-Host "📋 成果物をホストにコピー中..." -ForegroundColor Blue
 
 # ホスト側のディレクトリを作成
-$TargetDir = Join-Path $ProjectRoot "app\src-tauri\target\$BuildTarget\release"
+$TargetDir = Join-Path $ProjectRoot "backend\target\$BuildTarget\release"
 $BundleDir = Join-Path $TargetDir "bundle"
 New-Item -ItemType Directory -Force -Path $BundleDir | Out-Null
 
@@ -191,7 +191,7 @@ docker run --rm `
     --platform $Platform `
     -v "${TargetVolume}:/data" `
     -v "${ProjectRoot}:/output" `
-    alpine sh -c "if [ -d '/data/$BuildTarget/release/bundle' ]; then cp -rv /data/$BuildTarget/release/bundle/* /output/app/src-tauri/target/$BuildTarget/release/bundle/ && echo '✅ コピー完了'; else echo '❌ bundle ディレクトリが見つかりません: /data/$BuildTarget/release/bundle'; find /data -name '*.deb' -o -name '*.rpm' 2>/dev/null || echo 'パッケージファイルが見つかりません'; exit 1; fi"
+    alpine sh -c "if [ -d '/data/$BuildTarget/release/bundle' ]; then cp -rv /data/$BuildTarget/release/bundle/* /output/backend/target/$BuildTarget/release/bundle/ && echo '✅ コピー完了'; else echo '❌ bundle ディレクトリが見つかりません: /data/$BuildTarget/release/bundle'; find /data -name '*.deb' -o -name '*.rpm' 2>/dev/null || echo 'パッケージファイルが見つかりません'; exit 1; fi"
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "`n⚠️  成果物のコピーに失敗しました" -ForegroundColor Yellow

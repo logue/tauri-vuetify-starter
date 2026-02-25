@@ -5,10 +5,10 @@ authors = ["Your Name <your@email.com>"]
 edition = "2024"
 rust-version = "1.93.1"
 description = "A modern desktop application built with Tauri v2 and Vue 3"
-readme = "../../ReadMe.md"
+readme = "../ReadMe.md"
 repository = "https://github.com/yourname/your-app-name"
 homepage = "https://yourdomain.com/your-app-name"
-license-file = "../../LICENSE"
+license-file = "../LICENSE"
 keywords = ["application", "desktop", "tauri", "vue"]
 categories = ["gui"]
 
@@ -24,7 +24,6 @@ serde = "1.0.228"
 serde_json = "1.0.149"
 thiserror = "2.0.18"
 jiff = { version = "0.2.20", features = ["serde"] }
-tempfile = "3.26.0"
 
 tauri = { version = "2.10.2", features = [] }
 tauri-plugin-dialog = "2.6.0"
@@ -56,7 +55,3 @@ objc = "0.2.7"
 # Apple Silicon (ARM64) 向けの設定
 # [target.aarch64-apple-darwin]
 # rustflags = ["-C", "target-cpu=apple-a14"] # Apple Silicon互換性向上
-
-# Linux 固有の最適化
-[target.'cfg(unix)'.dependencies]
-nix = "0.31.1"

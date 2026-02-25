@@ -6,14 +6,14 @@
 
 ### Key Components
 
-- **Frontend**: Vue 3 + TypeScript + Vuetify + Pinia (located in `app/src/`)
-- **Backend**: Rust with Tauri v2 (located in `app/src-tauri/src/`)
+- **Frontend**: Vue 3 + TypeScript + Vuetify + Pinia (located in `frontend/src/`)
+- **Backend**: Rust with Tauri v2 (located in `backend/src/`)
 - **Workspace**: pnpm monorepo
 
 ### Rust Backend Structure
 
 ```
-app/src-tauri/src/
+backend/src/
 ├── lib.rs          # Public API exports (error, logging)
 ├── main.rs         # Tauri app entry point with plugin initialization
 ├── command.rs      # Tauri commands (sample commands for demonstration)
@@ -24,7 +24,7 @@ app/src-tauri/src/
 ### Frontend Structure
 
 ```
-app/src/
+frontend/src/
 ├── components/
 │   └── MainContent.vue        # Main application component
 ├── composables/
@@ -69,7 +69,7 @@ pnpm run lint:style
 pnpm run build:tauri
 
 # macOS build (Universal binary for both Apple Silicon and Intel)
-pnpm --filter app build:tauri:mac
+pnpm --filter frontend build:tauri:mac
 
 # Linux via Docker
 ./scripts/docker/docker-build.sh x64    # or arm64
@@ -82,7 +82,7 @@ pnpm run package:homebrew    # macOS
 ### Testing Rust code
 
 ```bash
-cd app/src-tauri
+cd backend
 cargo test
 cargo build --release
 ```
@@ -130,16 +130,16 @@ cargo build --release
 3. **Tauri Commands**: Call via `@tauri-apps/api/core`:
 
    ```typescript
-   import { invoke } from '@tauri-apps/api/core';
-   const result = await invoke<string>('my_command', { param: 'value' });
+   import { invoke } from "@tauri-apps/api/core";
+   const result = await invoke<string>("my_command", { param: "value" });
    ```
 
 4. **Tauri Events**: Listen for events from Rust backend:
 
    ```typescript
-   import { listen } from '@tauri-apps/api/event';
-   await listen('my-event', event => {
-     console.log('Received:', event.payload);
+   import { listen } from "@tauri-apps/api/event";
+   await listen("my-event", (event) => {
+     console.log("Received:", event.payload);
    });
    ```
 
@@ -170,23 +170,23 @@ cargo build --release
 
 ## Key Files
 
-- [app/src-tauri/src/command.rs](app/src-tauri/src/command.rs) - Tauri command implementations (add your commands here)
-- [app/src-tauri/src/main.rs](app/src-tauri/src/main.rs) - Application entry point
-- [app/src/components/MainContent.vue](app/src/components/MainContent.vue) - Main UI component
-- [app/src-tauri/Cargo.toml](app/src-tauri/Cargo.toml) - Rust dependencies and build config
+- [backend/src/command.rs](backend/src/command.rs) - Tauri command implementations (add your commands here)
+- [backend/src/main.rs](backend/src/main.rs) - Application entry point
+- [frontend/src/components/MainContent.vue](frontend/src/components/MainContent.vue) - Main UI component
+- [backend/Cargo.toml](backend/Cargo.toml) - Rust dependencies and build config
 - [.env](.env) - Application configuration (version, name, author, URLs)
 
 ## Common Tasks
 
-- **Add new Tauri command**: Add function to `app/src-tauri/src/command.rs`, register in `main.rs`
-- **Add UI string**: Edit `app/src/locales/*.yml` for all languages (en, ja, fr, ko, zhHans, zhHant)
-- **Add composable**: Create new file in `app/src/composables/` following existing patterns
+- **Add new Tauri command**: Add function to `backend/src/command.rs`, register in `main.rs`
+- **Add UI string**: Edit `frontend/src/locales/*.yml` for all languages (en, ja, fr, ko, zhHans, zhHant)
+- **Add composable**: Create new file in `frontend/src/composables/` following existing patterns
 - **Update configuration**: Edit `.env` file with your app name, version, URLs, etc.
 - **Platform-specific code**: Use `#[cfg(target_os = "macos")]` or `cfg(windows)` in Rust
 
 ## Important Notes
 
-- **pnpm workspace**: Always use `pnpm --filter app <command>` for app-specific operations
+- **pnpm workspace**: Always use `pnpm --filter frontend <command>` for app-specific operations
 - **Rust edition**: Uses edition 2024 for modern Rust features
 - **Version management**: Version is in root `.env` file, synced to `Cargo.toml`, `package.json`, and `tauri.conf.json`
 - **Package managers**: Build scripts generate `.nuspec` (Chocolatey) and `.rb` (Homebrew) files dynamically from `.env` configuration

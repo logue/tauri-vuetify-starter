@@ -8,7 +8,7 @@
     <title>{{APP_NAME}}</title>
     <authors>{{AUTHOR_NAME}}</authors>
     <projectUrl>{{PROJECT_URL}}</projectUrl>
-    <iconUrl>{{PROJECT_URL}}/raw/main/app/src-tauri/icons/128x128.png</iconUrl>
+    <iconUrl>{{PROJECT_URL}}/raw/main/backend/icons/128x128.png</iconUrl>
     <copyright>2025 {{AUTHOR_NAME}}</copyright>
     <licenseUrl>{{PROJECT_URL}}/blob/main/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
