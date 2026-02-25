@@ -1,4 +1,4 @@
-<figure style="text-align:center">
+<figure align="center">
 
 ![logo](./backend/icons/Square284x284Logo.png)
 

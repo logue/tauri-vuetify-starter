@@ -43,12 +43,12 @@ export default defineNuxtConfig({
   // サイト設定
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'https://logue.dev',
-    name: 'Drop Compress Image'
+    name: 'Tauri Vue3 App'
   },
 
   // アプリ設定
   app: {
-    baseURL: process.env.NUXT_APP_BASE_URL || '/DropWebP/',
+    baseURL: process.env.NUXT_APP_BASE_URL || '/tauri-vue3-app/',
     head: {
       link: [
         // app側と同じGoogle Fontsを読み込み

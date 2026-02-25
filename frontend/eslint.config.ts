@@ -2,10 +2,12 @@ import configPrettier from '@vue/eslint-config-prettier';
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
 
 import { globalIgnores } from 'eslint/config';
+import pluginVueI18n from '@intlify/eslint-plugin-vue-i18n';
 import pluginImport from 'eslint-plugin-import';
 import pluginOxlint from 'eslint-plugin-oxlint';
 import pluginVue from 'eslint-plugin-vue';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
+import pluginYml from 'eslint-plugin-yml';
 // @ts-ignore
 import pluginVuetify from 'eslint-plugin-vuetify';
 
@@ -17,13 +19,15 @@ import pluginVuetify from 'eslint-plugin-vuetify';
 export default defineConfigWithVueTs(
   {
     name: 'frontend/files-to-lint',
-    files: ['**/*.{vue,ts,mts,tsx}']
+    files: ['**/*.{vue,ts,mts,tsx,yaml,yml}']
   },
 
   globalIgnores(['**/dist/**', '../backend/**']),
 
   ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
+  ...pluginYml.configs['flat/recommended'],
+  ...pluginVueI18n.configs['flat/recommended'],
   vueTsConfigs.recommended,
   pluginImport.flatConfigs.recommended,
   pluginImport.flatConfigs.typescript,
@@ -44,6 +48,10 @@ export default defineConfigWithVueTs(
         espree: ['.js', '.cjs', '.mjs', '.jsx'],
         '@typescript-eslint/parser': ['.ts', '.tsx'],
         'vue-eslint-parser': ['.vue']
+      },
+      'vue-i18n': {
+        localeDir: './src/locales/*.{json,json5,yaml,yml}',
+        messageSyntaxVersion: '^11.0.0'
       },
       'import/resolver': {
         // You will also need to install and configure the TypeScript resolver
