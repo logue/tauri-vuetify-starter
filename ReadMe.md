@@ -19,6 +19,11 @@ A modern desktop application template built with Tauri v2 and Vue 3.
 - 🚀 Fast and lightweight Rust backend
 - 📱 Cross-platform (Windows, macOS, Linux)
 
+## Use cases
+
+- [vrm2sl](https://github.com/logue/vrm2sl) - VRM (glTF) mesh model to Second Life avatar converter.
+- [Drop Compress Image](https://logue.dev/DropWebP) - Next generation image converter. (avif, webp, jpeg-xl, webp, jpeg-li, zopfli png)
+
 ## Tech Stack
 
 ### Frontend
