@@ -129,7 +129,7 @@ pnpm --version
 
 ## ステップ 6: vcpkgのセットアップと依存関係のインストール
 
-このプロジェクトではvcpkgを使用してC/C++画像処理ライブラリ（libaom、libavif、libjxl等）を管理します。
+このプロジェクトではvcpkgを使ってC/C++ライブラリを静的リンクします。必要なライブラリは `backend/setup-vcpkg.sh` を編集して定義してください。
 
 ### vcpkg前提パッケージのインストール
 
@@ -168,39 +168,19 @@ cd ~/path/to/tauri-vuetify-starter/backend
 ```bash
 cd ~/vcpkg
 
-# x64 Linux の場合
-./vcpkg install aom:x64-linux
-./vcpkg install libavif[aom]:x64-linux
-./vcpkg install libjxl:x64-linux
-./vcpkg install libwebp:x64-linux
-./vcpkg install openjpeg:x64-linux
-./vcpkg install libjpeg-turbo:x64-linux
-./vcpkg install lcms:x64-linux
+# x64 Linux の例
+./vcpkg install <package>:x64-linux
 
-# ARM64 Linux の場合
-./vcpkg install aom:arm64-linux
-./vcpkg install libavif[aom]:arm64-linux
-./vcpkg install libjxl:arm64-linux
-./vcpkg install libwebp:arm64-linux
-./vcpkg install openjpeg:arm64-linux
-./vcpkg install libjpeg-turbo:arm64-linux
-./vcpkg install lcms:arm64-linux
+# ARM64 Linux の例
+./vcpkg install <package>:arm64-linux
 ```
 
-インストールされるライブラリ：
-
-- **libaom**: AV1エンコーダー（AVIF形式用、**必須**）
-- **libavif**: AVIF画像フォーマット
-- **libjxl**: JPEG XL画像フォーマット
-- **libwebp**: WebP画像フォーマット
-- **openjpeg**: JPEG 2000画像フォーマット
-- **libjpeg-turbo**: JPEG画像処理（jpegli用）
-- **lcms**: Little CMS カラーマネジメント
+インストールされるライブラリは `backend/setup-vcpkg.sh` の定義内容に依存します。
 
 ### インストール確認
 
 ```bash
-./vcpkg list | grep -E "aom|avif|jxl|webp|openjpeg|jpeg|lcms"
+./vcpkg list
 ```
 
 ## ステップ 7: Tauri Vue3 Appのクローンとビルド

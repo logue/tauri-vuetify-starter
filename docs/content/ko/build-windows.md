@@ -223,7 +223,7 @@ set(VCPKG_BUILD_TYPE release)
 
 ### 종속성 설치
 
-> **참고 (2026년 2월 업데이트)**: 프로젝트는 이제 Windows에서 AVIF 인코딩을 위해 `rav1e`(Rust 기반 AV1 인코더)를 사용합니다. 이로 인해 `libaom` 및 `aom` 패키지가 더 이상 필요하지 않습니다. `rav1e`는 NASM의 멀티패스 최적화 요구 사항을 회피하고 Windows에서 빌드 안정성을 향상시킵니다.
+> **참고:** `backend/setup-vcpkg.ps1`은 정적 링크 설정 템플릿입니다. 필요한 라이브러리를 링크할 수 있도록 스크립트의 설치 대상을 수정하세요.
 
 자동 설치 스크립트 사용(권장):
 
@@ -237,25 +237,11 @@ cd tauri-vuetify-starter\backend
 ```powershell
 cd C:\vcpkg
 
-# x64-windows-static-release 트리플릿으로 설치(릴리스 전용)
-# 참고: aom 및 libavif[aom]은 더 이상 필요하지 않습니다(rav1e 사용)
-.\vcpkg install libjxl:x64-windows-static-release
-.\vcpkg install libwebp:x64-windows-static-release
-.\vcpkg install openjpeg:x64-windows-static-release
-.\vcpkg install libjpeg-turbo:x64-windows-static-release
-.\vcpkg install lcms:x64-windows-static-release
+# x64-windows-static-release 트리플릿 설치 예시(릴리스 전용)
+.\vcpkg install <package>:x64-windows-static-release
 ```
 
-설치된 라이브러리:
-
-- **rav1e**: AV1 인코더(Rust 기반, AVIF 인코딩용) - Cargo에 의해 자동으로 빌드됨
-- **libjxl**: JPEG XL 이미지 형식
-- **libwebp**: WebP 이미지 형식
-- **openjpeg**: JPEG 2000 이미지 형식
-- **libjpeg-turbo**: JPEG 이미지 처리(jpegli용)
-- **lcms**: Little CMS 색상 관리
-
-> **macOS/Linux 사용자 참고**: macOS와 Linux는 NASM 및 CMake 구성이 더 안정적이므로 여전히 `libaom`을 사용할 수 있습니다.
+설치되는 라이브러리는 `backend/setup-vcpkg.ps1`의 설정에 따라 달라집니다.
 
 설치 확인:
 
@@ -321,12 +307,8 @@ set(VCPKG_BUILD_TYPE release)
 ```powershell
 cd C:\vcpkg
 
-# 참고: aom 및 libavif[aom]은 더 이상 필요하지 않습니다(rav1e 사용)
-.\vcpkg install libjxl:arm64-windows-static-release
-.\vcpkg install libwebp:arm64-windows-static-release
-.\vcpkg install openjpeg:arm64-windows-static-release
-.\vcpkg install libjpeg-turbo:arm64-windows-static-release
-.\vcpkg install lcms:arm64-windows-static-release
+# arm64-windows-static-release 트리플릿 설치 예시
+.\vcpkg install <package>:arm64-windows-static-release
 ```
 
 ### 3. Arm64용 빌드

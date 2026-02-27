@@ -129,7 +129,7 @@ pnpm --version
 
 ## Step 6: Set Up vcpkg and Install Dependencies
 
-This project uses vcpkg to manage C/C++ image processing libraries (libaom, libavif, libjxl, etc.).
+This project uses vcpkg for static linking of C/C++ libraries. Edit `backend/setup-vcpkg.sh` to define any libraries you need.
 
 ### Install vcpkg Prerequisites
 
@@ -168,39 +168,19 @@ Or install manually:
 ```bash
 cd ~/vcpkg
 
-# For x64 Linux
-./vcpkg install aom:x64-linux
-./vcpkg install libavif[aom]:x64-linux
-./vcpkg install libjxl:x64-linux
-./vcpkg install libwebp:x64-linux
-./vcpkg install openjpeg:x64-linux
-./vcpkg install libjpeg-turbo:x64-linux
-./vcpkg install lcms:x64-linux
+# Example for x64 Linux
+./vcpkg install <package>:x64-linux
 
-# For ARM64 Linux
-./vcpkg install aom:arm64-linux
-./vcpkg install libavif[aom]:arm64-linux
-./vcpkg install libjxl:arm64-linux
-./vcpkg install libwebp:arm64-linux
-./vcpkg install openjpeg:arm64-linux
-./vcpkg install libjpeg-turbo:arm64-linux
-./vcpkg install lcms:arm64-linux
+# Example for ARM64 Linux
+./vcpkg install <package>:arm64-linux
 ```
 
-Installed libraries:
-
-- **libaom**: AV1 encoder (for AVIF format, **required**)
-- **libavif**: AVIF image format
-- **libjxl**: JPEG XL image format
-- **libwebp**: WebP image format
-- **openjpeg**: JPEG 2000 image format
-- **libjpeg-turbo**: JPEG image processing (for jpegli)
-- **lcms**: Little CMS color management
+Installed libraries depend on what you define in `backend/setup-vcpkg.sh`.
 
 ### Verify Installation
 
 ```bash
-./vcpkg list | grep -E "aom|avif|jxl|webp|openjpeg|jpeg|lcms"
+./vcpkg list
 ```
 
 ## Step 7: Clone and Build Tauri Vue3 App

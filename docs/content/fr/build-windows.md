@@ -223,7 +223,7 @@ set(VCPKG_BUILD_TYPE release)
 
 ### Installer les dépendances
 
-> **Note (Mise à jour février 2026)** : Le projet utilise maintenant `rav1e` (un encodeur AV1 basé sur Rust) pour l'encodage AVIF sous Windows. Cela élimine le besoin des paquets `libaom` et `aom`. `rav1e` évite les exigences d'optimisation multipass de NASM et améliore la stabilité de la compilation sous Windows.
+> **Note :** `backend/setup-vcpkg.ps1` est un modèle de configuration de lien statique. Modifiez les cibles d'installation dans ce script pour lier les bibliothèques dont vous avez besoin.
 
 Utilisez le script d'installation automatique (recommandé) :
 
@@ -237,25 +237,11 @@ Ou installez manuellement :
 ```powershell
 cd C:\vcpkg
 
-# Installer avec le triplet x64-windows-static-release (release uniquement)
-# Note : aom et libavif[aom] ne sont plus nécessaires (utilisation de rav1e)
-.\vcpkg install libjxl:x64-windows-static-release
-.\vcpkg install libwebp:x64-windows-static-release
-.\vcpkg install openjpeg:x64-windows-static-release
-.\vcpkg install libjpeg-turbo:x64-windows-static-release
-.\vcpkg install lcms:x64-windows-static-release
+# Exemple d'installation avec le triplet x64-windows-static-release (release uniquement)
+.\vcpkg install <package>:x64-windows-static-release
 ```
 
-Bibliothèques installées :
-
-- **rav1e** : Encodeur AV1 (basé sur Rust, pour l'encodage AVIF) - compilé automatiquement par Cargo
-- **libjxl** : Format d'image JPEG XL
-- **libwebp** : Format d'image WebP
-- **openjpeg** : Format d'image JPEG 2000
-- **libjpeg-turbo** : Traitement d'images JPEG (pour jpegli)
-- **lcms** : Gestion des couleurs Little CMS
-
-> **Note pour les utilisateurs macOS/Linux** : macOS et Linux peuvent toujours utiliser `libaom` car les configurations NASM et CMake sont plus stables sur ces plateformes.
+Les bibliothèques installées dépendent de ce que vous définissez dans `backend/setup-vcpkg.ps1`.
 
 Vérifier l'installation :
 
@@ -321,12 +307,8 @@ Installer les dépendances :
 ```powershell
 cd C:\vcpkg
 
-# Note : aom et libavif[aom] ne sont plus nécessaires (utilisation de rav1e)
-.\vcpkg install libjxl:arm64-windows-static-release
-.\vcpkg install libwebp:arm64-windows-static-release
-.\vcpkg install openjpeg:arm64-windows-static-release
-.\vcpkg install libjpeg-turbo:arm64-windows-static-release
-.\vcpkg install lcms:arm64-windows-static-release
+# Exemple d'installation avec le triplet arm64-windows-static-release
+.\vcpkg install <package>:arm64-windows-static-release
 ```
 
 ### 3. Construire pour Arm64

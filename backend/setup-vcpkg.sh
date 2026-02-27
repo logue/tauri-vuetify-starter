@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # vcpkg setup script for macOS/Linux
-# This script installs all C/C++ dependencies via vcpkg for static linking
+# Edit this script to define your own static-link libraries via vcpkg
 
 set -e
 
@@ -42,7 +42,7 @@ if [ -z "$TRIPLET" ]; then
     esac
 fi
 
-echo -e "${CYAN}=== vcpkg Setup for Drop Compress Image ===${NC}"
+echo -e "${CYAN}=== vcpkg Static Link Setup Template ===${NC}"
 echo ""
 
 # Check if vcpkg is installed
@@ -68,27 +68,12 @@ echo -e "${GREEN}Found vcpkg at: $VCPKG_EXE${NC}"
 echo -e "${GREEN}Using triplet: $TRIPLET${NC}"
 echo ""
 
-# Install all C/C++ dependencies
-PACKAGES=(
-    "aom:$TRIPLET"                # libaom (AV1 encoder for AVIF)
-    "libavif[aom]:$TRIPLET"       # libavif with aom codec
-    "libjxl:$TRIPLET"             # libjxl (JPEG XL)
-    "libwebp:$TRIPLET"            # libwebp (WebP codec)
-    "openjpeg:$TRIPLET"           # OpenJPEG (JPEG 2000)
-    "libjpeg-turbo:$TRIPLET"      # libjpeg-turbo (for jpegli)
-    "lcms:$TRIPLET"               # Little CMS (color management)
-)
-
-for package in "${PACKAGES[@]}"; do
-    echo -e "${CYAN}Installing $package...${NC}"
-
-    if "$VCPKG_EXE" install "$package"; then
-        echo -e "${GREEN}Successfully installed $package${NC}"
-    else
-        echo -e "${YELLOW}WARNING: Failed to install $package${NC}"
-    fi
-    echo ""
-done
+echo -e "${GREEN}This script is a template for static-link setup via vcpkg.${NC}"
+echo -e "${GREEN}Update the install target(s) in this script to use any library you need.${NC}"
+echo ""
+echo -e "${CYAN}Example:${NC}"
+echo -e "${CYAN}  $VCPKG_EXE install <package>:$TRIPLET${NC}"
+echo -e "${CYAN}  $VCPKG_EXE install libpng:$TRIPLET${NC}"
 
 echo -e "${CYAN}=== Setup Complete ===${NC}"
 echo -e "${GREEN}You can now build the project with:${NC}"

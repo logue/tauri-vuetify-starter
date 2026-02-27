@@ -124,6 +124,7 @@ This will automatically update:
 2. Customize `frontend/src/components/MainContent.vue` with your own logic
 3. Add your own Tauri commands in `backend/src/command.rs`
 4. Update localization files in `frontend/src/locales/`
+5. Edit `backend/setup-vcpkg.sh` and `backend/setup-vcpkg.ps1` to statically link any vcpkg libraries your app needs
 
 ## Project Structure
 

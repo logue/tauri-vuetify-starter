@@ -283,7 +283,7 @@ set(VCPKG_BUILD_TYPE release)
 
 ### 依存ライブラリのインストール
 
-> **注意 (2026年2月更新):** AVIFエンコーダーとして、WindowsではRust製の`rav1e`を使用するようになりました。これにより、`libaom`および`aom`パッケージのインストールは不要になります。`rav1e`はNASMのmultipass optimization要件を回避し、Windowsでのビルドの安定性が向上します。
+> **注記:** `backend/setup-vcpkg.ps1` は静的リンク設定用のテンプレートです。必要なライブラリをリンクできるよう、スクリプト内のインストール対象を編集してください。
 
 自動インストールスクリプトを使用（推奨）:
 
@@ -297,25 +297,11 @@ cd tauri-vuetify-starter\backend
 ```powershell
 cd C:\vcpkg
 
-# x64-windows-static-release tripletでインストール（リリース専用）
-# 注: aomとlibavif[aom]は現在不要です（rav1e使用のため）
-.\vcpkg install libjxl:x64-windows-static-release
-.\vcpkg install libwebp:x64-windows-static-release
-.\vcpkg install openjpeg:x64-windows-static-release
-.\vcpkg install libjpeg-turbo:x64-windows-static-release
-.\vcpkg install lcms:x64-windows-static-release
+# x64-windows-static-release tripletでのインストール例（リリース専用）
+.\vcpkg install <package>:x64-windows-static-release
 ```
 
-インストールされるライブラリ:
-
-- **rav1e**: AV1エンコーダー（Rust製、AVIFエンコード用）- Cargoで自動ビルド
-- **libjxl**: JPEG XL画像フォーマット
-- **libwebp**: WebP画像フォーマット
-- **openjpeg**: JPEG 2000画像フォーマット
-- **libjpeg-turbo**: JPEG画像処理（jpegli用）
-- **lcms**: Little CMS カラーマネジメント
-
-> **macOS/Linuxユーザーへの注記:** macOSとLinuxでは`libaom`を使用することも可能です。これらのプラットフォームではNASMやCMakeの設定が安定しているためです。
+インストールされるライブラリは `backend/setup-vcpkg.ps1` の定義内容に依存します。
 
 インストール確認:
 
@@ -381,12 +367,8 @@ set(VCPKG_BUILD_TYPE release)
 ```powershell
 cd C:\vcpkg
 
-# 注: aomとlibavif[aom]は現在不要です（rav1e使用のため）
-.\vcpkg install libjxl:arm64-windows-static-release
-.\vcpkg install libwebp:arm64-windows-static-release
-.\vcpkg install openjpeg:arm64-windows-static-release
-.\vcpkg install libjpeg-turbo:arm64-windows-static-release
-.\vcpkg install lcms:arm64-windows-static-release
+# arm64-windows-static-release tripletでのインストール例
+.\vcpkg install <package>:arm64-windows-static-release
 ```
 
 ### 3. Arm64向けビルド
@@ -396,8 +378,6 @@ cd C:\vcpkg
 ```powershell
 $env:VCPKGRS_TRIPLET="arm64-windows-static-release"
 $env:VCPKG_DEFAULT_TRIPLET="arm64-windows-static-release"
-$env:LIB_AOM_STATIC_LIB_PATH="C:/vcpkg/installed/arm64-windows-static-release/lib"
-$env:LIB_AOM_INCLUDE_PATH="C:/vcpkg/installed/arm64-windows-static-release/include"
 ```
 
 その後、ビルドを実行します：

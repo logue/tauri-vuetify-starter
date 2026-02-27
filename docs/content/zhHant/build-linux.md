@@ -129,7 +129,7 @@ pnpm --version
 
 ## 步驟 6：設置 vcpkg 並安裝相依性
 
-此項目使用 vcpkg 管理 C/C++ 圖像處理程式庫（libaom、libavif、libjxl 等）。
+此項目使用 vcpkg 進行 C/C++ 程式庫的靜態連結。請編輯 `backend/setup-vcpkg.sh` 以定義你需要的任意程式庫。
 
 ### 安裝 vcpkg 先決條件
 
@@ -168,39 +168,19 @@ cd ~/path/to/tauri-vuetify-starter/backend
 ```bash
 cd ~/vcpkg
 
-# x64 Linux 的情況
-./vcpkg install aom:x64-linux
-./vcpkg install libavif[aom]:x64-linux
-./vcpkg install libjxl:x64-linux
-./vcpkg install libwebp:x64-linux
-./vcpkg install openjpeg:x64-linux
-./vcpkg install libjpeg-turbo:x64-linux
-./vcpkg install lcms:x64-linux
+# x64 Linux 範例
+./vcpkg install <package>:x64-linux
 
-# ARM64 Linux 的情況
-./vcpkg install aom:arm64-linux
-./vcpkg install libavif[aom]:arm64-linux
-./vcpkg install libjxl:arm64-linux
-./vcpkg install libwebp:arm64-linux
-./vcpkg install openjpeg:arm64-linux
-./vcpkg install libjpeg-turbo:arm64-linux
-./vcpkg install lcms:arm64-linux
+# ARM64 Linux 範例
+./vcpkg install <package>:arm64-linux
 ```
 
-安裝的程式庫：
-
-- **libaom**：AV1 編碼器（用於 AVIF 格式，**必需**）
-- **libavif**：AVIF 圖像格式
-- **libjxl**：JPEG XL 圖像格式
-- **libwebp**：WebP 圖像格式
-- **openjpeg**：JPEG 2000 圖像格式
-- **libjpeg-turbo**：JPEG 圖像處理（用於 jpegli）
-- **lcms**：Little CMS 色彩管理
+安裝哪些程式庫取決於你在 `backend/setup-vcpkg.sh` 中的定義。
 
 ### 驗證安裝
 
 ```bash
-./vcpkg list | grep -E "aom|avif|jxl|webp|openjpeg|jpeg|lcms"
+./vcpkg list
 ```
 
 ## 步驟 7：複製和建構 Tauri Vue3 App
