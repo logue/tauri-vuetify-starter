@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { invoke } from '@tauri-apps/api/core';
+import { useGlobalStore } from '@/store';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+
+import { invoke } from '@tauri-apps/api/core';
+
 import { useNotification } from '@/composables/useNotification';
-import { useGlobalStore } from '@/store';
 
 const { t } = useI18n();
 

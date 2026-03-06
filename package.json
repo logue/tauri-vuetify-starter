@@ -46,5 +46,8 @@
     "tauri": "pnpm --filter frontend tauri",
     "prepare": "husky",
     "postinstall": "pnpm --filter docs nuxt:prepare"
+  },
+  "resolutions": {
+    "minimatch": ">=10.2.3"
   }
 }
