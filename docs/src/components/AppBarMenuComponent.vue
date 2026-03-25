@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import LocaleSelector from './LocaleSelector.vue';
-
 import useConfigStore from '@/store/ConfigStore';
 
 const { t } = useI18n();
@@ -28,7 +26,7 @@ const configStore = useConfigStore();
         v-bind="props"
         icon="mdi-github"
         variant="plain"
-        href="http://github.com/logue/DropWebP"
+        :href="import.meta.env.PROJECT_URL"
         target="_blank"
       />
     </template>

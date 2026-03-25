@@ -153,10 +153,29 @@ export default defineConfigWithVueTs(
         }
       ],
       // Mitigate non-multiword component name errors to warnings.
-      'vue/multi-word-component-names': 'warn'
+      'vue/multi-word-component-names': 'warn',
+      // fix for i18n
+      '@intlify/vue-i18n/no-raw-text': [
+        'warn',
+        {
+          attributes: {
+            '/.+/': [
+              'title',
+              'aria-label',
+              'aria-placeholder',
+              'aria-roledescription',
+              'aria-valuetext'
+            ],
+            input: ['placeholder'],
+            img: ['alt']
+          },
+          ignoreNodes: ['md-icon', 'v-icon'],
+          ignorePattern: '^[-#:()&]+$'
+        }
+      ]
     }
   },
 
-  ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
+  ...pluginOxlint.buildFromOxlintConfigFile('../.oxlintrc.json'),
   configPrettier
 );

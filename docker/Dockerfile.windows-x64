@@ -29,7 +29,7 @@ RUN powershell -Command `
 RUN powershell -NoProfile -ExecutionPolicy Bypass -Command `
     "[System.Net.ServicePointManager]::SecurityProtocol = 3072; `
     Invoke-WebRequest -Uri https://win.rustup.rs/x86_64 -OutFile rustup-init.exe; `
-    .\rustup-init.exe -y --default-toolchain 1.92.0 --default-host x86_64-pc-windows-msvc; `
+    .\rustup-init.exe -y --default-toolchain 1.94.0 --default-host x86_64-pc-windows-msvc; `
     Remove-Item rustup-init.exe"
 
 # 環境変数を設定（setxでマシンレベルのPATHに追加）

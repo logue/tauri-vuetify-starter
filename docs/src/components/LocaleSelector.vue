@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import type { Locale } from '@/types/LocaleType';
+
+const { locale, locales } = useI18n();
+const switchLocalePath = useSwitchLocalePath();
+
+// TypeScript対応のためのキャスト
+const availableLocales = computed(() =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (locales.value as any[]).filter((l: any) => l.code !== locale.value)
+);
+
+const switchLanguage = async (code: Locale) => {
+  await navigateTo(switchLocalePath(code));
+};
+</script>
+
 <template>
   <v-menu>
     <template #activator="{ props }">
@@ -16,20 +33,3 @@
     </v-list>
   </v-menu>
 </template>
-
-<script setup lang="ts">
-import type { Locale } from '@/types/LocaleType';
-
-const { locale, locales } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
-
-// TypeScript対応のためのキャスト
-const availableLocales = computed(() =>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (locales.value as any[]).filter((l: any) => l.code !== locale.value)
-);
-
-const switchLanguage = async (code: Locale) => {
-  await navigateTo(switchLocalePath(code));
-};
-</script>

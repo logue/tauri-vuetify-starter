@@ -4,7 +4,7 @@ class {{CLASS_NAME}} < Formula
   version "{{VERSION}}"
 
   on_macos do
-    url "{{PROJECT_URL}}/releases/download/v#{version}/{{APP_NAME}}_#{version}_universal.dmg"
+    url "{{PROJECT_URL}}/releases/download/v#{version}/{{VITE_APP_NAME}}_#{version}_universal.dmg"
     sha256 "{{SHA256_UNIVERSAL}}"
   end
 
@@ -14,7 +14,7 @@ class {{CLASS_NAME}} < Formula
 
   def caveats
     <<~EOS
-      {{APP_NAME}} has been installed to:
+      {{VITE_APP_NAME}} has been installed to:
         #{prefix}
 
       To use it, you can:

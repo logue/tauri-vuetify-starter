@@ -5,7 +5,7 @@
     <version>{{VERSION}}</version>
     <packageSourceUrl>{{PROJECT_URL}}</packageSourceUrl>
     <owners>{{GITHUB_USER}}</owners>
-    <title>{{APP_NAME}}</title>
+    <title>{{VITE_APP_NAME}}</title>
     <authors>{{AUTHOR_NAME}}</authors>
     <projectUrl>{{PROJECT_URL}}</projectUrl>
     <iconUrl>{{PROJECT_URL}}/raw/main/backend/icons/128x128.png</iconUrl>

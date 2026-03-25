@@ -9,9 +9,11 @@ const { t } = useI18n();
 
 const APP_NAME = import.meta.env.VITE_APP_NAME || 'My App';
 const PROJECT_SITE = import.meta.env.VITE_PROJECT_SITE || 'https://yourdomain.com/your-app-name';
+const isMac = navigator.userAgent.includes('Mac');
 </script>
 
 <template>
+  <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
   <v-dialog width="auto">
     <template #activator="{ props: dialogProps }">
       <v-tooltip :text="t('about_title')" location="bottom">
@@ -29,9 +31,14 @@ const PROJECT_SITE = import.meta.env.VITE_PROJECT_SITE || 'https://yourdomain.co
         <v-card-text class="text-center">
           <h2>{{ APP_NAME }}</h2>
           <p>
-            Version {{ Meta.version }}
+            Version
+            <var>{{ Meta.version }}</var>
             <br />
-            <small>(Build: {{ Meta.date }})</small>
+            <small>
+              (Build:
+              <var>{{ Meta.date }}</var>
+              )
+            </small>
           </p>
           <p>
             <a :href="PROJECT_SITE" target="_blank" @click.prevent="openUrl(PROJECT_SITE)">
@@ -40,8 +47,15 @@ const PROJECT_SITE = import.meta.env.VITE_PROJECT_SITE || 'https://yourdomain.co
           </p>
         </v-card-text>
         <v-card-actions>
+          <v-btn v-if="isMac" color="primary" text="OK" @click="isActive.value = false" />
           <v-spacer />
-          <v-btn color="primary" class="ms-auto" text="OK" @click="isActive.value = false" />
+          <v-btn
+            v-if="!isMac"
+            color="primary"
+            class="ms-auto"
+            text="OK"
+            @click="isActive.value = false"
+          />
         </v-card-actions>
       </v-card>
     </template>

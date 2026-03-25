@@ -1,10 +1,10 @@
 app:
-  title: 'Tauri Vue3 アプリ'
-  description: 'モダンなデスクトップアプリケーション'
+  title: Tauri Vue3 アプリ
+  description: モダンなデスクトップアプリケーション
 
 menu:
-  file: 'ファイル'
-  open: '開く'
+  file: ファイル
+  open: 開く
   save: '保存'
   quit: '終了'
   edit: '編集'
@@ -12,31 +12,41 @@ menu:
   view: '表示'
   help: 'ヘルプ'
   about: 'について'
-  documentation: 'ドキュメント'
+  documentation: ドキュメント
 
 message:
-  success: '操作が成功しました'
-  error: 'エラーが発生しました'
-  processing: '処理しています…'
-  loading: '読み込んでいます…'
-  saved: '保存しました'
-  cancelled: 'キャンセルされました'
+  success: 操作が成功しました
+  error: エラーが発生しました
+  processing: 処理しています…
+  loading: 読み込んでいます…
+  saved: 保存しました
+  cancelled: キャンセルされました
+
+notification:
+  success:
+    title: 成功
+  error:
+    title: エラー
+  info:
+    title: 情報
+  warning:
+    title: 警告
 
 button:
-  ok: 'OK'
-  cancel: 'キャンセル'
-  save: '保存'
-  close: '閉じる'
-  apply: '適用'
+  ok: OK
+  cancel: キャンセル
+  save: 保存
+  close: 閉じる
+  apply: 適用
 
 label:
-  input: '入力'
-  output: '出力'
+  input: 入力
+  output: 出力
   settings: '設定'
   language: '言語'
   theme: 'テーマ'
 
 theme:
-  light: 'ライト'
-  dark: 'ダーク'
-  auto: '自動'
+  light: ライト
+  dark: ダーク
+  auto: 自動

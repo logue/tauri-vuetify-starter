@@ -8,20 +8,18 @@ export const useSeoMetadata = () => {
   const { version } = useDownloads();
 
   // サイトのベースURL
-  const baseUrl = 'https://logue.dev';
-  const sitePath = useRuntimeConfig().app.baseURL;
+  const sitePath = import.meta.env.BASE_URL || '/';
+  // プロジェクトのベースURL
+  const projectUrl = import.meta.env.PROJECT_URL || '/';
 
   const currentUrl = computed(() => {
     const path = locale.value === 'en' ? '' : `/${locale.value}`;
-    return `${baseUrl}${sitePath}${path}`;
+    return `${sitePath}/${path}`;
   });
 
   // OGP画像
   const ogImage = computed(() => {
-    if (ogp.startsWith('/DropWebP/')) {
-      return `${baseUrl}${ogp}`;
-    }
-    return `${baseUrl}${sitePath}${ogp}`;
+    return `${sitePath}/${ogp}`;
   });
 
   // 言語リスト定義
@@ -42,7 +40,7 @@ export const useSeoMetadata = () => {
     links.push({
       rel: 'alternate',
       hreflang: 'x-default',
-      href: `${baseUrl}${sitePath}`
+      href: `${sitePath}`
     });
 
     // 各言語
@@ -51,13 +49,13 @@ export const useSeoMetadata = () => {
         links.push({
           rel: 'alternate',
           hreflang: 'en',
-          href: `${baseUrl}${sitePath}`
+          href: `${sitePath}/`
         });
       } else {
         links.push({
           rel: 'alternate',
           hreflang: lang.code,
-          href: `${baseUrl}${sitePath}${lang.code}/`
+          href: `${sitePath}/${lang.code}/`
         });
       }
     });
@@ -88,11 +86,11 @@ export const useSeoMetadata = () => {
         priceCurrency: 'USD'
       },
       description: unref(t('lead.description[0]')),
-      url: `${unref(baseUrl)}${sitePath}`,
+      url: `${sitePath}`,
       image: unref(ogImage),
       softwareVersion: unref(version),
-      releaseNotes: `https://github.com/logue/tauri-vuetify-starter/releases/tag/${unref(version)}`,
-      downloadUrl: `https://github.com/logue/tauri-vuetify-starter/releases/download/${unref(version)}/`,
+      releaseNotes: `${projectUrl}/releases/tag/${unref(version)}`,
+      downloadUrl: `${projectUrl}/releases/download/${unref(version)}/`,
       author: {
         '@type': 'Person',
         name: 'Logue',
@@ -151,7 +149,6 @@ export const useSeoMetadata = () => {
   };
 
   return {
-    baseUrl,
     sitePath,
     currentUrl,
     ogImage,

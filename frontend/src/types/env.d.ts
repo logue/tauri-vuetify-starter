@@ -4,7 +4,7 @@
  */
 
 /**
- * Application display name (from APP_NAME).
+ * Application display name (from VITE_APP_NAME).
  */
 declare const __APP_NAME__: string;
 

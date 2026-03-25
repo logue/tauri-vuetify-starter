@@ -45,7 +45,7 @@ jobs:
         run: pnpm --filter @drop-compress-image/docs generate
         env:
           GITHUB_PAGES: true
-          NUXT_APP_BASE_URL: /DropWebP/
+          NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
 
       # 6. GitHub Pages用の設定
       - name: Setup Pages

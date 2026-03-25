@@ -60,7 +60,7 @@ fi
 # テンプレートから全ての変数を置換
 sed -e "s/{{VERSION}}/$VERSION/g" \
     -e "s/{{CLASS_NAME}}/$CLASS_NAME/g" \
-    -e "s|{{APP_NAME}}|$APP_NAME|g" \
+    -e "s|{{VITE_APP_NAME}}|$VITE_APP_NAME|g" \
     -e "s/{{APP_NAME_KEBAB}}/$APP_NAME_KEBAB/g" \
     -e "s|{{HOMEBREW_DESC}}|$HOMEBREW_DESC|g" \
     -e "s|{{HOMEPAGE_URL}}|$HOMEPAGE_URL|g" \

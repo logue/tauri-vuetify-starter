@@ -21,7 +21,7 @@ class {{CLASS_NAME}} < Formula
   desc "{{HOMEBREW_DESC}}"
   homepage "{{HOMEPAGE_URL}}"
   version "{{VERSION}}"
-  url "{{PROJECT_URL}}/releases/download/v#{version}/{{APP_NAME}}_#{version}_universal.dmg"
+  url "{{PROJECT_URL}}/releases/download/v#{version}/{{VITE_APP_NAME}}_#{version}_universal.dmg"
   sha256 "{{SHA256_UNIVERSAL}}"
 ```
 
@@ -30,7 +30,7 @@ class {{CLASS_NAME}} < Formula
 ```dotenv
 # .env
 VERSION=1.0.0
-APP_NAME=Your App Name
+VITE_APP_NAME=Your App Name
 APP_NAME_KEBAB=your-app-name
 HOMEBREW_DESC=Your app description
 PROJECT_URL=https://github.com/username/repository

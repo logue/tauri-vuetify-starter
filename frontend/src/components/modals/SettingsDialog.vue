@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const tab = ref('common');
+const isMac = navigator.userAgent.includes('Mac');
 </script>
 
 <template>
@@ -23,9 +24,10 @@ const tab = ref('common');
     <template #default="{ isActive }">
       <v-card flat>
         <v-toolbar>
+          <v-btn v-if="isMac" icon="mdi-close" @click="isActive.value = false" />
           <v-toolbar-title>{{ t('settings') }}</v-toolbar-title>
           <v-spacer />
-          <v-btn icon="mdi-close" @click="isActive.value = false" />
+          <v-btn v-if="!isMac" icon="mdi-close" @click="isActive.value = false" />
         </v-toolbar>
         <v-card-text class="d-flex flex-row pa-0" style="height: calc(100vh - 64px)">
           <v-layout>
@@ -37,6 +39,7 @@ const tab = ref('common');
                   :active="tab === 'common'"
                   @click="tab = 'common'"
                 />
+                <!-- Additional list items for other settings categories can be added here -->
               </v-list>
             </v-navigation-drawer>
             <v-main class="overflow-y-auto">
@@ -47,11 +50,13 @@ const tab = ref('common');
                       <v-card-title>{{ t('common_options') }}</v-card-title>
                       <v-card-text>
                         <!-- Common options content goes here -->
+                        <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
                         <p>Here you can add common settings for your application.</p>
                       </v-card-text>
                     </v-card>
                   </v-window-item>
                 </v-window>
+                <!-- Additional window items can be added here -->
               </v-card>
             </v-main>
           </v-layout>

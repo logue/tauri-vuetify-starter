@@ -17,7 +17,9 @@ setupSeoMeta();
 
 <template>
   <v-card class="mb-6 bg-transparent mx-auto" flat tag="section" max-width="960">
-    <v-card-title class="text-h4 text-center pa-3" tag="h2">Tauri Vue3 App</v-card-title>
+    <v-card-title class="text-h4 text-center pa-3" tag="h2">
+      {{ import.meta.env.VITE_APP_NAME }}
+    </v-card-title>
     <v-card-subtitle class="text-center pb-4">{{ t('lead.subtitle') }}</v-card-subtitle>
     <v-card-text class="text-center">
       <!-- Language Links -->

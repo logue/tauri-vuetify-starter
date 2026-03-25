@@ -67,7 +67,7 @@ $installScript = Join-Path $chocoDir "tools\chocolateyinstall.ps1"
 if (Test-Path $installTemplate) {
     $installContent = Get-Content $installTemplate -Raw
     $installContent = $installContent -replace '{{VERSION}}', $Version
-    $installContent = $installContent -replace '{{APP_NAME}}', $script:APP_NAME
+    $installContent = $installContent -replace '{{VITE_APP_NAME}}', $script:VITE_APP_NAME
     $installContent = $installContent -replace '{{APP_NAME_KEBAB}}', $APP_NAME_KEBAB
     $installContent = $installContent -replace '{{PROJECT_URL}}', $script:PROJECT_URL
     $installContent = $installContent -replace '{{CHECKSUM64}}', $checksum
@@ -81,7 +81,7 @@ $uninstallScript = Join-Path $chocoDir "tools\chocolateyuninstall.ps1"
 
 if (Test-Path $uninstallTemplate) {
     $uninstallContent = Get-Content $uninstallTemplate -Raw
-    $uninstallContent = $uninstallContent -replace '{{APP_NAME}}', $script:APP_NAME
+    $uninstallContent = $uninstallContent -replace '{{VITE_APP_NAME}}', $script:VITE_APP_NAME
     $uninstallContent = $uninstallContent -replace '{{APP_NAME_KEBAB}}', $APP_NAME_KEBAB
     Set-Content -Path $uninstallScript -Value $uninstallContent -NoNewline
     Write-Host "Generated: chocolateyuninstall.ps1" -ForegroundColor Green
@@ -99,7 +99,7 @@ if (-not (Test-Path $nuspecTemplate)) {
 # テンプレートからコピーして全ての変数を置換
 $nuspecContent = Get-Content $nuspecTemplate -Raw
 $nuspecContent = $nuspecContent -replace '{{VERSION}}', $Version
-$nuspecContent = $nuspecContent -replace '{{APP_NAME}}', $script:APP_NAME
+$nuspecContent = $nuspecContent -replace '{{VITE_APP_NAME}}', $script:VITE_APP_NAME
 $nuspecContent = $nuspecContent -replace '{{APP_NAME_KEBAB}}', $APP_NAME_KEBAB
 $nuspecContent = $nuspecContent -replace '{{APP_DESCRIPTION}}', $script:APP_DESCRIPTION
 $nuspecContent = $nuspecContent -replace '{{APP_SUMMARY}}', $script:APP_SUMMARY

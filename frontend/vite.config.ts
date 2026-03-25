@@ -32,7 +32,7 @@ const loadVersionFromEnv = (): string => {
 };
 
 const version = loadVersionFromEnv();
-const appName = loadEnvValue('APP_NAME', 'Tauri Vue3 App');
+const appName = loadEnvValue('VITE_APP_NAME', 'Tauri Vue3 App');
 const appNameKebab = loadEnvValue('APP_NAME_KEBAB', 'tauri-vue3-app');
 const appDescription = loadEnvValue('APP_DESCRIPTION', 'A modern desktop application');
 const appSummary = loadEnvValue('APP_SUMMARY', 'Modern desktop application template');

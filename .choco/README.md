@@ -24,7 +24,7 @@
 ```xml
 <id>{{APP_NAME_KEBAB}}</id>
 <version>{{VERSION}}</version>
-<title>{{APP_NAME}}</title>
+<title>{{VITE_APP_NAME}}</title>
 <description>{{APP_DESCRIPTION}}</description>
 ```
 
@@ -33,7 +33,7 @@
 ```dotenv
 # .env
 VERSION=1.0.0
-APP_NAME=Your App Name
+VITE_APP_NAME=Your App Name
 APP_NAME_KEBAB=your-app-name
 APP_DESCRIPTION=Your app description
 ```

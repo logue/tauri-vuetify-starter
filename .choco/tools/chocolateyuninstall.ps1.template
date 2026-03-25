@@ -2,7 +2,7 @@ $ErrorActionPreference = 'Stop'
 
 $packageArgs = @{
   packageName    = '{{APP_NAME_KEBAB}}'
-  softwareName   = '{{APP_NAME}}*'
+  softwareName   = '{{VITE_APP_NAME}}*'
   fileType       = 'msi'
   silentArgs     = "/qn /norestart"
   validExitCodes = @(0, 3010, 1605, 1614, 1641)

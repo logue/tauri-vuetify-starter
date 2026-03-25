@@ -2,8 +2,16 @@ import configPrettier from '@vue/eslint-config-prettier';
 import withNuxt from './.nuxt/eslint.config.mjs';
 import markdown from '@eslint/markdown';
 
+// import pluginVueI18n from '@intlify/eslint-plugin-vue-i18n';
 import { globalIgnores } from 'eslint/config';
+import pluginImport from 'eslint-plugin-import-x';
+import pluginOxlint from 'eslint-plugin-oxlint';
+// @ts-ignore
+import pluginSecurity from 'eslint-plugin-security';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
+import pluginVuetify from 'eslint-plugin-vuetify';
+import pluginYml from 'eslint-plugin-yml';
+
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 
@@ -43,7 +51,22 @@ export default withNuxt(
     }
   },
   ...pluginVueA11y.configs['flat/recommended'],
+  ...pluginYml.configs['flat/recommended'],
+  // ...pluginVueI18n.configs['flat/recommended'],
+  pluginImport.flatConfigs.recommended,
+  pluginImport.flatConfigs.typescript,
+  pluginSecurity.configs.recommended,
   ...markdown.configs.recommended,
+  {
+    name: 'Vuetify',
+    files: ['*.vue', '**/*.vue'],
+    plugins: {
+      vuetify: pluginVuetify
+    },
+    rules: {
+      ...pluginVuetify.configs.base.rules
+    }
+  },
   {
     files: ['**/*.md'],
     rules: {
@@ -164,5 +187,6 @@ export default withNuxt(
       'vue/valid-v-slot': 'off'
     }
   },
+  ...pluginOxlint.buildFromOxlintConfigFile('../.oxlintrc.json'),
   configPrettier
 );

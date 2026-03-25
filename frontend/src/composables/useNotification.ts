@@ -29,7 +29,7 @@ export const useNotification = (t: ComposerTranslation) => {
         await sendNotification({ title, body, icon });
       }
     } catch (error) {
-      console.error('通知の送信に失敗しました:', error);
+      console.error(t('notification.error.title'), error);
     }
   };
 
