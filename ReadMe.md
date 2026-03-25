@@ -47,7 +47,7 @@ A modern desktop application template built with Tauri v2 and Vue 3.
 
 - Node.js >= 24
 - pnpm >= 10
-- Rust >= 1.93.1
+- Rust >= 1.94
 - Tauri CLI
 
 ### Setup

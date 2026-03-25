@@ -1,193 +1,112 @@
-# Tauri Vue3 App - AI Coding Agent Instructions
+# Tauri Vue3 Template — AI Agent Instructions
 
-## Project Architecture
+## Architecture
 
-**Tauri v2 desktop app** with Vue 3 frontend + Rust backend for building cross-platform desktop applications.
+**Tauri v2 desktop app** — Vue 3 (TypeScript) frontend + Rust backend, pnpm monorepo.
 
-### Key Components
+| Layer     | Location        | Key Tech                             |
+| --------- | --------------- | ------------------------------------ |
+| Frontend  | `frontend/src/` | Vue 3, Vuetify 4, Pinia, vue-i18n 11 |
+| Backend   | `backend/src/`  | Rust (edition 2024), Tauri v2        |
+| Docs site | `docs/`         | Nuxt 3 Content (separate workspace)  |
 
-- **Frontend**: Vue 3 + TypeScript + Vuetify + Pinia (located in `frontend/src/`)
-- **Backend**: Rust with Tauri v2 (located in `backend/src/`)
-- **Workspace**: pnpm monorepo
+**Prerequisites**: Node.js ≥ 24, pnpm ≥ 10, Rust ≥ 1.94, Tauri CLI
 
-### Rust Backend Structure
+> **Template note**: This is a base template project. Downstream projects fork this repo and customize `.env`. Keep the template generic — no project-specific logic should be added here.
 
-```
-backend/src/
-├── lib.rs          # Public API exports (error, logging)
-├── main.rs         # Tauri app entry point with plugin initialization
-├── command.rs      # Tauri commands (sample commands for demonstration)
-├── error.rs        # AppError type with common error variants
-└── logging.rs      # Logging system with ResultExt trait
-```
-
-### Frontend Structure
-
-```
-frontend/src/
-├── components/
-│   └── MainContent.vue        # Main application component
-├── composables/
-│   ├── useFileSystem.ts       # File operations (open/save dialogs)
-│   ├── useLogger.ts           # Frontend logging
-│   └── useNotification.ts     # System notifications
-├── store/
-│   ├── ConfigStore.ts         # Theme, locale
-│   └── GlobalStore.ts         # Loading, progress, messages
-├── locales/                   # i18n translation files (6 languages)
-└── plugins/
-    ├── i18n.ts               # Vue I18n configuration
-    └── vuetify.ts            # Material Design components
-```
-
-## Critical Workflows
-
-### Development
+## Build & Test Commands
 
 ```bash
-# Install dependencies (first time)
+# Install (repo root)
 pnpm install
 
-# Run Tauri dev server (hot reload for both frontend and Rust)
+# Development — hot reload for frontend + Rust
 pnpm run dev:tauri
 
-# Run only frontend
+# Frontend only
 pnpm run dev
 
-# Type checking
+# Type-check / lint
 pnpm run type-check
+pnpm run lint && pnpm run lint:style
 
-# Lint all
-pnpm run lint
-pnpm run lint:style
+# Tauri builds
+pnpm run build:tauri                     # current platform
+pnpm --filter frontend build:tauri:mac   # macOS Universal binary (Apple Silicon + Intel)
+./scripts/docker/docker-build.sh x64    # Linux via Docker (see docs/content/en/build-linux-docker.md)
+pnpm run package:chocolatey              # Windows .nuspec
+pnpm run package:homebrew               # macOS .rb formula
+
+# Rust only
+cd backend && cargo test
+cd backend && cargo build --release
 ```
 
-### Building
+## Critical Conventions
 
-```bash
-# Build Tauri app for current platform
-pnpm run build:tauri
+### Version & Config — `.env` is the Source of Truth
 
-# macOS build (Universal binary for both Apple Silicon and Intel)
-pnpm --filter frontend build:tauri:mac
+All app metadata (name, version, URLs, author) lives in [.env](.env). When changing the version, run `scripts/sync-version.sh` (or `scripts/update-version.ps1`) — this syncs to `Cargo.toml`, `package.json`, and `tauri.conf.json`. **Never edit those files directly.**
 
-# Linux via Docker
-./scripts/docker/docker-build.sh x64    # or arm64
+### Rust Backend
 
-# Package managers
-pnpm run package:chocolatey  # Windows
-pnpm run package:homebrew    # macOS
+**Adding a new command** — add to [backend/src/command.rs](backend/src/command.rs), then register in [backend/src/main.rs](backend/src/main.rs):
+
+```rust
+#[tauri::command]
+async fn my_command(app: AppHandle, param: String) -> Result<String, String> {
+    send_log_with_handle(&app, LogLevel::Info, "Starting my_command");
+    // ...
+    Ok(result)
+}
 ```
 
-### Testing Rust code
+- **Logging**: Use `send_log_with_handle(&app, LogLevel::Info, "…")` from [backend/src/lib.rs](backend/src/lib.rs). Never use `println!`.
+- **Date/time**: Use `jiff` crate (not `chrono`).
+- **Errors**: Add variants to `AppError` in [backend/src/error.rs](backend/src/error.rs) (thiserror-based). Tauri commands must return `Result<T, String>`.
+- **Module privacy**: Keep modules private; re-export only public API via `lib.rs`.
 
-```bash
-cd backend
-cargo test
-cargo build --release
+### Frontend
+
+**UI strings** — must be added to **all 6 locale files**: `frontend/src/locales/{en,ja,fr,ko,zhHans,zhHant}.yaml`. Never hard-code display text.
+
+**Calling Tauri commands**:
+
+```typescript
+import { invoke } from "@tauri-apps/api/core";
+const result = await invoke<string>("my_command", { param: "value" });
 ```
 
-## Project-Specific Conventions
+**HTTP requests** — use `unified-network` (already configured), not native `fetch`.
 
-### Rust Code Patterns
+**State management**:
 
-1. **Tauri Commands**: Async functions with `#[tauri::command]` attribute:
+- `ConfigStore` — theme + locale (persisted via `pinia-plugin-persistedstate`)
+- `GlobalStore` — transient UI state (loading, progress, messages)
 
-   ```rust
-   #[tauri::command]
-   async fn my_command(app: AppHandle, param: String) -> Result<String, String> {
-       // Implementation
-       Ok(result)
-   }
-   ```
-
-   Register commands in `main.rs`:
-
-   ```rust
-   tauri::Builder::default()
-       .invoke_handler(tauri::generate_handler![my_command])
-       .run(tauri::generate_context!())
-   ```
-
-2. **Error Handling**: Use `ResultExt` trait from `logging.rs` to auto-log errors:
-
-   ```rust
-   some_operation()
-       .log_error(Some("Operation name"))
-       .map_err(|e| format!("Failed: {}", e))?
-   ```
-
-3. **Module Exports**: `lib.rs` re-exports public API. Keep modules private, expose only what's needed.
-
-### Frontend Patterns
-
-1. **Composables Architecture**: Each concern is isolated (file operations, logging, notifications). Reusable logic as Vue composables.
-
-2. **State Management**:
-   - `ConfigStore`: Theme and locale (persisted to localStorage via pinia-plugin-persistedstate)
-   - `GlobalStore`: Transient UI state (loading, progress, messages)
-
-3. **Tauri Commands**: Call via `@tauri-apps/api/core`:
-
-   ```typescript
-   import { invoke } from "@tauri-apps/api/core";
-   const result = await invoke<string>("my_command", { param: "value" });
-   ```
-
-4. **Tauri Events**: Listen for events from Rust backend:
-
-   ```typescript
-   import { listen } from "@tauri-apps/api/event";
-   await listen("my-event", (event) => {
-     console.log("Received:", event.payload);
-   });
-   ```
-
-5. **i18n**: Use `vue-i18n` composable in components. Translation files are in `src/locales/*.yml` (6 languages: en, ja, fr, ko, zhHans, zhHant).
-
-### Build Configuration
-
-1. **macOS Compatibility**: Uses `edition = "2024"`, `lto = "thin"`, `codegen-units = 16` for cross-Apple Silicon compatibility.
-
-2. **Cargo Profile**: Release profile optimizes for speed (`opt-level = 3`) with thin LTO for compatibility.
-
-3. **Vite Config**: Uses path aliases `@/` for `src/`, file-based routing, and Vuetify auto-import.
-
-4. **Environment Variables**: All application metadata is configured via `.env` file (version, app name, author, URLs, etc.).
-
-## Integration Points
-
-### Tauri ↔ Frontend Communication
-
-- **Commands** (`command.rs`): Sample commands: `echo_message()`, `get_app_version()`, `process_data()`
-- **Plugins**: dialog, fs, notification, opener, os (via `@tauri-apps/plugin-*`)
-
-### Platform-Specific Code
-
-- **Windows**: Uses native APIs in `target.'cfg(windows)'.dependencies` for Windows-specific optimizations.
-- **Linux**: Built via Docker with Debian Bookworm + WebKit2GTK.
-- **macOS**: Supports Universal binaries (Apple Silicon + Intel).
+**pnpm scoping**: Always `pnpm --filter frontend <cmd>` for frontend-only operations.
 
 ## Key Files
 
-- [backend/src/command.rs](backend/src/command.rs) - Tauri command implementations (add your commands here)
-- [backend/src/main.rs](backend/src/main.rs) - Application entry point
-- [frontend/src/components/MainContent.vue](frontend/src/components/MainContent.vue) - Main UI component
-- [backend/Cargo.toml](backend/Cargo.toml) - Rust dependencies and build config
-- [.env](.env) - Application configuration (version, name, author, URLs)
+| File                                                                               | Purpose                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------- |
+| [backend/src/command.rs](backend/src/command.rs)                                   | Tauri commands — add new commands here         |
+| [backend/src/main.rs](backend/src/main.rs)                                         | App entry — register commands + plugins        |
+| [backend/src/error.rs](backend/src/error.rs)                                       | `AppError` variants                            |
+| [backend/src/lib.rs](backend/src/lib.rs)                                           | Public API: `send_log_with_handle`, `LogLevel` |
+| [frontend/src/components/MainContent.vue](frontend/src/components/MainContent.vue) | Main UI component                              |
+| [.env](.env)                                                                       | App metadata & version (source of truth)       |
 
-## Common Tasks
+## Platform Build Docs
 
-- **Add new Tauri command**: Add function to `backend/src/command.rs`, register in `main.rs`
-- **Add UI string**: Edit `frontend/src/locales/*.yml` for all languages (en, ja, fr, ko, zhHans, zhHant)
-- **Add composable**: Create new file in `frontend/src/composables/` following existing patterns
-- **Update configuration**: Edit `.env` file with your app name, version, URLs, etc.
-- **Platform-specific code**: Use `#[cfg(target_os = "macos")]` or `cfg(windows)` in Rust
+See `docs/content/en/` for detailed platform guides:
 
-## Important Notes
+- [build-linux.md](docs/content/en/build-linux.md) / [build-linux-docker.md](docs/content/en/build-linux-docker.md)
+- [build-macos.md](docs/content/en/build-macos.md)
+- [build-windows.md](docs/content/en/build-windows.md)
+- [publishing.md](docs/content/en/publishing.md) — Chocolatey & Homebrew packaging
 
-- **pnpm workspace**: Always use `pnpm --filter frontend <command>` for app-specific operations
-- **Rust edition**: Uses edition 2024 for modern Rust features
-- **Version management**: Version is in root `.env` file, synced to `Cargo.toml`, `package.json`, and `tauri.conf.json`
-- **Package managers**: Build scripts generate `.nuspec` (Chocolatey) and `.rb` (Homebrew) files dynamically from `.env` configuration
-- **Template system**: All app-specific values are in `.env` - edit this file when creating a new project from this template
+## Notes
+
+- `AI_INSTRUCTIONS.md` in the repo root is a legacy migration guide for converting the original image app to this template — it can be ignored for regular development.
+- Platform-specific Rust code: `#[cfg(target_os = "macos")]` / `#[cfg(windows)]`.
