@@ -3,6 +3,8 @@ import { useTheme } from 'vuetify';
 
 import { useConfigStore } from '../store';
 
+const title = import.meta.env.VITE_SITE_TITLE || 'Tauri Vuetify Template';
+
 /** Vuetify Theme */
 const theme = useTheme();
 
@@ -14,6 +16,17 @@ const drawer: Ref<boolean> = ref(false);
 
 /** Toggle Dark mode */
 const isDark: ComputedRef<string> = computed(() => (configStore.theme ? 'dark' : 'light'));
+
+const color = computed(() => {
+  const themeColors = theme.computedThemes.value?.[isDark.value]?.colors;
+  return themeColors
+    ? `rgb(${String(themeColors.primary.r)}, ${String(themeColors.primary.g)}, ${String(themeColors.primary.b)})`
+    : '#1976D2';
+});
+
+useHead({
+  meta: [{ name: 'theme-color', content: color }]
+});
 </script>
 
 <template>
@@ -24,9 +37,11 @@ const isDark: ComputedRef<string> = computed(() => (configStore.theme ? 'dark' :
 
     <v-app-bar color="primary">
       <v-app-bar-nav-icon @click="drawer = !drawer" />
-      <v-app-bar-title>Drop Compress Image</v-app-bar-title>
+      <v-app-bar-title>{{ title }}</v-app-bar-title>
       <v-spacer />
-      <app-bar-menu-component />
+      <ClientOnly>
+        <app-bar-menu-component />
+      </ClientOnly>
     </v-app-bar>
 
     <v-main>
@@ -36,13 +51,7 @@ const isDark: ComputedRef<string> = computed(() => (configStore.theme ? 'dark' :
     </v-main>
 
     <v-footer app elevation="3" color="primary">
-      <span class="mr-5">2025-2026 &copy; Logue</span>
+      <span class="mr-5">2026 &copy; Logue</span>
     </v-footer>
   </v-app>
-  <teleport to="head">
-    <meta
-      name="theme-color"
-      :content="theme.computedThemes.value?.[isDark]?.colors?.primary ?? '#1976D2'"
-    />
-  </teleport>
 </template>

@@ -2,6 +2,8 @@ import { defineStore } from 'pinia';
 import { type Ref, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import type { Locale } from '@/types/LocaleType';
+
 /** Config Store */
 export default defineStore('config', () => {
   // 1. i18nインスタンスからlocaleを取得
@@ -43,7 +45,7 @@ export default defineStore('config', () => {
    *
    * @param locale - Locale
    */
-  const setLocale = (l: string) => (locale.value = l);
+  const setLocale = (l: Locale) => (locale.value = l);
 
   return { theme, locale, toggleTheme, setLocale };
 });

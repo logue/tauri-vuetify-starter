@@ -4,11 +4,14 @@ import useConfigStore from '@/store/ConfigStore';
 const { t } = useI18n();
 /** Config Store */
 const configStore = useConfigStore();
+const projectUrl = import.meta.env.VITE_PROJECT_URL as string;
 </script>
 
 <template>
   <!-- Locale Menu -->
-  <locale-selector />
+  <ClientOnly>
+    <locale-selector />
+  </ClientOnly>
   <!-- Toggle Dark mode -->
   <v-tooltip :text="t('toggle_dark_mode_btn')" location="bottom">
     <template #activator="{ props }">
@@ -22,13 +25,7 @@ const configStore = useConfigStore();
   </v-tooltip>
   <v-tooltip :text="t('github_btn')" location="bottom">
     <template #activator="{ props }">
-      <v-btn
-        v-bind="props"
-        icon="mdi-github"
-        variant="plain"
-        :href="import.meta.env.PROJECT_URL"
-        target="_blank"
-      />
+      <v-btn v-bind="props" icon="mdi-github" variant="plain" :href="projectUrl" target="_blank" />
     </template>
   </v-tooltip>
 </template>

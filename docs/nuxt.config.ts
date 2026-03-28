@@ -24,10 +24,10 @@ export default defineNuxtConfig({
   ssr: true, // SSRで翻訳済みHTMLを生成
   // ソースコードディレクトリの変更
   srcDir: './src/',
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2026-03-27',
   devtools: { enabled: true },
   // CSSファイル（Vuetifyスタイル確保 + GitHub Markdown CSS）
-  css: ['~/styles/settings.scss'],
+  // css: ['~/styles/settings.scss'],
   // SSRスタイル設定（CSS最適化）
   features: {
     inlineStyles: false // CSS外部化
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   // Runtime config to expose version
   runtimeConfig: {
     public: {
-      appVersion: version
+      // appVersion: version
     }
   },
 
@@ -118,6 +118,14 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ['/']
+    }
+  },
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+      ]
     }
   }
 });

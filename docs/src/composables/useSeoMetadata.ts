@@ -1,7 +1,7 @@
 /**
  * SEO metadata and structured data composable
  */
-import ogp from '@/assets/ogp.png';
+import ogp from '@/assets/icon.png';
 
 export const useSeoMetadata = () => {
   const { locale, t } = useI18n();

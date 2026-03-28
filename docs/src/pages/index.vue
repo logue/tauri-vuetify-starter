@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import icon from '../assets/icon.png';
+const appName = import.meta.env.VITE_APP_NAME as string;
+
 const { locale, rt, t } = useI18n();
 
 // Composables
@@ -17,8 +20,9 @@ setupSeoMeta();
 
 <template>
   <v-card class="mb-6 bg-transparent mx-auto" flat tag="section" max-width="960">
+    <v-img :src="icon" :alt="appName" class="mb-4" max-height="512" />
     <v-card-title class="text-h4 text-center pa-3" tag="h2">
-      {{ import.meta.env.VITE_APP_NAME }}
+      {{ appName }}
     </v-card-title>
     <v-card-subtitle class="text-center pb-4">{{ t('lead.subtitle') }}</v-card-subtitle>
     <v-card-text class="text-center">
@@ -199,7 +203,9 @@ setupSeoMeta();
       <v-row class="mb-5">
         <v-col v-for="item in features" :key="item.key" cols="12" md="4">
           <v-card class="h-100">
-            <v-icon :icon="item.icon" size="64" color="primary" class="ma-4 mx-auto w-100" />
+            <div class="d-flex align-center justify-center">
+              <v-icon :icon="item.icon" size="64" color="primary" class="ma-4 mx-auto w-100" />
+            </div>
             <v-card-title class="text-h6 text-center mt-2" tag="h3">
               {{ t(`features.${item.key}.title`) }}
             </v-card-title>
