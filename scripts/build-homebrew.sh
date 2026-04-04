@@ -64,7 +64,7 @@ sed -e "s/{{VERSION}}/$VERSION/g" \
     -e "s/{{APP_NAME_KEBAB}}/$APP_NAME_KEBAB/g" \
     -e "s|{{HOMEBREW_DESC}}|$HOMEBREW_DESC|g" \
     -e "s|{{HOMEPAGE_URL}}|$HOMEPAGE_URL|g" \
-    -e "s|{{PROJECT_URL}}|$PROJECT_URL|g" \
+    -e "s|{{PROJECT_URL}}|$VITE_PROJECT_URL|g" \
     -e "s/{{SHA256_UNIVERSAL}}/$SHA256_UNIVERSAL/g" \
     "$TEMPLATE_FILE" > "$FORMULA_FILE"
 

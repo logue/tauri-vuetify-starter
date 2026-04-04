@@ -33,7 +33,7 @@ VERSION=1.0.0
 VITE_APP_NAME=Your App Name
 APP_NAME_KEBAB=your-app-name
 HOMEBREW_DESC=Your app description
-PROJECT_URL=https://github.com/username/repository
+VITE_PROJECT_URL=https://github.com/username/repository
 ```
 
 チェックサムは、Universalビルド後のDMGファイルから自動計算されます。

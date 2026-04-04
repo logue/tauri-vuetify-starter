@@ -15,7 +15,7 @@ APP_DESCRIPTION=Your app description
 AUTHOR_NAME=Your Name
 GITHUB_USER=username
 GITHUB_REPO=repository-name
-PROJECT_URL=https://github.com/username/repository
+VITE_PROJECT_URL=https://github.com/username/repository
 ```
 
 バージョンやアプリケーション情報を変更する場合は、`.env`ファイルのみを更新してください。各パッケージマネージャーのテンプレートファイル（`.choco/app.nuspec.template`, `.homebrew/app.rb.template`）は、プレースホルダー（例: `{{VERSION}}`, `{{APP_NAME}}`）を使用しており、ビルド時に自動的に置換されます。
@@ -33,7 +33,7 @@ PROJECT_URL=https://github.com/username/repository
 - `{{APP_DESCRIPTION}}` - アプリケーションの説明
 - `{{AUTHOR_NAME}}` - 作者名
 - `{{GITHUB_USER}}` - GitHubユーザー名
-- `{{PROJECT_URL}}` - プロジェクトURL
+- `{{PROJECT_URL}}` - プロジェクトURL (VITE_PROJECT_URL)
 - その他、.envファイル内の変数
 
 ## ディレクトリ構造

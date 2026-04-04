@@ -44,6 +44,7 @@ playwright-report/
 Meta.ts
 
 # Tauri / Rust
+Cargo.lock
 .cargo/
 /target/
 /gen/schemas

@@ -89,7 +89,7 @@ GITHUB_USER=username
 GITHUB_REPO=repository-name
 
 # URLs
-PROJECT_URL=https://github.com/username/repository
+VITE_PROJECT_URL=https://github.com/username/repository
 HOMEPAGE_URL=https://yourdomain.com
 DOCS_URL=https://yourdomain.com/docs
 ```

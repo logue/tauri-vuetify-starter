@@ -8,7 +8,8 @@ import Meta from '@/Meta';
 const { t } = useI18n();
 
 const APP_NAME = import.meta.env.VITE_APP_NAME || 'My App';
-const PROJECT_SITE = import.meta.env.VITE_PROJECT_SITE || 'https://yourdomain.com/your-app-name';
+const PROJECT_SITE =
+  import.meta.env.VITE_PROJECT_URL || 'https://github.com/yourname/your-app-name';
 const isMac = navigator.userAgent.includes('Mac');
 </script>
 

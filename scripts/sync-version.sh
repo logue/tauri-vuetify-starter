@@ -45,6 +45,10 @@ if [ -f "$TAURI_CONF" ]; then
     echo "🔧 tauri.conf.jsonを更新中..."
     sed -i.bak "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" "$TAURI_CONF"
     echo "  ✅ $TAURI_CONF: \"version\": \"$VERSION\""
+    if [ -n "$APP_IDENTIFIER" ]; then
+        sed -i.bak "s/\"identifier\": \".*\"/\"identifier\": \"$APP_IDENTIFIER\"/" "$TAURI_CONF"
+        echo "  ✅ $TAURI_CONF: \"identifier\": \"$APP_IDENTIFIER\""
+    fi
 else
     echo "⚠️  tauri.conf.jsonが見つかりません: $TAURI_CONF"
 fi

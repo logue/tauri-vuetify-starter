@@ -10,7 +10,7 @@ export const useSeoMetadata = () => {
   // サイトのベースURL
   const sitePath = import.meta.env.BASE_URL || '/';
   // プロジェクトのベースURL
-  const projectUrl = import.meta.env.PROJECT_URL || '/';
+  const projectUrl = import.meta.env.VITE_PROJECT_URL || '/';
 
   const currentUrl = computed(() => {
     const path = locale.value === 'en' ? '' : `/${locale.value}`;

@@ -16,11 +16,14 @@ if (-not (Test-Path $EnvPath)) {
 }
 
 $version = ""
+$identifier = ""
 $envContent = Get-Content $EnvPath
 foreach ($line in $envContent) {
     if ($line -match "^VERSION=(.+)$") {
         $version = $Matches[1].Trim()
-        break
+    }
+    if ($line -match "^APP_IDENTIFIER=(.+)$") {
+        $identifier = $Matches[1].Trim()
     }
 }
 
@@ -30,6 +33,9 @@ if ([string]::IsNullOrEmpty($version)) {
 }
 
 Write-Host "Found version: $version" -ForegroundColor Green
+if (-not [string]::IsNullOrEmpty($identifier)) {
+    Write-Host "Found identifier: $identifier" -ForegroundColor Green
+}
 
 # Update frontend/package.json
 Write-Host "Updating frontend/package.json..." -ForegroundColor Cyan
@@ -49,8 +55,14 @@ $tauriConfPath = "../backend/tauri.conf.json"
 if (Test-Path $tauriConfPath) {
     $tauriConf = Get-Content $tauriConfPath -Raw | ConvertFrom-Json
     $tauriConf.version = $version
+    if (-not [string]::IsNullOrEmpty($identifier)) {
+        $tauriConf.identifier = $identifier
+    }
     $tauriConf | ConvertTo-Json -Depth 100 | Set-Content $tauriConfPath -Encoding UTF8
     Write-Host "✓ Updated backend/tauri.conf.json to version $version" -ForegroundColor Green
+    if (-not [string]::IsNullOrEmpty($identifier)) {
+        Write-Host "✓ Updated backend/tauri.conf.json identifier to $identifier" -ForegroundColor Green
+    }
 } else {
     Write-Warning "Warning: $tauriConfPath not found"
 }

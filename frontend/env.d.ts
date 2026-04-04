@@ -18,6 +18,11 @@ interface ImportMetaEnv {
   readonly VITE_APP_TITLE?: string;
 
   /**
+   * Project repository URL used in the UI.
+   */
+  readonly VITE_PROJECT_URL?: string;
+
+  /**
    * Vite runtime flags.
    */
   readonly DEV: boolean;

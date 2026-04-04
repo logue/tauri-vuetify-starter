@@ -3,7 +3,7 @@ name = "tauri-vue3-app"
 version = "0.0.0"
 authors = ["Your Name <your@email.com>"]
 edition = "2024"
-rust-version = "1.94.0"
+rust-version = "1.94.1"
 description = "A modern desktop application built with Tauri v2 and Vue 3"
 readme = "../ReadMe.md"
 repository = "https://github.com/yourname/your-app-name"
@@ -26,8 +26,8 @@ thiserror = "2.0.18"
 jiff = { version = "0.2.23", features = ["serde"] }
 
 tauri = { version = "2.10.3", features = [] }
-tauri-plugin-dialog = "2.6.0"
-tauri-plugin-fs = "2.4.5"
+tauri-plugin-dialog = "2.7.0"
+tauri-plugin-fs = "2.5.0"
 tauri-plugin-log = "2.8.0"
 tauri-plugin-notification = "2.3.3"
 tauri-plugin-opener = "2.5.3"

@@ -11,6 +11,11 @@ interface ImportMetaEnv {
    * Prefer __APP_NAME__ defined in app/vite.config.ts for the UI title.
    */
   readonly VITE_APP_TITLE?: string;
+
+  /**
+   * Project repository URL used in the UI.
+   */
+  readonly VITE_PROJECT_URL?: string;
 }
 
 /**

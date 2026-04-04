@@ -69,7 +69,7 @@ if (Test-Path $installTemplate) {
     $installContent = $installContent -replace '{{VERSION}}', $Version
     $installContent = $installContent -replace '{{VITE_APP_NAME}}', $script:VITE_APP_NAME
     $installContent = $installContent -replace '{{APP_NAME_KEBAB}}', $APP_NAME_KEBAB
-    $installContent = $installContent -replace '{{PROJECT_URL}}', $script:PROJECT_URL
+    $installContent = $installContent -replace '{{PROJECT_URL}}', $script:VITE_PROJECT_URL
     $installContent = $installContent -replace '{{CHECKSUM64}}', $checksum
     Set-Content -Path $installScript -Value $installContent -NoNewline
     Write-Host "Generated: chocolateyinstall.ps1" -ForegroundColor Green
@@ -105,7 +105,7 @@ $nuspecContent = $nuspecContent -replace '{{APP_DESCRIPTION}}', $script:APP_DESC
 $nuspecContent = $nuspecContent -replace '{{APP_SUMMARY}}', $script:APP_SUMMARY
 $nuspecContent = $nuspecContent -replace '{{AUTHOR_NAME}}', $script:AUTHOR_NAME
 $nuspecContent = $nuspecContent -replace '{{GITHUB_USER}}', $script:GITHUB_USER
-$nuspecContent = $nuspecContent -replace '{{PROJECT_URL}}', $script:PROJECT_URL
+$nuspecContent = $nuspecContent -replace '{{PROJECT_URL}}', $script:VITE_PROJECT_URL
 $nuspecContent = $nuspecContent -replace '{{DOCS_URL}}', $script:DOCS_URL
 $nuspecContent = $nuspecContent -replace '{{CHOCOLATEY_TAGS}}', $script:CHOCOLATEY_TAGS
 Set-Content -Path $nuspecFile -Value $nuspecContent -NoNewline
