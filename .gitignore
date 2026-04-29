@@ -41,7 +41,6 @@ playwright-report/
 
 # Special File
 .husky/
-Meta.ts
 
 # Tauri / Rust
 Cargo.lock
