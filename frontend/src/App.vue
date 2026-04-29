@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { useConfigStore, useGlobalStore } from '@/store';
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref, watch, type ComputedRef } from 'vue';
 
 // Components
+import { useTheme } from 'vuetify';
+
 import AppBarMenuComponent from '@/components/AppBarMenuComponent.vue';
 import MainContent from '@/components/MainContent.vue';
+
+/** Vuetify Theme */
+const theme = useTheme();
 
 /** Global Store */
 const globalStore = useGlobalStore();
@@ -34,7 +39,58 @@ const snackbarVisibility = ref(false);
 const snackbarText = computed(() => globalStore.message);
 
 /** Toggle Dark mode */
-const theme = computed(() => (configStore.theme ? 'dark' : 'light'));
+const isDark: ComputedRef<string> = computed(() => (configStore.theme ? 'dark' : 'light'));
+
+/** Fallback color for browser theme-color meta tag. */
+const DEFAULT_THEME_COLOR = '#1976D2';
+
+/**
+ * Convert arbitrary Vuetify color values into a valid CSS color string for theme-color.
+ * Prefers rgba() output when channels are available, otherwise keeps HEX when valid.
+ */
+const normalizeThemeColor = (value: unknown): string => {
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+
+    if (/^rgba?\(/i.test(trimmed)) {
+      return trimmed;
+    }
+
+    if (/^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(trimmed)) {
+      return trimmed;
+    }
+
+    const channels = trimmed.split(',').map(part => part.trim());
+    if (channels.length === 3 || channels.length === 4) {
+      const r = Number.parseInt(channels[0] ?? '', 10);
+      const g = Number.parseInt(channels[1] ?? '', 10);
+      const b = Number.parseInt(channels[2] ?? '', 10);
+      const a = channels.length === 4 ? Number.parseFloat(channels[3] ?? '') : 1;
+
+      if (
+        [r, g, b].every(channel => Number.isFinite(channel) && channel >= 0 && channel <= 255) &&
+        Number.isFinite(a) &&
+        a >= 0 &&
+        a <= 1
+      ) {
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+      }
+    }
+  }
+
+  if (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 0xffffff) {
+    const hex = Math.round(value).toString(16).padStart(6, '0').toUpperCase();
+    return `#${hex}`;
+  }
+
+  return DEFAULT_THEME_COLOR;
+};
+
+/** Resolved meta theme-color value for the current active theme. */
+const themeColor: ComputedRef<string> = computed(() => {
+  const currentPrimary = theme.computedThemes.value?.[isDark.value]?.colors?.primary;
+  return normalizeThemeColor(currentPrimary);
+});
 
 // When snackbar text has been set, show snackbar.
 watch(
@@ -55,7 +111,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-app :theme="theme" data-tauri-drag-region="true">
+  <v-app :theme="isDark" data-tauri-drag-region="true">
     <v-app-bar color="primary">
       <v-app-bar-title tag="h1">{{ title }}</v-app-bar-title>
       <v-spacer />
@@ -73,8 +129,8 @@ onMounted(() => {
       <main-content />
     </v-main>
 
-    <v-overlay v-model="loading" app class="justify-center align-center" persistent>
-      <v-progress-circular indeterminate size="64" />
+    <v-overlay v-model="loading" class="justify-center align-center" app persistent>
+      <v-progress-circular size="64" indeterminate />
     </v-overlay>
 
     <v-snackbar
@@ -88,6 +144,9 @@ onMounted(() => {
       </template>
     </v-snackbar>
   </v-app>
+  <teleport to="head">
+    <meta :content="themeColor" name="theme-color" />
+  </teleport>
 </template>
 
 <style lang="scss">

@@ -7,6 +7,11 @@
  */
 interface ImportMetaEnv {
   /**
+   * Application display name from the root .env file.
+   */
+  readonly VITE_APP_NAME?: string;
+
+  /**
    * Optional app title for legacy usage.
    * Prefer __APP_NAME__ defined in app/vite.config.ts for the UI title.
    */

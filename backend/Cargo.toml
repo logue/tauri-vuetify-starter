@@ -23,7 +23,7 @@ tauri-build = { version = "2.5.6", features = [] }
 serde = "1.0.228"
 serde_json = "1.0.149"
 thiserror = "2.0.18"
-jiff = { version = "0.2.23", features = ["serde"] }
+jiff = { version = "0.2.24", features = ["serde"] }
 
 tauri = { version = "2.10.3", features = [] }
 tauri-plugin-dialog = "2.7.0"

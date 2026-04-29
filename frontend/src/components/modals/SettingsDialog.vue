@@ -29,21 +29,21 @@ const isMac = navigator.userAgent.includes('Mac');
           <v-spacer />
           <v-btn v-if="!isMac" icon="mdi-close" @click="isActive.value = false" />
         </v-toolbar>
-        <v-card-text class="d-flex flex-row pa-0" style="height: calc(100vh - 64px)">
+        <v-card-text class="d-flex flex-row pa-0 settings-dialog-content">
           <v-layout>
             <v-navigation-drawer permanent>
               <v-list nav>
                 <v-list-item
                   :title="t('common_options')"
-                  value="common"
                   :active="tab === 'common'"
+                  value="common"
                   @click="tab = 'common'"
                 />
                 <!-- Additional list items for other settings categories can be added here -->
               </v-list>
             </v-navigation-drawer>
             <v-main class="overflow-y-auto">
-              <v-card flat class="pa-2">
+              <v-card class="pa-2" flat>
                 <v-window v-model="tab">
                   <v-window-item value="common">
                     <v-card flat>
@@ -86,3 +86,9 @@ zhHans:
   settings: 设置
   common_options: 通用设置
 </i18n>
+
+<style scoped>
+.settings-dialog-content {
+  height: calc(100vh - 64px);
+}
+</style>

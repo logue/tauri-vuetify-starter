@@ -3,14 +3,14 @@ import { useGlobalStore } from '@/store';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { invoke } from '@tauri-apps/api/core';
-
+import { useAppCommands } from '@/composables/useAppCommands';
 import { useNotification } from '@/composables/useNotification';
 
 const { t } = useI18n();
 
 const globalStore = useGlobalStore();
 const notification = useNotification(t);
+const appCommands = useAppCommands();
 
 const inputText = ref('');
 const outputText = ref('');
@@ -25,9 +25,7 @@ const handleProcess = async () => {
   globalStore.setLoading(true);
 
   try {
-    const result = await invoke<string>('echo_message', {
-      message: inputText.value
-    });
+    const result = await appCommands.echoMessage(inputText.value);
     outputText.value = result;
     notification.success(t('main.message.success'));
   } catch (error) {
@@ -39,7 +37,7 @@ const handleProcess = async () => {
 
 const getVersion = async () => {
   try {
-    appVersion.value = await invoke<string>('get_app_version');
+    appVersion.value = await appCommands.getAppVersion();
   } catch (error) {
     console.error('Failed to get version:', error);
   }
@@ -60,7 +58,7 @@ getVersion();
           </v-card-title>
 
           <v-card-subtitle v-if="appVersion">
-            {{ t('main.version') }}: {{ appVersion }}
+            {{ t('main.version') }}{{ t('main.separator') }}{{ appVersion }}
           </v-card-subtitle>
 
           <v-card-text>
@@ -87,9 +85,9 @@ getVersion();
               v-model="outputText"
               :label="t('main.output.label')"
               rows="4"
-              readonly
               variant="outlined"
               class="mt-4"
+              readonly
             />
           </v-card-text>
         </v-card>
@@ -174,6 +172,7 @@ en:
   main:
     title: 'Sample Application'
     version: 'Version'
+    separator: ': '
     description: 'This is a template application built with Tauri v2 and Vue 3. Replace this content with your own application logic.'
     input:
       label: 'Input Text'
@@ -206,6 +205,7 @@ en:
 ja:
   main:
     title: 'サンプルアプリケーション'
+    separator: '： '
     version: 'バージョン'
     description: 'これはTauri v2とVue 3で構築されたテンプレートアプリケーションです。このコンテンツを独自のアプリケーションロジックに置き換えてください。'
     input:
@@ -240,6 +240,7 @@ fr:
   main:
     title: 'Application Exemple'
     version: 'Version'
+    separator: ' : '
     description: "Ceci est une application modèle construite avec Tauri v2 et Vue 3. Remplacez ce contenu par votre propre logique d'application."
     input:
       label: "Texte d'entrée"
@@ -273,6 +274,7 @@ ko:
   main:
     title: '샘플 애플리케이션'
     version: '버전'
+    separator: ': '
     description: 'Tauri v2와 Vue 3으로 구축된 템플릿 애플리케이션입니다. 이 콘텐츠를 자신의 애플리케이션 로직으로 교체하세요.'
     input:
       label: '입력 텍스트'
@@ -307,6 +309,7 @@ zhHans:
     title: '示例应用程序'
     version: '版本'
     description: '这是使用 Tauri v2 和 Vue 3 构建的模板应用程序。请将此内容替换为您自己的应用程序逻辑。'
+    separator: '： '
     input:
       label: '输入文本'
       placeholder: '输入要回显的文本...'
@@ -338,6 +341,7 @@ zhHans:
 zhHant:
   main:
     title: '範例應用程式'
+    separator: '： '
     version: '版本'
     description: '這是使用 Tauri v2 和 Vue 3 構建的模板應用程式。請將此內容替換為您自己的應用程式邏輯。'
     input:

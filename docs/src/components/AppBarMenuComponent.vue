@@ -4,14 +4,14 @@ import useConfigStore from '@/store/ConfigStore';
 const { t } = useI18n();
 /** Config Store */
 const configStore = useConfigStore();
-const projectUrl = import.meta.env.VITE_PROJECT_URL as string;
+
+// Extract import.meta.env value into a variable for template usage.
+const projectUrl = import.meta.env.PROJECT_URL as string | undefined;
 </script>
 
 <template>
   <!-- Locale Menu -->
-  <ClientOnly>
-    <locale-selector />
-  </ClientOnly>
+  <locale-selector />
   <!-- Toggle Dark mode -->
   <v-tooltip :text="t('toggle_dark_mode_btn')" location="bottom">
     <template #activator="{ props }">

@@ -4,16 +4,16 @@ import { useI18n } from 'vue-i18n';
 
 /** Config Store */
 const useConfigStore = defineStore('config', () => {
-  // 1. i18nインスタンスからlocaleを取得
+  // 1. Get locale from the i18n global instance.
   const { locale } = useI18n({ useScope: 'global' });
 
-  // 2. Piniaのstateとして言語を定義（デフォルト値やlocalStorageからの復元など）
-  const currentLocale = ref(locale.value); // 初期値をi18nから拝借
+  // 2. Define language state in Pinia.
+  const currentLocale = ref(locale.value); // Initialize from current i18n locale.
 
-  // 3. stateが変更されたら、i18nのlocaleにも反映させる watchを設置
+  // 3. Sync i18n locale whenever state changes.
   watch(currentLocale, newLocale => {
     locale.value = newLocale;
-    // 必要ならlocalStorageに保存する処理もここに追加
+    // Add persistence logic here if needed.
     // localStorage.setItem('locale', newLocale)
   });
 

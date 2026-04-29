@@ -9,12 +9,12 @@ const { version, downloads, primaryDownload, detectPlatform } = useDownloads();
 const { features, leadDescriptions } = useContentData();
 const { languages, setupSeoMeta } = useSeoMetadata();
 
-// OS検出
+// Detect client platform.
 onMounted(() => {
   detectPlatform();
 });
 
-// SEOメタデータの設定
+// Apply SEO metadata.
 setupSeoMeta();
 </script>
 

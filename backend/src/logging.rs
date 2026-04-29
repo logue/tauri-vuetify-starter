@@ -2,10 +2,10 @@ use crate::error::AppError;
 use std::sync::OnceLock;
 use tauri::{AppHandle, Emitter};
 
-// グローバルなAppHandleの保存
+// Stores a global AppHandle used for log event emission.
 static APP_HANDLE: OnceLock<AppHandle> = OnceLock::new();
 
-/// ログレベル定義
+/// Represents supported log levels emitted to the frontend.
 #[derive(Debug, Clone, Copy)]
 #[allow(dead_code)]
 pub enum LogLevel {
@@ -16,6 +16,11 @@ pub enum LogLevel {
 }
 
 impl LogLevel {
+    /// Returns the lowercase string value for the log level.
+    ///
+    /// # Returns
+    ///
+    /// Lowercase log level string.
     pub fn as_str(&self) -> &'static str {
         match self {
             LogLevel::Debug => "debug",
@@ -27,6 +32,10 @@ impl LogLevel {
 }
 
 /// Initialize the logging system with AppHandle
+///
+/// # Arguments
+///
+/// * `app_handle` - Application handle used to emit log events.
 pub fn init_logging(app_handle: AppHandle) {
     if APP_HANDLE.set(app_handle).is_err() {
         eprintln!("Warning: Logging system already initialized");
@@ -34,6 +43,11 @@ pub fn init_logging(app_handle: AppHandle) {
 }
 
 /// Send log message to frontend
+///
+/// # Arguments
+///
+/// * `level` - Log level metadata.
+/// * `message` - Log message text.
 pub fn send_log(level: LogLevel, message: &str) {
     if let Some(app_handle) = APP_HANDLE.get() {
         let log_data = serde_json::json!({
@@ -52,6 +66,12 @@ pub fn send_log(level: LogLevel, message: &str) {
 }
 
 /// Send log message with AppHandle (for use in async contexts)
+///
+/// # Arguments
+///
+/// * `app_handle` - Explicit application handle.
+/// * `level` - Log level metadata.
+/// * `message` - Log message text.
 #[allow(dead_code)]
 pub fn send_log_with_handle(app_handle: &AppHandle, level: LogLevel, message: &str) {
     let log_data = serde_json::json!({
@@ -66,6 +86,11 @@ pub fn send_log_with_handle(app_handle: &AppHandle, level: LogLevel, message: &s
 }
 
 /// Log AppError with automatic error-level logging
+///
+/// # Arguments
+///
+/// * `error` - Application error to log.
+/// * `context` - Optional operation context.
 pub fn log_app_error(error: &AppError, context: Option<&str>) {
     let message = match context {
         Some(ctx) => format!("{}: {}", ctx, error),
@@ -109,6 +134,15 @@ macro_rules! log_error {
 
 /// Result extension for convenient error logging
 pub trait ResultExt<T, E> {
+    /// Logs an `AppError` when the result is `Err` and returns the original result.
+    ///
+    /// # Arguments
+    ///
+    /// * `context` - Optional operation context.
+    ///
+    /// # Returns
+    ///
+    /// The original `Result` value.
     fn log_error(self, context: Option<&str>) -> Self;
 }
 

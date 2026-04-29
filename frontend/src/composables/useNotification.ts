@@ -7,25 +7,33 @@ import {
 } from '@tauri-apps/plugin-notification';
 
 /**
- * デスクトップ通知を送信するためのcomposable
+ * Provides desktop notification helpers backed by Tauri notification plugin.
+ *
+ * @param t vue-i18n translation function.
+ * @returns Notification helper functions.
  */
 export const useNotification = (t: ComposerTranslation) => {
   /**
-   * 通知権限を要求し、通知を送信
+   * Requests notification permission when needed and sends a notification.
+   *
+   * @param title Notification title.
+   * @param body Optional notification body.
+   * @param icon Optional notification icon path.
+   * @returns A promise resolved after notification handling completes.
    */
   const notify = async (title: string, body?: string, icon?: string) => {
     try {
-      // 通知権限を確認
+      // Check current notification permission.
       let permissionGranted = await isPermissionGranted();
 
-      // 権限がない場合は要求
+      // Request permission when it has not been granted yet.
       if (!permissionGranted) {
         const permission = await requestPermission();
         permissionGranted = permission === 'granted';
       }
 
       if (permissionGranted) {
-        // 通知を送信
+        // Send the desktop notification.
         await sendNotification({ title, body, icon });
       }
     } catch (error) {
@@ -34,15 +42,20 @@ export const useNotification = (t: ComposerTranslation) => {
   };
 
   /**
-   * 画像変換完了通知
+   * Sends a localized success notification.
+   *
+   * @param message Success message body.
+   * @returns A promise resolved after notification handling completes.
    */
   const success = async (message: string) => {
-    // 画像変換処理が完了したことを通知
     await notify(t('notification.success.title'), message);
   };
 
   /**
-   * エラー通知
+   * Sends a localized error notification.
+   *
+   * @param message Error message body.
+   * @returns A promise resolved after notification handling completes.
    */
   const error = async (message: string) => {
     await notify(t('notification.error.title'), message);

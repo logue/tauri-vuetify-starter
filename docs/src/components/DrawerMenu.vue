@@ -15,37 +15,37 @@ const items: ComputedRef<DrawerMenuItem[]> = computed(() => [
     title: '-' // Divider
   },
   {
-    title: t('getting_started'),
+    title: t('user-guide'),
     icon: 'mdi-power'
-    // to: localePath('/getting-started')
+    // to: localePath('/user-guide')
   },
   {
     title: t('publishing'),
-    icon: 'mdi-package-variant',
-    to: localePath('/publishing')
+    icon: 'mdi-package-variant'
+    //to: localePath('/publishing')
   },
   {
     title: '-' // Divider
   },
   {
     title: t('build_windows'),
-    icon: 'mdi-microsoft-windows',
-    to: localePath('/build-windows')
+    icon: 'mdi-microsoft-windows'
+    //to: localePath('/build-windows')
   },
   {
     title: t('build_macos'),
-    icon: 'mdi-apple',
-    to: localePath('/build-macos')
+    icon: 'mdi-apple'
+    //to: localePath('/build-macos')
   },
   {
     title: t('build_linux'),
-    icon: 'mdi-linux',
-    to: localePath('/build-linux')
+    icon: 'mdi-linux'
+    //to: localePath('/build-linux')
   },
   {
     title: t('build_linux_docker'),
-    icon: 'mdi-docker',
-    to: localePath('/build-linux-docker')
+    icon: 'mdi-docker'
+    //to: localePath('/build-linux-docker')
   }
 ]);
 </script>
@@ -90,7 +90,7 @@ const items: ComputedRef<DrawerMenuItem[]> = computed(() => [
 <i18n lang="yaml">
 en:
   home: Home
-  getting_started: Getting Started
+  user-guide: User Guide
   publishing: Publishing Guide
   build_windows: Windows Build Instructions
   build_macos: macOS Build Instructions
@@ -98,7 +98,7 @@ en:
   build_linux_docker: Linux Build Instructions (docker)
 fr:
   home: Accueil
-  getting_started: Commencer
+  user-guide: Guide de l'utilisateur
   publishing: Guide de publication
   build_windows: Windows Instructions de construction
   build_macos: macOS Instructions de construction
@@ -106,7 +106,7 @@ fr:
   build_linux_docker: Linux Instructions de construction (docker)
 ja:
   home: ホーム
-  getting_started: はじめに
+  user-guide: ユーザーガイド
   publishing: パッケージ公開ガイド
   build_windows: Windows ビルド手順
   build_macos: macOS ビルド手順
@@ -114,7 +114,7 @@ ja:
   build_linux_docker: Linux ビルド手順（docker）
 ko:
   home: 홈
-  getting_started: 시작하기
+  user-guide: 사용자 가이드
   publishing: 패키지 게시 가이드
   build_windows: Windows 빌드 지침
   build_macos: macOS 빌드 지침
@@ -122,7 +122,7 @@ ko:
   build_linux_docker: Linux 빌드 지침 (docker)
 zhHant:
   home: 首頁
-  getting_started: 入門
+  user-guide: 使用者指南
   publishing: 發布指南
   build_windows: Windows 建置說明
   build_macos: macOS 建置說明
@@ -130,7 +130,7 @@ zhHant:
   build_linux_docker: Linux 建置說明 (docker)
 zhHans:
   home: 主页
-  getting_started: 入门
+  user-guide: 用户指南
   publishing: 发布指南
   build_windows: Windows 构建说明
   build_macos: macOS 构建说明

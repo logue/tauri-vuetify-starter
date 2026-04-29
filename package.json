@@ -33,8 +33,6 @@
     "build:analyze": "pnpm --filter frontend build:analyze",
     "build:clean": "pnpm --recursive exec rimraf dist",
     "build:tauri": "pnpm --filter frontend build:tauri",
-    "build:tauri:linux-x64": "pnpm --filter frontend build:tauri:linux-docker-x64",
-    "build:tauri:linux-arm64": "pnpm --filter frontend build:tauri:linux-docker-arm64",
     "package:chocolatey": "pwsh ./scripts/build-chocolatey.ps1",
     "package:homebrew": "bash ./scripts/build-homebrew.sh",
     "generate": "pnpm --filter docs generate",
@@ -49,7 +47,8 @@
   },
   "resolutions": {
     "js-yaml": ">=4.1.1",
-    "vite": ">=8.0.8",
-    "unhead": ">=3.0.4"
+    "vite": ">=8.0.10",
+    "unhead": ">=3.0.4",
+    "postcss": ">=8.5.12"
   }
 }

@@ -13,6 +13,11 @@ declare module '@/locales/*.yaml' {
  */
 interface ImportMetaEnv {
   /**
+   * Application display name from the root .env file.
+   */
+  readonly VITE_APP_NAME?: string;
+
+  /**
    * Optional app title for legacy usage.
    */
   readonly VITE_APP_TITLE?: string;

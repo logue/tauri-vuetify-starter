@@ -1,14 +1,14 @@
 <script setup lang="ts">
-/** 言語セレクター */
+/** Language selector */
 
 import { useConfigStore } from '@/store';
 import { useI18n } from 'vue-i18n';
 
 /** vue i18n */
 const { t, availableLocales } = useI18n();
-/** グローバルストア */
+/** Global store */
 const configStore = useConfigStore();
-// localeの変更はストアのアクション経由で行う
+// Change locale through store action.
 function changeLocale(newLocale: string) {
   configStore.setLocale(newLocale);
 }
@@ -17,9 +17,10 @@ function changeLocale(newLocale: string) {
 <template>
   <v-menu location="bottom">
     <template #activator="{ props }">
-      <v-btn v-bind="props" icon variant="plain">
+      <v-btn v-bind="props" variant="plain" icon>
+        <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
         <v-icon>mdi-translate</v-icon>
-        <v-tooltip :text="t('locale')" activator="parent" location="bottom" />
+        <v-tooltip :text="t('localeSelector.tooltip')" activator="parent" location="bottom" />
       </v-btn>
     </template>
     <v-list density="compact" mandatory>
@@ -36,6 +37,8 @@ function changeLocale(newLocale: string) {
 
 <i18n lang="yaml">
 en:
+  localeSelector:
+    tooltip: Locale
   locale: Locale
   en: 🇺🇸 English
   fr: 🇫🇷 French
@@ -45,6 +48,8 @@ en:
   zhHans: 🇨🇳 Simplified Chinese
   locale-changed: Locale {locale} has been changed.
 fr:
+  localeSelector:
+    tooltip: Langue
   locale: Langue
   en: 🇺🇸 Anglais
   fr: 🇫🇷 Français

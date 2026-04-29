@@ -1,5 +1,6 @@
 use thiserror::Error;
 
+/// Represents application-level errors shared across backend commands.
 #[derive(Error, Debug)]
 pub enum AppError {
     #[error("Processing failed: {0}")]
@@ -18,7 +19,7 @@ pub enum AppError {
     General(String),
 }
 
-/// Tauriコマンドは String を返す必要があるため、変換を実装
+/// Converts `AppError` into `String` for Tauri command boundaries.
 impl From<AppError> for String {
     fn from(error: AppError) -> Self {
         error.to_string()

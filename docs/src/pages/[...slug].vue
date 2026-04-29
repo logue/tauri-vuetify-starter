@@ -6,27 +6,30 @@ import { withLeadingSlash } from 'ufo';
 
 const route = useRoute();
 const { locale, t } = useI18n();
-const slug = computed(() => withLeadingSlash(String(route.params.slug)));
+const slug = computed(() => {
+  const rawSlug = route.params.slug;
+  const segments = (Array.isArray(rawSlug) ? rawSlug : [rawSlug])
+    .map(segment => String(segment ?? '').trim())
+    .filter(Boolean);
 
-const { data: page } = await useAsyncData(
-  // キーにロケールを含めてSSG時に各言語で別々にキャッシュされるようにする
-  () => `page-${locale.value}-${slug.value}`,
-  async () => {
-    // Build collection name based on current locale
-    const collection = ('content_' + locale.value) as keyof Collections;
-    const content = await queryCollection(collection).path(slug.value).first();
+  const normalizedPath = withLeadingSlash(segments.join('/')).replace(/\/+$/g, '');
+  return normalizedPath || '/';
+});
 
-    // Optional: fallback to default locale if content is missing
-    if (!content && locale.value !== 'en') {
-      return await queryCollection('content_en').path(slug.value).first();
-    }
+// Use a string key for useAsyncData (function keys can cause IPC contention in Nuxt 4).
+// With i18n prefix_except_default strategy, locale switching always changes routes,
+// so watch: [locale] is unnecessary when locale is included in the cache key.
+const { data: page } = await useAsyncData(`page-${locale.value}-${slug.value}`, async () => {
+  const collection = `content_${locale.value}` as keyof Collections;
+  const content = await queryCollection(collection).path(slug.value).first();
 
-    return content;
-  },
-  {
-    watch: [locale] // Refetch when locale changes
+  // Fallback to English when localized content is unavailable.
+  if (!content && locale.value !== 'en') {
+    return await queryCollection('content_en').path(slug.value).first();
   }
-);
+
+  return content;
+});
 </script>
 
 <template>
