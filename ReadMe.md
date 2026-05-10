@@ -67,6 +67,36 @@ pnpm run dev:tauri
 pnpm run build:tauri
 ```
 
+## Security & Dependencies
+
+### Audit Warnings
+
+This project depends on some dev-only packages (`@nuxtjs/sitemap`, `@modyfi/vite-plugin-yaml`) that may show vulnerabilities in `pnpm audit`:
+
+**Important:** These vulnerabilities are **NOT** present in production builds:
+
+- Dev dependencies are excluded from Tauri binary compilation
+- Only source code is analyzed at build time
+- Production artifacts are not affected
+
+**Mitigation:**
+
+1. Overrides in `pnpm-workspace.yaml` enforce patched versions where available
+2. `.npmrc` is configured with `audit-level=moderate` to focus on critical issues
+3. These warnings can be safely ignored in development
+
+**Recommendations:**
+
+- Monitor upstream packages for updates: `@nuxtjs/sitemap` and `@modyfi/vite-plugin-yaml`
+- Consider upgrading when stable versions address the vulnerabilities
+- For custom forks using other dev dependencies, apply similar overrides
+
+If a critical production vulnerability is discovered, update the overrides and regenerate with:
+
+```bash
+pnpm audit --fix override
+```
+
 ## Customization
 
 ### 1. Configure Application Settings

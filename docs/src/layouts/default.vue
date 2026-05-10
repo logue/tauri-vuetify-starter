@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useConfigStore } from '@/store';
-import { computed, ref, type ComputedRef, type Ref } from 'vue';
+import { computed, onMounted, ref, type ComputedRef, type Ref } from 'vue';
 
 import { useTheme } from 'vuetify';
 
@@ -15,6 +15,14 @@ const drawer: Ref<boolean> = ref(false);
 
 // Extract import.meta.env value into a variable for template usage.
 const appName = import.meta.env.APP_NAME as string | undefined;
+
+/**
+ * Initialize dark mode detection from system preference (client-side only).
+ * This must be called after hydration to avoid hydration mismatches.
+ */
+onMounted(() => {
+  configStore.initializeTheme();
+});
 
 /** Toggle Dark mode */
 const isDark: ComputedRef<string> = computed(() => (configStore.theme ? 'dark' : 'light'));

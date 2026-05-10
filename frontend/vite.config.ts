@@ -78,6 +78,8 @@ export default defineConfig(({ command, mode }): UserConfig => {
     build: {
       // Build Target
       // https://vitejs.dev/config/build-options.html#build-target
+      // Tauri WebView (WKWebView on macOS, WebView2 on Windows, WebKitGTK on Linux)
+      // supports modern JS natively, no need for legacy browser targets.
       target: 'esnext',
       // Minify option
       // https://vitejs.dev/config/build-options.html#build-minify
