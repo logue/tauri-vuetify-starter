@@ -28,7 +28,7 @@ pnpm run dev
 
 # Type-check / lint
 pnpm run type-check
-pnpm run lint && pnpm run lint:style
+pnpm run lint
 
 # Tauri builds
 pnpm run build:tauri                     # current platform
@@ -43,6 +43,21 @@ cd backend && cargo build --release
 ```
 
 ## Critical Conventions
+
+### Skills Reference (Mandatory)
+
+When handling tasks, always check and use relevant skill documents under `.agents/skills/` before implementation.
+
+- Prefer `SKILL.md` as the entry point for each skill.
+- Use the linked `references/*.md` files when deeper details are required.
+- If skill guidance conflicts with directory-level instructions (`backend/AGENT.md`, `frontend/AGENT.md`, `docs/AGENT.md`), follow the narrower-scope instruction.
+
+Current local skill roots:
+
+- `.agents/skills/nuxt/`
+- `.agents/skills/tauri-v2/`
+- `.agents/skills/vue-best-practices/`
+- `.agents/skills/vuetify-skilld/`
 
 ### Version & Config — `.env` is the Source of Truth
 
