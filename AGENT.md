@@ -25,6 +25,19 @@ When rules conflict, prefer the rule with narrower scope.
 
 ---
 
+## Agent Skills Policy (Template)
+
+- Do not commit local skill caches/directories (for example: `.agents/`, `.claude/skills/`).
+- Treat `skills-lock.json` as the repository-level skill registry (source, path, and hash metadata).
+- Prefer reproducible, opt-in setup for local environments:
+  - `npx skills list`
+  - `npx skills add <repo-url> --skill <skill-name>`
+  - `npx skills update`
+- If a required skill is not available locally, propose the install command and continue with repository instructions without blocking work.
+- Do not assume local skill files exist in a fresh clone.
+
+---
+
 ## Downstream App Specification (Fill This Section)
 
 This repository is a template. When it is used for a concrete app, fill in this section first.

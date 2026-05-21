@@ -10,6 +10,7 @@ build-log.txt
 
 node_modules
 .DS_Store
+Thumbs.db
 dist
 dist-ssr
 coverage
@@ -41,6 +42,7 @@ playwright-report/
 
 # Special File
 .husky/
+.agents/
 
 # Tauri / Rust
 Cargo.lock

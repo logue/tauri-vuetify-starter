@@ -46,18 +46,22 @@ cd backend && cargo build --release
 
 ### Skills Reference (Mandatory)
 
-When handling tasks, always check and use relevant skill documents under `.agents/skills/` before implementation.
+When handling tasks, always check and use relevant skills based on `skills-lock.json` before implementation.
 
-- Prefer `SKILL.md` as the entry point for each skill.
+- Prefer each skill's `SKILL.md` as the entry point.
 - Use the linked `references/*.md` files when deeper details are required.
 - If skill guidance conflicts with directory-level instructions (`backend/AGENT.md`, `frontend/AGENT.md`, `docs/AGENT.md`), follow the narrower-scope instruction.
+- Do not assume local skill directories exist in a fresh clone.
+- If a required skill is missing locally, suggest opt-in setup commands:
 
-Current local skill roots:
-
-- `.agents/skills/nuxt/`
-- `.agents/skills/tauri-v2/`
-- `.agents/skills/vue-best-practices/`
-- `.agents/skills/vuetify-skilld/`
+```bash
+npx skills list
+npx skills add https://github.com/antfu/skills --skill nuxt
+npx skills add https://github.com/nodnarbnitram/claude-code-extensions --skill tauri-v2
+npx skills add https://github.com/hyf0/vue-skills --skill vue-best-practices
+npx skills add https://github.com/harlan-zw/vue-ecosystem-skills --skill vue-i18n-skilld
+npx skills add https://github.com/harlan-zw/vue-ecosystem-skills --skill vuetify-skilld
+```
 
 ### Version & Config — `.env` is the Source of Truth
 

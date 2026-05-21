@@ -67,6 +67,27 @@ pnpm run dev:tauri
 pnpm run build:tauri
 ```
 
+## 🤖 AI-Driven Development (Optional)
+
+This template supports AI-driven development via [Agent Skills](https://www.skills.sh/).
+To prevent repository bloating and CI/CD overhead, `.agents/` is excluded from Git (`.gitignore`).
+
+If you are using AI agents (e.g., Claude Code, GitHub Copilot), we highly recommend installing the following skills in your local environment:
+
+```bash
+# Install recommended skills for this template
+npx skills add https://github.com/antfu/skills --skill nuxt
+npx skills add https://github.com/nodnarbnitram/claude-code-extensions --skill tauri-v2
+npx skills add https://github.com/hyf0/vue-skills --skill vue-best-practices
+npx skills add https://github.com/harlan-zw/vue-ecosystem-skills --skill vue-i18n-skilld
+npx skills add https://github.com/harlan-zw/vue-ecosystem-skills --skill vuetify-skilld
+```
+
+### Why not pre-installed? (Architecture Design)
+
+- Zero CI/CD Overhead: Prevents downloading megabytes of duplicate documentation during production builds on GitHub Actions or Vercel.
+- Always Latest API: Ensures your AI agent always fetches the latest API references dynamicly, preventing AI hallucinations caused by stale, hard-coded markdown files.
+
 ## Security & Dependencies
 
 ### Audit Warnings
