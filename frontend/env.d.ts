@@ -1,6 +1,21 @@
 /// <reference types="vite/client" />
 /// <reference types="@tauri-apps/api" />
 
+/**
+ * Application display name (from VITE_APP_NAME).
+ */
+declare const __APP_NAME__: string;
+
+/**
+ * Application version (from VERSION).
+ */
+declare const __APP_VERSION__: string;
+
+/**
+ * Application version (from VERSION).
+ */
+declare const __BUILD_DATE__: string;
+
 declare module '@/locales/*.yaml' {
   import type { LocaleMessageObject } from 'vue-i18n';
 

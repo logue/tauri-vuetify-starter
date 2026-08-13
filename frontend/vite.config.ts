@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
@@ -9,7 +10,12 @@ import { checker } from 'vite-plugin-checker';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
-import pkg from './package.json';
+
+const pkg = JSON.parse(readFileSync('./package.json', 'utf-8')) as {
+  name: string;
+  version: string;
+};
+
 
 /**
  * Vite Configure

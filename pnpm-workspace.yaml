@@ -8,3 +8,9 @@ allowBuilds:
   core-js: true
   esbuild: true
   unrs-resolver: true
+
+minimumReleaseAgeExclude:
+  - vuetify@4.1.9
+
+overrides:
+  brace-expansion: '>=5.0.9'
