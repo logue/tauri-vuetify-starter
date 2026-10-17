@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import icon from '../assets/icon.png';
+import icon from "../assets/icon.png";
 const appName = import.meta.env.VITE_APP_NAME as string;
 
 const { locale, rt, t } = useI18n();
@@ -24,7 +24,7 @@ setupSeoMeta();
     <v-card-title class="text-h4 text-center pa-3" tag="h2">
       {{ appName }}
     </v-card-title>
-    <v-card-subtitle class="text-center pb-4">{{ t('lead.subtitle') }}</v-card-subtitle>
+    <v-card-subtitle class="text-center pb-4">{{ t("lead.subtitle") }}</v-card-subtitle>
     <v-card-text class="text-center">
       <!-- Language Links -->
       <v-chip-group class="flex justify-center mb-6" tag="nav">
@@ -62,7 +62,7 @@ setupSeoMeta();
 
   <v-card class="mb-6 bg-transparent" flat tag="section">
     <v-card-title class="text-h5 text-center" tag="h2">
-      {{ t('download.download') }}
+      {{ t("download.download") }}
     </v-card-title>
     <v-card-subtitle class="text-center">
       <v-code>v.{{ version }}</v-code>
@@ -93,7 +93,7 @@ setupSeoMeta();
         <v-expansion-panel>
           <v-expansion-panel-title>
             <v-icon start>mdi-package-variant</v-icon>
-            {{ t('download.other_platforms') }}
+            {{ t("download.other_platforms") }}
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <v-row>
@@ -102,7 +102,7 @@ setupSeoMeta();
                 <v-list density="compact">
                   <v-list-subheader>
                     <v-icon start color="blue">mdi-microsoft-windows</v-icon>
-                    {{ t('download.windows') }}
+                    {{ t("download.windows") }}
                   </v-list-subheader>
                   <v-list-item
                     :href="downloads.windows.x64"
@@ -118,7 +118,7 @@ setupSeoMeta();
                 <v-list density="compact">
                   <v-list-subheader>
                     <v-icon start color="red">mdi-apple</v-icon>
-                    {{ t('download.macos') }}
+                    {{ t("download.macos") }}
                   </v-list-subheader>
                   <v-list-item
                     :href="downloads.macos.universal"
@@ -134,7 +134,7 @@ setupSeoMeta();
                 <v-list density="compact">
                   <v-list-subheader>
                     <v-icon start color="orange">mdi-linux</v-icon>
-                    {{ t('download.linux') }} - x86_64
+                    {{ t("download.linux") }} - x86_64
                   </v-list-subheader>
                   <!--v-list-item
                     :href="downloads.linux.x64.appimage"
@@ -164,7 +164,7 @@ setupSeoMeta();
                 <v-list density="compact">
                   <v-list-subheader class="px-0">
                     <v-icon start color="orange">mdi-linux</v-icon>
-                    {{ t('download.linux') }} - ARM64
+                    {{ t("download.linux") }} - ARM64
                   </v-list-subheader>
                   <!--v-list-item
                     :href="downloads.linux.arm64.appimage"
@@ -197,8 +197,8 @@ setupSeoMeta();
   </v-card>
 
   <v-card class="mb-6 bg-transparent" flat tag="section">
-    <v-card-title class="text-h5 text-center" tag="h2">{{ t('features.title') }}</v-card-title>
-    <v-card-subtitle class="text-center">{{ t('features.subtitle') }}</v-card-subtitle>
+    <v-card-title class="text-h5 text-center" tag="h2">{{ t("features.title") }}</v-card-title>
+    <v-card-subtitle class="text-center">{{ t("features.subtitle") }}</v-card-subtitle>
     <v-card-text>
       <v-row class="mb-5">
         <v-col v-for="item in features" :key="item.key" cols="12" md="4">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type AlertKind = 'success' | 'info' | 'warning' | 'error';
+type AlertKind = "success" | "info" | "warning" | "error";
 
 interface Props {
   type?: string;
@@ -8,34 +8,34 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  type: 'info',
-  title: '',
-  icon: ''
+  type: "info",
+  title: "",
+  icon: "",
 });
 
 const { t } = useI18n();
 
 const normalizedType = computed<AlertKind>(() => {
   switch (props.type) {
-    case 'success':
-    case 'warning':
-    case 'error':
+    case "success":
+    case "warning":
+    case "error":
       return props.type;
     default:
-      return 'info';
+      return "info";
   }
 });
 
 const fallbackTitle = computed(() => {
   switch (normalizedType.value) {
-    case 'warning':
-      return t('alert.warning');
-    case 'error':
-      return t('alert.error');
-    case 'success':
-      return t('alert.success');
+    case "warning":
+      return t("alert.warning");
+    case "error":
+      return t("alert.error");
+    case "success":
+      return t("alert.success");
     default:
-      return t('alert.info');
+      return t("alert.info");
   }
 });
 </script>

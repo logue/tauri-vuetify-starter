@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useGlobalStore } from '@/store';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { useAppCommands } from '@/composables/useAppCommands';
 import { useNotification } from '@/composables/useNotification';
+import { useGlobalStore } from '@/store';
 
 const { t } = useI18n();
 
@@ -77,7 +77,12 @@ getVersion();
               class="mb-4"
             />
 
-            <v-btn color="primary" size="large" prepend-icon="mdi-send" @click="handleProcess">
+            <v-btn
+              color="primary"
+              size="large"
+              prepend-icon="mdi-send"
+              @click="handleProcess"
+            >
               {{ t('main.button.process') }}
             </v-btn>
 
@@ -104,22 +109,34 @@ getVersion();
           <v-card-text>
             <v-list density="compact">
               <v-list-item prepend-icon="mdi-vuejs">
-                <v-list-item-title>{{ t('main.features.vue3') }}</v-list-item-title>
+                <v-list-item-title>{{
+                  t('main.features.vue3')
+                }}</v-list-item-title>
               </v-list-item>
               <v-list-item prepend-icon="mdi-language-typescript">
-                <v-list-item-title>{{ t('main.features.typescript') }}</v-list-item-title>
+                <v-list-item-title>{{
+                  t('main.features.typescript')
+                }}</v-list-item-title>
               </v-list-item>
               <v-list-item prepend-icon="mdi-material-design">
-                <v-list-item-title>{{ t('main.features.vuetify') }}</v-list-item-title>
+                <v-list-item-title>{{
+                  t('main.features.vuetify')
+                }}</v-list-item-title>
               </v-list-item>
               <v-list-item prepend-icon="mdi-database">
-                <v-list-item-title>{{ t('main.features.pinia') }}</v-list-item-title>
+                <v-list-item-title>{{
+                  t('main.features.pinia')
+                }}</v-list-item-title>
               </v-list-item>
               <v-list-item prepend-icon="mdi-translate">
-                <v-list-item-title>{{ t('main.features.i18n') }}</v-list-item-title>
+                <v-list-item-title>{{
+                  t('main.features.i18n')
+                }}</v-list-item-title>
               </v-list-item>
               <v-list-item prepend-icon="mdi-lightning-bolt">
-                <v-list-item-title>{{ t('main.features.vite') }}</v-list-item-title>
+                <v-list-item-title>{{
+                  t('main.features.vite')
+                }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-card-text>

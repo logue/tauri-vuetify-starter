@@ -1,8 +1,9 @@
 <script setup lang="ts">
 /** Language selector */
 
-import { useConfigStore } from '@/store';
 import { useI18n } from 'vue-i18n';
+
+import { useConfigStore } from '@/store';
 
 /** vue i18n */
 const { t, availableLocales } = useI18n();
@@ -20,7 +21,11 @@ function changeLocale(newLocale: string) {
       <v-btn v-bind="props" variant="plain" icon>
         <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
         <v-icon>mdi-translate</v-icon>
-        <v-tooltip :text="t('localeSelector.tooltip')" activator="parent" location="bottom" />
+        <v-tooltip
+          :text="t('localeSelector.tooltip')"
+          activator="parent"
+          location="bottom"
+        />
       </v-btn>
     </template>
     <v-list density="compact" mandatory>

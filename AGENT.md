@@ -129,3 +129,8 @@ This applies to newly created symbols and symbols modified during refactoring.
 - frontend/: frontend/AGENT.md
 - docs/: docs/AGENT.md
 - backend/: backend/AGENT.md
+
+## Linting and formatting
+
+- After making code changes, run `npx oxlint --fix`, then run `npx oxfmt`.
+- Before finishing, run `npx oxlint --deny-warnings --format=agent`.

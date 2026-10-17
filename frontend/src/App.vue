@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import { useConfigStore, useGlobalStore } from '@/store';
-import { computed, nextTick, onMounted, ref, watch, type ComputedRef } from 'vue';
+import {
+  computed,
+  nextTick,
+  onMounted,
+  ref,
+  watch,
+  type ComputedRef
+} from 'vue';
 
 // Components
 import { useTheme } from 'vuetify';
 
 import AppBarMenuComponent from '@/components/AppBarMenuComponent.vue';
 import MainContent from '@/components/MainContent.vue';
+import { useConfigStore, useGlobalStore } from '@/store';
 
 /** Vuetify Theme */
 const theme = useTheme();
@@ -39,7 +46,9 @@ const snackbarVisibility = ref(false);
 const snackbarText = computed(() => globalStore.message);
 
 /** Toggle Dark mode */
-const isDark: ComputedRef<string> = computed(() => (configStore.theme ? 'dark' : 'light'));
+const isDark: ComputedRef<string> = computed(() =>
+  configStore.theme ? 'dark' : 'light'
+);
 
 /** Fallback color for browser theme-color meta tag. */
 const DEFAULT_THEME_COLOR = '#1976D2';
@@ -65,10 +74,13 @@ const normalizeThemeColor = (value: unknown): string => {
       const r = Number.parseInt(channels[0] ?? '', 10);
       const g = Number.parseInt(channels[1] ?? '', 10);
       const b = Number.parseInt(channels[2] ?? '', 10);
-      const a = channels.length === 4 ? Number.parseFloat(channels[3] ?? '') : 1;
+      const a =
+        channels.length === 4 ? Number.parseFloat(channels[3] ?? '') : 1;
 
       if (
-        [r, g, b].every(channel => Number.isFinite(channel) && channel >= 0 && channel <= 255) &&
+        [r, g, b].every(
+          channel => Number.isFinite(channel) && channel >= 0 && channel <= 255
+        ) &&
         Number.isFinite(a) &&
         a >= 0 &&
         a <= 1
@@ -78,7 +90,12 @@ const normalizeThemeColor = (value: unknown): string => {
     }
   }
 
-  if (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 0xffffff) {
+  if (
+    typeof value === 'number' &&
+    Number.isFinite(value) &&
+    value >= 0 &&
+    value <= 0xffffff
+  ) {
     const hex = Math.round(value).toString(16).padStart(6, '0').toUpperCase();
     return `#${hex}`;
   }
@@ -88,7 +105,8 @@ const normalizeThemeColor = (value: unknown): string => {
 
 /** Resolved meta theme-color value for the current active theme. */
 const themeColor: ComputedRef<string> = computed(() => {
-  const currentPrimary = theme.computedThemes.value?.[isDark.value]?.colors?.primary;
+  const currentPrimary =
+    theme.computedThemes.value?.[isDark.value]?.colors?.primary;
   return normalizeThemeColor(currentPrimary);
 });
 
@@ -129,7 +147,12 @@ onMounted(() => {
       <main-content />
     </v-main>
 
-    <v-overlay v-model="loading" class="justify-center align-center" app persistent>
+    <v-overlay
+      v-model="loading"
+      class="justify-center align-center"
+      app
+      persistent
+    >
       <v-progress-circular size="64" indeterminate />
     </v-overlay>
 
@@ -157,7 +180,8 @@ onMounted(() => {
 body {
   // Modern scrollbar style
   scrollbar-width: thin;
-  scrollbar-color: map.get(settings.$grey, 'lighten-2') map.get(settings.$grey, 'base');
+  scrollbar-color: map.get(settings.$grey, 'lighten-2')
+    map.get(settings.$grey, 'base');
 }
 
 ::-webkit-scrollbar {

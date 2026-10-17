@@ -1,6 +1,6 @@
 # Linux ARM64向けTauriアプリケーションビルド用Dockerfile
 # ARM64ネイティブビルド
-FROM --platform=linux/arm64 rust:1.94-bookworm
+FROM rust:slim
 
 # 環境変数設定
 ENV DEBIAN_FRONTEND=noninteractive
@@ -32,13 +32,6 @@ RUN apt-get update && apt-get install -y \
     libclang-dev \
     llvm-dev \
     clang \
-    # jpegxl-rs vendored build dependencies
-    libbrotli-dev \
-    libgif-dev \
-    libjpeg-dev \
-    libopenexr-dev \
-    libpng-dev \
-    libwebp-dev \
     # Node.js用
     ca-certificates \
     gnupg \

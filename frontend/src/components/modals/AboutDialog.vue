@@ -9,7 +9,8 @@ const { t } = useI18n();
 
 const APP_NAME = import.meta.env.VITE_APP_NAME || 'My App';
 const PROJECT_SITE =
-  import.meta.env.VITE_PROJECT_URL || 'https://github.com/yourname/your-app-name';
+  import.meta.env.VITE_PROJECT_URL ||
+  'https://github.com/yourname/your-app-name';
 const isMac = navigator.userAgent.includes('Mac');
 </script>
 
@@ -42,13 +43,22 @@ const isMac = navigator.userAgent.includes('Mac');
             </small>
           </p>
           <p>
-            <a :href="PROJECT_SITE" target="_blank" @click.prevent="openUrl(PROJECT_SITE)">
+            <a
+              :href="PROJECT_SITE"
+              target="_blank"
+              @click.prevent="openUrl(PROJECT_SITE)"
+            >
               {{ PROJECT_SITE }}
             </a>
           </p>
         </v-card-text>
         <v-card-actions>
-          <v-btn v-if="isMac" color="primary" text="OK" @click="isActive.value = false" />
+          <v-btn
+            v-if="isMac"
+            color="primary"
+            text="OK"
+            @click="isActive.value = false"
+          />
           <v-spacer />
           <v-btn
             v-if="!isMac"

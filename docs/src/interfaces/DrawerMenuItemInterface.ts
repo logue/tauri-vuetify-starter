@@ -1,4 +1,4 @@
-import type { RouteLocationRaw } from 'vue-router';
+import type { RouteLocationRaw } from "vue-router";
 
 /** Drawer Menu Item Interface */
 export default interface DrawerMenuItem {

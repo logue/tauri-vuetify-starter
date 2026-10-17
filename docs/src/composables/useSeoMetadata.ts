@@ -3,7 +3,7 @@
  *
  * @returns Reactive SEO metadata builders and setup function.
  */
-import ogp from '@/assets/icon.png';
+import ogp from "@/assets/icon.png";
 
 export const useSeoMetadata = () => {
   const { locale, t } = useI18n();
@@ -12,29 +12,29 @@ export const useSeoMetadata = () => {
 
   // Absolute site base URL.
   const sitePath = computed(() => {
-    const value = String(config.public.siteUrl || 'https://logue.dev');
-    return value.replace(/\/+$/, '');
+    const value = String(config.public.siteUrl || "https://logue.dev");
+    return value.replace(/\/+$/, "");
   });
 
   // Application base path.
   const appBasePath = computed(() => {
-    const value = String(config.public.appBaseUrl || '/');
-    if (!value || value === '/') {
-      return '/';
+    const value = String(config.public.appBaseUrl || "/");
+    if (!value || value === "/") {
+      return "/";
     }
-    return `/${value.replace(/^\/+|\/+$/g, '')}`;
+    return `/${value.replace(/^\/+|\/+$/g, "")}`;
   });
 
   const rootUrl = computed(() => {
-    const normalizedPath = appBasePath.value === '/' ? '/' : `${appBasePath.value}/`;
+    const normalizedPath = appBasePath.value === "/" ? "/" : `${appBasePath.value}/`;
     return new URL(normalizedPath, `${sitePath.value}/`).toString();
   });
 
   // Project repository base URL.
-  const projectUrl = import.meta.env.PROJECT_URL || '/';
+  const projectUrl = import.meta.env.PROJECT_URL || "/";
 
   const currentUrl = computed(() => {
-    const path = locale.value === 'en' ? '' : `${locale.value}/`;
+    const path = locale.value === "en" ? "" : `${locale.value}/`;
     return new URL(path, rootUrl.value).toString();
   });
 
@@ -45,38 +45,38 @@ export const useSeoMetadata = () => {
 
   // Supported language descriptors.
   const languages = [
-    { code: 'en', name: '🇺🇸 English' },
-    { code: 'ja', name: '🇯🇵 日本語' },
-    { code: 'fr', name: '🇫🇷 Français' },
-    { code: 'ko', name: '🇰🇷 한국어' },
-    { code: 'zhHans', name: '🇨🇳 简体中文' },
-    { code: 'zhHant', name: '🇹🇼 繁體中文' }
+    { code: "en", name: "🇺🇸 English" },
+    { code: "ja", name: "🇯🇵 日本語" },
+    { code: "fr", name: "🇫🇷 Français" },
+    { code: "ko", name: "🇰🇷 한국어" },
+    { code: "zhHans", name: "🇨🇳 简体中文" },
+    { code: "zhHant", name: "🇹🇼 繁體中文" },
   ];
 
   // hreflang link entries.
   const hreflangLinks = computed(() => {
-    const links = [];
+    const links: { rel: "alternate"; hreflang: string; href: string }[] = [];
 
     // x-default (English root).
     links.push({
-      rel: 'alternate',
-      hreflang: 'x-default',
-      href: rootUrl.value
+      rel: "alternate",
+      hreflang: "x-default",
+      href: rootUrl.value,
     });
 
     // Per-language entries.
-    languages.forEach(lang => {
-      if (lang.code === 'en') {
+    languages.forEach((lang) => {
+      if (lang.code === "en") {
         links.push({
-          rel: 'alternate',
-          hreflang: 'en',
-          href: rootUrl.value
+          rel: "alternate",
+          hreflang: "en",
+          href: rootUrl.value,
         });
       } else {
         links.push({
-          rel: 'alternate',
+          rel: "alternate",
           hreflang: lang.code,
-          href: new URL(`${lang.code}/`, rootUrl.value).toString()
+          href: new URL(`${lang.code}/`, rootUrl.value).toString(),
         });
       }
     });
@@ -87,46 +87,46 @@ export const useSeoMetadata = () => {
   // JSON-LD structured data payload.
   const jsonLdData = computed(() => {
     const languageMap: Record<string, string> = {
-      ja: 'ja',
-      en: 'en',
-      fr: 'fr',
-      ko: 'ko',
-      zhHans: 'zh-CN',
-      zhHant: 'zh-TW'
+      ja: "ja",
+      en: "en",
+      fr: "fr",
+      ko: "ko",
+      zhHans: "zh-CN",
+      zhHant: "zh-TW",
     };
 
     return {
-      '@context': 'https://schema.org',
-      '@type': 'SoftwareApplication',
-      name: 'Tauri Vue3 App',
-      applicationCategory: 'DeveloperApplication',
-      operatingSystem: 'Windows, macOS, Linux',
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Tauri Vue3 App",
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "Windows, macOS, Linux",
       offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD'
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
       },
-      description: unref(t('lead.description[0]')),
+      description: unref(t("lead.description[0]")),
       url: currentUrl.value,
       image: unref(ogImage),
       softwareVersion: unref(version),
       releaseNotes: `${projectUrl}/releases/tag/${unref(version)}`,
       downloadUrl: `${projectUrl}/releases/download/${unref(version)}/`,
       author: {
-        '@type': 'Person',
-        name: 'Logue',
-        url: 'https://github.com/logue'
+        "@type": "Person",
+        name: "Logue",
+        url: "https://github.com/logue",
       },
       featureList: [
-        unref(t('features.multiple_formats.title')),
-        unref(t('features.high_speed.title')),
-        unref(t('features.drag_drop.title')),
-        unref(t('features.i18n.title')),
-        unref(t('features.dark_mode.title')),
-        unref(t('features.paste.title'))
+        unref(t("features.multiple_formats.title")),
+        unref(t("features.high_speed.title")),
+        unref(t("features.drag_drop.title")),
+        unref(t("features.i18n.title")),
+        unref(t("features.dark_mode.title")),
+        unref(t("features.paste.title")),
       ],
       screenshot: unref(ogImage),
-      inLanguage: languageMap[locale.value] || 'en'
+      inLanguage: languageMap[locale.value] || "en",
     };
   });
 
@@ -137,39 +137,39 @@ export const useSeoMetadata = () => {
    */
   const setupSeoMeta = () => {
     useSeoMeta({
-      title: computed(() => `Tauri Vue3 App - ${t('lead.subtitle')}`),
-      ogSiteName: 'Tauri Vue3 App',
-      description: computed(() => t('lead.description[0]')),
-      ogTitle: 'Tauri Vue3 App',
-      ogDescription: computed(() => t('lead.subtitle')),
+      title: computed(() => `Tauri Vue3 App - ${t("lead.subtitle")}`),
+      ogSiteName: "Tauri Vue3 App",
+      description: computed(() => t("lead.description[0]")),
+      ogTitle: "Tauri Vue3 App",
+      ogDescription: computed(() => t("lead.subtitle")),
       ogImage: ogImage,
       ogUrl: currentUrl,
-      ogType: 'website',
+      ogType: "website",
       ogLocale: computed(() => {
         const localeMap: Record<string, string> = {
-          ja: 'ja_JP',
-          en: 'en_US',
-          fr: 'fr_FR',
-          ko: 'ko_KR',
-          zhHans: 'zh_CN',
-          zhHant: 'zh_TW'
+          ja: "ja_JP",
+          en: "en_US",
+          fr: "fr_FR",
+          ko: "ko_KR",
+          zhHans: "zh_CN",
+          zhHant: "zh_TW",
         };
-        return localeMap[locale.value] || 'en_US';
+        return localeMap[locale.value] || "en_US";
       }),
-      twitterCard: 'summary_large_image',
-      twitterTitle: 'Tauri Vue3 App',
-      twitterDescription: computed(() => t('lead.subtitle')),
-      twitterImage: ogImage
+      twitterCard: "summary_large_image",
+      twitterTitle: "Tauri Vue3 App",
+      twitterDescription: computed(() => t("lead.subtitle")),
+      twitterImage: ogImage,
     });
 
     useHead({
-      link: hreflangLinks,
+      link: hreflangLinks.value,
       script: [
         {
-          type: 'application/ld+json',
-          innerHTML: () => JSON.stringify(jsonLdData.value)
-        }
-      ]
+          type: "application/ld+json",
+          innerHTML: () => JSON.stringify(jsonLdData.value),
+        },
+      ],
     });
   };
 
@@ -180,6 +180,6 @@ export const useSeoMetadata = () => {
     languages,
     hreflangLinks,
     jsonLdData,
-    setupSeoMeta
+    setupSeoMeta,
   };
 };

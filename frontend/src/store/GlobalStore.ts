@@ -52,7 +52,15 @@ const useGlobalStore = defineStore('global', () => {
     snackbarColor.value = color;
   }
 
-  return { loading, progress, message, snackbarColor, setLoading, setProgress, setMessage };
+  return {
+    loading,
+    progress,
+    message,
+    snackbarColor,
+    setLoading,
+    setProgress,
+    setMessage
+  };
 });
 
 export { useGlobalStore };

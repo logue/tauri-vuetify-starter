@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer permanent location="right" width="280" class="toc-drawer">
     <v-list density="compact" nav>
-      <v-list-subheader>{{ t('toc') }}</v-list-subheader>
+      <v-list-subheader>{{ t("toc") }}</v-list-subheader>
       <v-list-item
         v-for="heading in headings"
         :key="heading.id"
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from "vue";
 
 interface Heading {
   id: string;
@@ -26,21 +26,21 @@ interface Heading {
 }
 const { t } = useI18n();
 const headings = ref<Heading[]>([]);
-const activeId = ref<string>('');
+const activeId = ref<string>("");
 
 const generateId = (text: string): string => {
   return text
     .toLowerCase()
-    .replaceAll(/\s+/g, '-')
-    .replaceAll(/[^\w\-\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]/g, '');
+    .replaceAll(/\s+/g, "-")
+    .replaceAll(/[^\w\-\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]/g, "");
 };
 
 const extractHeadings = () => {
-  const headingElements = document.querySelectorAll('h2, h3');
+  const headingElements = document.querySelectorAll("h2, h3");
   const result: Heading[] = [];
 
   for (const element of headingElements) {
-    const text = element.textContent?.trim() || '';
+    const text = element.textContent?.trim() || "";
     let id = element.id;
 
     // Generate ID when missing.
@@ -52,7 +52,7 @@ const extractHeadings = () => {
     result.push({
       id,
       text,
-      level: Number.parseInt(element.tagName.substring(1))
+      level: Number.parseInt(element.tagName.substring(1)),
     });
   }
 
@@ -61,9 +61,9 @@ const extractHeadings = () => {
 
 const updateActiveHeading = () => {
   const scrollPosition = window.scrollY + 100;
-  const headingElements = document.querySelectorAll('h2, h3');
+  const headingElements = document.querySelectorAll("h2, h3");
 
-  let currentId = '';
+  let currentId = "";
   for (const element of headingElements) {
     const top = (element as HTMLElement).offsetTop;
     if (scrollPosition >= top) {
@@ -84,7 +84,7 @@ onMounted(() => {
   }, 100);
 
   // Scroll event listener.
-  window.addEventListener('scroll', updateActiveHeading);
+  window.addEventListener("scroll", updateActiveHeading);
 
   // Observe DOM mutations for dynamic content updates.
   observer = new MutationObserver(() => {
@@ -93,12 +93,12 @@ onMounted(() => {
 
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', updateActiveHeading);
+  window.removeEventListener("scroll", updateActiveHeading);
   if (observer) {
     observer.disconnect();
   }

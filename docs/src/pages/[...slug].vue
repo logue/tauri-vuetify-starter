@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import type { Collections } from '@nuxt/content';
-import { useI18n } from 'vue-i18n';
+import type { Collections } from "@nuxt/content";
+import { useI18n } from "vue-i18n";
 
-import { withLeadingSlash } from 'ufo';
+import { withLeadingSlash } from "ufo";
 
 const route = useRoute();
 const { locale, t } = useI18n();
 const slug = computed(() => {
   const rawSlug = route.params.slug;
   const segments = (Array.isArray(rawSlug) ? rawSlug : [rawSlug])
-    .map(segment => String(segment ?? '').trim())
+    .map((segment) => String(segment ?? "").trim())
     .filter(Boolean);
 
-  const normalizedPath = withLeadingSlash(segments.join('/')).replace(/\/+$/g, '');
-  return normalizedPath || '/';
+  const normalizedPath = withLeadingSlash(segments.join("/")).replace(/\/+$/g, "");
+  return normalizedPath || "/";
 });
 
 // Use a string key for useAsyncData (function keys can cause IPC contention in Nuxt 4).
@@ -24,8 +24,8 @@ const { data: page } = await useAsyncData(`page-${locale.value}-${slug.value}`, 
   const content = await queryCollection(collection).path(slug.value).first();
 
   // Fallback to English when localized content is unavailable.
-  if (!content && locale.value !== 'en') {
-    return await queryCollection('content_en').path(slug.value).first();
+  if (!content && locale.value !== "en") {
+    return await queryCollection("content_en").path(slug.value).first();
   }
 
   return content;
@@ -35,12 +35,12 @@ const { data: page } = await useAsyncData(`page-${locale.value}-${slug.value}`, 
 <template>
   <content-renderer v-if="page" :value="page" class="markdown-body" tag="article" />
   <v-alert v-else :title="t('error')" type="error" variant="tonal">
-    {{ t('error_description', { locale }) }}
+    {{ t("error_description", { locale }) }}
   </v-alert>
 </template>
 
 <style lang="scss">
-@use 'sass:map';
+@use "sass:map";
 /* Optimized GitHub Markdown Styles with SCSS and Vuetify Dark Mode Support */
 // Color variables for light and dark themes
 $colors-light: (
@@ -59,7 +59,7 @@ $colors-light: (
   alert-tip: #1a7f37,
   alert-important: #8250df,
   alert-warning: #9a6700,
-  alert-caution: #cf222e
+  alert-caution: #cf222e,
 );
 
 $colors-dark: (
@@ -78,7 +78,7 @@ $colors-dark: (
   alert-tip: #3fb950,
   alert-important: #ab7df8,
   alert-warning: #d29922,
-  alert-caution: #f85149
+  alert-caution: #f85149,
 );
 
 // Mixin for theme colors
@@ -217,11 +217,11 @@ $colors-dark: (
     box-sizing: content-box;
     background-color: var(--md-bg);
 
-    &[align='right'] {
+    &[align="right"] {
       padding-left: 20px;
     }
 
-    &[align='left'] {
+    &[align="left"] {
       padding-right: 20px;
     }
   }
@@ -259,7 +259,7 @@ $colors-dark: (
         &:before {
           width: 16px;
           height: 16px;
-          content: ' ';
+          content: " ";
           display: inline-block;
           background-color: currentColor;
           -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
@@ -357,23 +357,23 @@ $colors-dark: (
     list-style-type: none;
   }
 
-  ol[type='a s'] {
+  ol[type="a s"] {
     list-style-type: lower-alpha;
   }
 
-  ol[type='A s'] {
+  ol[type="A s"] {
     list-style-type: upper-alpha;
   }
 
-  ol[type='i s'] {
+  ol[type="i s"] {
     list-style-type: lower-roman;
   }
 
-  ol[type='I s'] {
+  ol[type="I s"] {
     list-style-type: upper-roman;
   }
 
-  ol[type='1'],
+  ol[type="1"],
   div > ol:not([type]) {
     list-style-type: decimal;
   }
@@ -412,7 +412,7 @@ $colors-dark: (
   pre,
   samp,
   tt {
-    font-family: ui-monospace, 'Noto Sans Mono', monospace;
+    font-family: ui-monospace, "Noto Sans Mono", monospace;
   }
 
   code,
@@ -508,7 +508,7 @@ $colors-dark: (
     padding: 0.25rem;
     font:
       11px ui-monospace,
-      'Noto Sans Mono',
+      "Noto Sans Mono",
       monospace;
     line-height: 10px;
     color: var(--md-text);
@@ -572,7 +572,7 @@ $colors-dark: (
     &::before,
     &::after {
       display: table;
-      content: '';
+      content: "";
     }
 
     &::after {
@@ -596,14 +596,14 @@ $colors-dark: (
     }
   }
 
-  [type='button'],
-  [type='reset'],
-  [type='submit'] {
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
     appearance: auto;
   }
 
-  [type='checkbox'],
-  [type='radio'] {
+  [type="checkbox"],
+  [type="radio"] {
     box-sizing: border-box;
     padding: 0;
 
@@ -624,13 +624,13 @@ $colors-dark: (
     }
   }
 
-  [type='number']::-webkit-inner-spin-button,
-  [type='number']::-webkit-outer-spin-button {
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
     height: auto;
   }
 
-  [type='search']::-webkit-search-cancel-button,
-  [type='search']::-webkit-search-decoration {
+  [type="search"]::-webkit-search-cancel-button,
+  [type="search"]::-webkit-search-decoration {
     appearance: none;
   }
 
@@ -682,7 +682,7 @@ $colors-dark: (
   &::before,
   &::after {
     display: table;
-    content: '';
+    content: "";
   }
 
   &::after {
@@ -832,7 +832,7 @@ $colors-dark: (
     display: inline-block;
     min-width: 1ch;
     font-family:
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol', sans-serif;
+      "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", sans-serif;
     font-size: 1em;
     font-style: normal !important;
     font-weight: 400;
@@ -846,7 +846,7 @@ $colors-dark: (
   }
 
   // Focus styles
-  [role='button'],
+  [role="button"],
   button,
   summary,
   a {
@@ -856,9 +856,9 @@ $colors-dark: (
     }
   }
 
-  [role='button'],
-  [role='tabpanel'][tabindex='0'],
-  [tabindex='0'],
+  [role="button"],
+  [role="tabpanel"][tabindex="0"],
+  [tabindex="0"],
   details-dialog {
     &:focus:not(:focus-visible) {
       outline: none;

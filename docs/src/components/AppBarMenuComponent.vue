@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useConfigStore from '@/store/ConfigStore';
+import useConfigStore from "@/store/ConfigStore";
 
 const { t } = useI18n();
 /** Config Store */

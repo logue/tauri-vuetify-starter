@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Locale } from '@/types/LocaleType';
+import type { Locale } from "@/types/LocaleType";
 
 const { locale, locales } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
@@ -7,7 +7,7 @@ const switchLocalePath = useSwitchLocalePath();
 // Cast for TypeScript compatibility.
 const availableLocales = computed(() =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (locales.value as any[]).filter((l: any) => l.code !== locale.value)
+  (locales.value as any[]).filter((l: any) => l.code !== locale.value),
 );
 
 const switchLanguage = async (code: Locale) => {

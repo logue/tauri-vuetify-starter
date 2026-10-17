@@ -9,29 +9,29 @@ export const useContentData = () => {
   // Feature descriptor list used by cards and sections.
   const features = [
     {
-      icon: 'mdi-package-variant',
-      key: 'multiple_formats'
+      icon: "mdi-package-variant",
+      key: "multiple_formats",
     },
     {
-      icon: 'mdi-lightning-bolt',
-      key: 'high_speed'
+      icon: "mdi-lightning-bolt",
+      key: "high_speed",
     },
     {
-      icon: 'mdi-application-outline',
-      key: 'drag_drop'
+      icon: "mdi-application-outline",
+      key: "drag_drop",
     },
     {
-      icon: 'mdi-earth',
-      key: 'i18n'
+      icon: "mdi-earth",
+      key: "i18n",
     },
     {
-      icon: 'mdi-theme-light-dark',
-      key: 'dark_mode'
+      icon: "mdi-theme-light-dark",
+      key: "dark_mode",
     },
     {
-      icon: 'mdi-shield-check',
-      key: 'paste'
-    }
+      icon: "mdi-shield-check",
+      key: "paste",
+    },
   ];
 
   /**
@@ -41,7 +41,7 @@ export const useContentData = () => {
    */
   const leadDescriptions = computed(() => {
     try {
-      const descriptions = tm('lead.description') as unknown;
+      const descriptions = tm("lead.description") as unknown;
       return Array.isArray(descriptions) ? (descriptions as string[]) : [];
     } catch {
       return [];
@@ -50,6 +50,6 @@ export const useContentData = () => {
 
   return {
     features,
-    leadDescriptions
+    leadDescriptions,
   };
 };

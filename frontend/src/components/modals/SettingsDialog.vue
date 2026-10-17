@@ -24,10 +24,18 @@ const isMac = navigator.userAgent.includes('Mac');
     <template #default="{ isActive }">
       <v-card flat>
         <v-toolbar>
-          <v-btn v-if="isMac" icon="mdi-close" @click="isActive.value = false" />
+          <v-btn
+            v-if="isMac"
+            icon="mdi-close"
+            @click="isActive.value = false"
+          />
           <v-toolbar-title>{{ t('settings') }}</v-toolbar-title>
           <v-spacer />
-          <v-btn v-if="!isMac" icon="mdi-close" @click="isActive.value = false" />
+          <v-btn
+            v-if="!isMac"
+            icon="mdi-close"
+            @click="isActive.value = false"
+          />
         </v-toolbar>
         <v-card-text class="d-flex flex-row pa-0 settings-dialog-content">
           <v-layout>
@@ -51,7 +59,9 @@ const isMac = navigator.userAgent.includes('Mac');
                       <v-card-text>
                         <!-- Common options content goes here -->
                         <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-                        <p>Here you can add common settings for your application.</p>
+                        <p>
+                          Here you can add common settings for your application.
+                        </p>
                       </v-card-text>
                     </v-card>
                   </v-window-item>

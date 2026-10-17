@@ -1,5 +1,5 @@
 # ベースイメージ（Rust最新版）
-FROM rust:latest
+FROM rust:slim
 
 # 1. 必要なツールチェーンのインストール
 # clang, lld: MSVC互換のクロスリンクに必須

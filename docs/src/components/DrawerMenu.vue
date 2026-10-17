@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type DrawerMenuItem from '@/interfaces/DrawerMenuItemInterface';
+import type DrawerMenuItem from "@/interfaces/DrawerMenuItemInterface";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
@@ -7,46 +7,46 @@ const localePath = useLocalePath();
 /** Drawer menu items */
 const items: ComputedRef<DrawerMenuItem[]> = computed(() => [
   {
-    title: t('home'),
-    icon: 'mdi-home',
-    to: localePath('/')
+    title: t("home"),
+    icon: "mdi-home",
+    to: localePath("/"),
   },
   {
-    title: '-' // Divider
+    title: "-", // Divider
   },
   {
-    title: t('user-guide'),
-    icon: 'mdi-power'
+    title: t("user-guide"),
+    icon: "mdi-power",
     // to: localePath('/user-guide')
   },
   {
-    title: t('publishing'),
-    icon: 'mdi-package-variant'
+    title: t("publishing"),
+    icon: "mdi-package-variant",
     //to: localePath('/publishing')
   },
   {
-    title: '-' // Divider
+    title: "-", // Divider
   },
   {
-    title: t('build_windows'),
-    icon: 'mdi-microsoft-windows'
+    title: t("build_windows"),
+    icon: "mdi-microsoft-windows",
     //to: localePath('/build-windows')
   },
   {
-    title: t('build_macos'),
-    icon: 'mdi-apple'
+    title: t("build_macos"),
+    icon: "mdi-apple",
     //to: localePath('/build-macos')
   },
   {
-    title: t('build_linux'),
-    icon: 'mdi-linux'
+    title: t("build_linux"),
+    icon: "mdi-linux",
     //to: localePath('/build-linux')
   },
   {
-    title: t('build_linux_docker'),
-    icon: 'mdi-docker'
+    title: t("build_linux_docker"),
+    icon: "mdi-docker",
     //to: localePath('/build-linux-docker')
-  }
+  },
 ]);
 </script>
 

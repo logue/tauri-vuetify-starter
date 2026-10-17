@@ -18,7 +18,9 @@ const useConfigStore = defineStore('config', () => {
   });
 
   /** Dark Theme mode */
-  const theme: Ref<boolean> = ref(window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const theme: Ref<boolean> = ref(
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  );
 
   /** Toggle Dark/Light mode */
   const toggleTheme = () => (theme.value = !theme.value);

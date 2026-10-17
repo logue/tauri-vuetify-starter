@@ -5,55 +5,55 @@
  */
 
 // Vuetify SASS variables override
-@use 'vuetify/settings' with (
+@use "vuetify/settings" with (
   $body-font-family: (
-    'Noto Sans',
-    'Noto Sans JP',
-    'Noto Sans KR',
-    'Noto Sans TC',
-    'Noto Sans SC',
-    'Noto Color Emoji',
-    sans-serif
+    "Noto Sans",
+    "Noto Sans JP",
+    "Noto Sans KR",
+    "Noto Sans TC",
+    "Noto Sans SC",
+    "Noto Color Emoji",
+    sans-serif,
   )
 );
 
 // Add global font settings.
 :root {
   font-family:
-    'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans TC', 'Noto Sans SC', 'Noto Color Emoji',
+    "Noto Sans", "Noto Sans JP", "Noto Sans KR", "Noto Sans TC", "Noto Sans SC", "Noto Color Emoji",
     sans-serif !important;
 }
 
 // Per-language font settings.
-html[lang='ja'],
-html[lang='ja'] * {
-  font-family: 'Noto Sans JP', 'Noto Sans', 'Noto Color Emoji', sans-serif !important;
+html[lang="ja"],
+html[lang="ja"] * {
+  font-family: "Noto Sans JP", "Noto Sans", "Noto Color Emoji", sans-serif !important;
 }
 
-html[lang='ko'],
-html[lang='ko'] * {
-  font-family: 'Noto Sans KR', 'Noto Sans', 'Noto Color Emoji', sans-serif !important;
+html[lang="ko"],
+html[lang="ko"] * {
+  font-family: "Noto Sans KR", "Noto Sans", "Noto Color Emoji", sans-serif !important;
 }
 
-html[lang='zhHant'],
-html[lang='zhHant'] *,
-html[lang='zh-Hant'],
-html[lang='zh-Hant'] * {
-  font-family: 'Noto Sans TC', 'Noto Sans', 'Noto Color Emoji', sans-serif !important;
+html[lang="zhHant"],
+html[lang="zhHant"] *,
+html[lang="zh-Hant"],
+html[lang="zh-Hant"] * {
+  font-family: "Noto Sans TC", "Noto Sans", "Noto Color Emoji", sans-serif !important;
 }
 
-html[lang='zhHans'],
-html[lang='zhHans'] *,
-html[lang='zh-Hans'],
-html[lang='zh-Hans'] * {
-  font-family: 'Noto Sans SC', 'Noto Sans', 'Noto Color Emoji', sans-serif !important;
+html[lang="zhHans"],
+html[lang="zhHans"] *,
+html[lang="zh-Hans"],
+html[lang="zh-Hans"] * {
+  font-family: "Noto Sans SC", "Noto Sans", "Noto Color Emoji", sans-serif !important;
 }
 
-html[lang='en'],
-html[lang='en'] *,
-html[lang='fr'],
-html[lang='fr'] * {
-  font-family: 'Noto Sans', 'Noto Color Emoji', sans-serif !important;
+html[lang="en"],
+html[lang="en"] *,
+html[lang="fr"],
+html[lang="fr"] * {
+  font-family: "Noto Sans", "Noto Color Emoji", sans-serif !important;
 }
 
 // Fix for monospace Font.
@@ -62,8 +62,8 @@ kbd,
 pre,
 samp,
 var {
-  font-family: 'Noto Sans Mono', monospace !important;
+  font-family: "Noto Sans Mono", monospace !important;
   font-optical-sizing: auto;
   font-style: normal;
-  font-variation-settings: 'wdth' 100;
+  font-variation-settings: "wdth" 100;
 }

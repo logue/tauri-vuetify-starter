@@ -34,7 +34,7 @@ export const useNotification = (t: ComposerTranslation) => {
 
       if (permissionGranted) {
         // Send the desktop notification.
-        await sendNotification({ title, body, icon });
+        sendNotification({ title, body, icon });
       }
     } catch (error) {
       console.error(t('notification.error.title'), error);
